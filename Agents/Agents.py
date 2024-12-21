@@ -12,7 +12,7 @@ from langchain.agents import AgentExecutor, create_tool_calling_agent
 from langchain.prompts import PromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_community.callbacks import get_openai_callback
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 from langchain.tools import BaseTool, tool
 from datetime import datetime
 from langchain.globals import set_verbose

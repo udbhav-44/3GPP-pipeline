@@ -7,9 +7,9 @@ from Agents.LATS.Initial_response import custom_generate_initial_response
 from Agents.LATS.TreeState import TreeState
 from Agents.LATS.generate_candiates import custom_expand
 from langgraph.graph import END, StateGraph, START
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 from dotenv import load_dotenv
-load_dotenv('../../../.env')
+load_dotenv('.env')
 
 def should_loop(state: TreeState):
     """

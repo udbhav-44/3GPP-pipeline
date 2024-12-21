@@ -3,7 +3,7 @@ This module sets up various configurations for different ChatOpenAI models using
 """
 import os
 from dotenv import load_dotenv
-load_dotenv('../.env')
+load_dotenv('.env')
 openai_api_key=os.getenv("OPEN_AI_API_KEY_30")
 from langchain_openai import ChatOpenAI
 #For Memory

@@ -12,11 +12,11 @@ from Agents.LATS.TreeState import TreeState
 from Agents.LATS.Reflection import reflection_chain, Node
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
 from langgraph.prebuilt import ToolNode
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 import os
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-load_dotenv('../../../.env')
+load_dotenv('.env')
 
 from LLMs import GPT4o_mini_LATS
 

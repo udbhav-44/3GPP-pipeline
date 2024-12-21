@@ -1,8 +1,8 @@
 from Agents.LATS.Create_graph import generateGraph_forLATS
 import json
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 from dotenv import load_dotenv
-load_dotenv('../../../.env')
+load_dotenv('.env')
 
 def SolveSubQuery(query:str, tools):
     question = query

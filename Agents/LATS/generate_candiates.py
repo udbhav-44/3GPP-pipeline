@@ -20,9 +20,9 @@ from langchain_core.output_parsers.openai_tools import (
 
 from collections import defaultdict
 from langgraph.prebuilt import ToolNode
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 from dotenv import load_dotenv
-load_dotenv('../../../.env')
+load_dotenv('.env')
 parser = JsonOutputToolsParser(return_id=True)
 
 from LLMs import GPT4o_mini_LATS

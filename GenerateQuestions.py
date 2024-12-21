@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 import json
 from LLMs import conversation_complex, GPT4o_mini_Complex
 
-load_dotenv('../.env')
+load_dotenv('.env')
 
 OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 

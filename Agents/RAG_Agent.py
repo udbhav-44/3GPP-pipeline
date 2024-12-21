@@ -2,7 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 import time
-load_dotenv('../../.env')
+load_dotenv('.env')
 
 from datetime import datetime
 import google.generativeai as genai
@@ -10,7 +10,7 @@ import google.generativeai as genai
 from langchain.globals import set_verbose
 set_verbose(True)
 
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 
 from LLMs import conversation_complex, GPT4o_mini_Complex
 

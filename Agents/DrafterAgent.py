@@ -6,7 +6,7 @@ from openai import OpenAI
 
 from LLMs import conversation_complex, GPT4o_mini_Complex
 
-load_dotenv('../../.env')
+load_dotenv('.env')
 GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY_30')
 OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 

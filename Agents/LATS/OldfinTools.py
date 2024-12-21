@@ -64,14 +64,14 @@ def log_error(tool_name, error_message, additional_info=None):
 
 os.environ["GOOGLE_API_KEY"]= os.getenv('GEMINI_API_KEY_30')
 os.environ["OPENAI_API_KEY"] = os.getenv('OPEN_AI_API_KEY_30')
-os.environ["DISCORD_AUTH_KEY"] = os.getenv('DISCORD_AUTH_KEY')
+# os.environ["DISCORD_AUTH_KEY"] = os.getenv('DISCORD_AUTH_KEY')
 os.environ["GOOGLE_CSE_ID"] =  os.getenv("GOOGLE_CSE_ID_30")
 os.environ["TAVILY_API_KEY"] = os.getenv("TAVILY_API_KEY_30")
 os.environ["GOOGLE_API_KEY"] = os.getenv("GOOGLE_API_KEY_30")
-os.environ["reddit_client_id"]= os.getenv('reddit_client_id_30')
-os.environ["reddit_client_secret"] = os.getenv('reddit_client_secret_30')
-os.environ["reddit_user_agent"] = os.getenv('reddit_user_agent_30')
-finnhub_client = finnhub.Client(api_key=os.getenv('FINNHUB_API_KEY_30'))
+# os.environ["reddit_client_id"]= os.getenv('reddit_client_id_30')
+# os.environ["reddit_client_secret"] = os.getenv('reddit_client_secret_30')
+# os.environ["reddit_user_agent"] = os.getenv('reddit_user_agent_30')
+# finnhub_client = finnhub.Client(api_key=os.getenv('FINNHUB_API_KEY_30'))
 
 def clean_text(text):
     text = re.sub(r'http\S+|www\S+|https\S+', '', text)
@@ -113,7 +113,7 @@ def web_scrape(url, query) -> Union[Dict, str]:
     """
     
     # JINA HOSTING - URL Change
-    api_url = f'http://34.41.213.72:3000/{url}'
+    api_url = f'http://4.188.110.145:3000/{url}'
     headers = {
         'Accept': 'application/json',
         'X-Respond-With':'markdown',
@@ -516,7 +516,7 @@ def query_documents(prompt: str, source: str) -> Dict:
         }
         
         response = requests.post(
-            "http://localhost:4005/generate",
+            "http://0.0.0.0:4005/generate",
             headers={"Content-Type": "application/json"},
 
             json=payload
@@ -1191,7 +1191,7 @@ def simple_query_documents(prompt: str) -> Dict:
         }
         print(payload)
         response = requests.post(
-            "http://localhost:4005/generate",
+            "http://0.0.0.0:4005/generate",
             headers={"Content-Type": "application/json"},
             json=payload
         )
@@ -1247,7 +1247,7 @@ def retrieve_documents(prompt: str) -> str:
         }
         
         response = requests.post(
-            "http://localhost:4006/v1/retrieve",
+            "http://0.0.0.0:4006/v1/retrieve",
             headers={"Content-Type": "application/json"},
 
             json=payload

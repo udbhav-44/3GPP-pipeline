@@ -13,7 +13,7 @@ from langchain_experimental.utilities import PythonREPL
 import requests
 from langchain_openai import ChatOpenAI
 
-load_dotenv('../../.env')
+load_dotenv('.env')
 api_gemini = os.getenv("GEMINI_API_KEY_30")
 api_img = os.getenv("IMGBB_API_KEY")
 openai_api_key=os.getenv("OPEN_AI_API_KEY_30")

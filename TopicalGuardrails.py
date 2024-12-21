@@ -10,7 +10,7 @@ import time
 from dotenv import load_dotenv
 import json
 from datetime import datetime
-load_dotenv('../.env')
+load_dotenv('.env')
 
 # To get current date answers
 DATE_PROMPT = f"""Date and Time right now is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. You are now in the future at this date and time. All your answers which follow must obey this. Assume that your knowledge base cutoff is this date irrespective of anything

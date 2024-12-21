@@ -93,7 +93,7 @@ def web_scrape(url, query) -> Union[Dict, str]:
     """
     
     # JINA HOSTING - URL Change
-    api_url = f'http://127.0.0.1:3000/{url}'
+    api_url = f'http://4.188.110.145:3000/{url}'
     headers = {
         'Accept': 'application/json',
         'X-Respond-With':'markdown',
@@ -232,7 +232,7 @@ def query_documents(prompt: str, source: str) -> Dict:
         }
         
         response = requests.post(
-            "http://localhost:4005/generate",
+            "http://0.0.0.0:4005/generate",
             headers={"Content-Type": "application/json"},
 
             json=payload
@@ -320,7 +320,7 @@ def simple_query_documents(prompt: str) -> Dict:
         }
         print(payload)
         response = requests.post(
-            "http://localhost:4005/generate",
+            "http://0.0.0.0:4005/generate",
             headers={"Content-Type": "application/json"},
             json=payload
         )
@@ -377,7 +377,7 @@ def retrieve_documents(prompt: str) -> str:
         }
         
         response = requests.post(
-            "http://localhost:4006/v1/retrieve",
+            "http://0.0.0.0:4006/v1/retrieve",
             headers={"Content-Type": "application/json"},
 
             json=payload

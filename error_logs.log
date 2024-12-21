@@ -1,0 +1,24 @@
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761565ca9f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-21T06:56:44.429223",
+    "additional info": {
+        "url": "https://www.forbes.com/advisor/business/software/best-task-management-software/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761565cb6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-21T06:56:48.848474",
+    "additional info": {
+        "url": "https://www.forbes.com/advisor/business/software/best-task-management-software/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/uk/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761555167e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-21T06:56:48.852904",
+    "additional info": {
+        "url": "https://www.forbes.com/uk/advisor/business/software/best-task-management-software/"
+    }
+}

@@ -12,7 +12,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, Field
 from dotenv import load_dotenv
-load_dotenv('../../../.env')
+load_dotenv('.env')
 
 import os
 from langchain_openai import ChatOpenAI

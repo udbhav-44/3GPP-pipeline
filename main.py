@@ -10,7 +10,7 @@ Functions:
 """
 import os
 from dotenv import load_dotenv
-load_dotenv('../.env')
+load_dotenv('.env')
 
 import time
 import json
@@ -31,7 +31,7 @@ from Agents.conciseLatsAgent import conciseAns_vanilla_LATS
 from langchain_community.callbacks import get_openai_callback
 from langchain_openai import ChatOpenAI
 
-from pipeline.Agents.LATS.OldfinTools import *
+from Agents.LATS.OldfinTools import *
 import json
 import threading
 import asyncio
@@ -87,8 +87,8 @@ async def mainBackend(query, websocket, rag):
 
     with open("ProcessLogs.md", "w") as f:
         f.write("")
-    with open("tickers.txt", "a") as f_ticker:
-        f_ticker.write('')
+    # with open("tickers.txt", "a") as f_ticker:
+    #     f_ticker.write('')
 
     # Apply guardrails to the query
     guard_rails, reasonings = applyTopicalGuardails(query)
@@ -148,7 +148,7 @@ async def mainBackend(query, websocket, rag):
             elif query_type == "simple":
                 print("RUNNING SIMPLE TASK PIPELINE")   
                 async def executeSimplePipeline(query):
-                    tools_list = [get_stock_data, web_search_simple, get_basic_financials, get_company_info, get_stock_dividends, get_income_stmt, get_balance_sheet, get_cash_flow, get_analyst_recommendations]
+                    tools_list = [web_search_simple]
                     resp = conciseAns_vanilla(query, tools_list)   
                     resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
                     return str(resp)
@@ -300,7 +300,7 @@ async def main():
      Starts the WebSocket server and keeps it running indefinitely.
     """
     print("WebSocket server starting on ws://0.0.0.0:8080")
-    async with websockets.serve(handle_connection, "localhost", 8080):
+    async with websockets.serve(handle_connection, "0.0.0.0", 8080):
         await asyncio.Future()  # run forever
 
 

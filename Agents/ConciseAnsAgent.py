@@ -24,7 +24,7 @@ from langchain_openai import ChatOpenAI
 #TO CHANGE IF POSSIBLE
 from LLMs import GPT4o_mini_LATS
 
-load_dotenv('../../.env')
+load_dotenv('.env')
 
 def conciseAns_vanilla(query, tools_list):
     print("RUNNING conciseAns_vanilla")
