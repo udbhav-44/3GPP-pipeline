@@ -115,19 +115,6 @@ class Node:
 
     def get_messages(self, include_reflections: bool = True):
         if include_reflections:
-            '''with open('content-self_messages_fromReflection.txt', 'a') as f1:
-                with open('additional_kwargs-self_messages_fromReflection.txt', 'a') as f2:
-                    with open('response_metadata-self_messages_fromReflection_content.txt', 'a') as f3:
-                            with open('usage_metadata-self_messages_fromReflection_content.txt', 'a') as f4:
-                                for i in self.messages + [self.reflection.as_message()]:
-                                    f1.write(f"{i.content}\n")
-                                    f1.write("\n\n")
-                                    f2.write(f"{i.additional_kwargs}\n")
-                                    f2.write("\n\n")
-                                    f3.write(f"{i.response_metadata}\n")
-                                    f3.write("\n\n")
-                                    f4.write(f"{i.usage_metadata}\n")
-                                    f4.write("\n\n")'''
             with open("ProcessLogs.md", "a") as f:
                 for i in self.messages + [self.reflection.as_message()]:
                     if 'tool_calls' in i.additional_kwargs:
@@ -137,10 +124,6 @@ class Node:
                             f.write(f"{j['function']['name']}\n")
                             f.write("Function has Arguments\n")
                             f.write(f"{j['function']['arguments']}\n\n")
-                            """dic = json.loads(j['function']['arguments'].replace("'", '''"'''))
-                            if 'symbol' in dic:
-                                with open("tickers.txt", "a") as f_ticker:
-                                    f_ticker.write(f"{dic['symbol']}\n")"""
                         f.write("Agent Tools RAW Output:\n")
                         f.write(f"{i.content}\n\n")
                     else:
@@ -160,10 +143,6 @@ class Node:
                 node.get_messages(include_reflections=include_reflections)[::-1]
             )
             node = node.parent
-        '''with open('messages_fromReflection.txt', 'a') as f:
-            for i in messages[::-1]:
-                f.write(f"{i}\n")
-            f.write("\n\n")'''
         # Reverse the final back-tracked trajectory to return in the correct order
         return messages[::-1]  # root solution, reflection, child 1, ...
 
@@ -222,14 +201,7 @@ reflection_llm_chain = (
 @as_runnable
 def reflection_chain(inputs) -> Reflection:
     tool_choices = reflection_llm_chain.invoke(inputs)
-    '''with open("tool_choises_fromReflection.txt",'a') as f:
-        f.write(str(tool_choices))
-        f.write("\n\n")'''
     reflection = tool_choices[0]
     if reflection.score >= 6:
         reflection.found_solution = True
-    #This has to be commented
-    #if not isinstance(inputs["candidate"][-1], AIMessage):
-    #    reflection.found_solution = False
-    #Till here
     return reflection

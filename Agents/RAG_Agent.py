@@ -1,3 +1,5 @@
+""""This file contains the code for the RAG Agent, which utilizes the RAG model to generate responses to the user query."""
+
 import os
 import json
 from dotenv import load_dotenv
@@ -57,22 +59,6 @@ def ragAgent(query, state):
             rag_resp = retrieve_documents.invoke(dic[p])
             fin_context += f'{rag_resp} \n'
 
-        """prompt_2 =  f'''
-        Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
-        must be with respect to this time frame
-        
-        Based on the given main query, 3 sub-queries, and given context, conduct intensive research from 
-        a multi-domain perspective (such as finance, economics, law, market research, consumer research, compliance etc)
-        and generate a comprehensive answer to the main query.
-        The main query is: {query}
-        The sub-queries are: {dic}
-        The context is: 
-        {fin_context}
-        The answer should be backed by all the facts gathered and research conducted, hence the answer should be extremely detailed.
-        \n
-        '''
-
-        fin_response = GPT4o_mini_Complex.invoke(f'''{prompt_2}''').content"""
 
 
         return fin_context

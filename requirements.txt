@@ -1,5 +1,5 @@
 langchain_google_genai 
-edgartools
+# edgartools
 websockets
 asyncio
 watchdog
@@ -17,8 +17,8 @@ langchain
 langchain-google-genai
 langchain-community
 langgraph
-yfinance
-finnhub-python
+# yfinance
+# finnhub-python
 openai
 langchain-openai
 langsmith
@@ -52,7 +52,7 @@ distro==1.9.0
 executing==2.1.0
 fastjsonschema==2.20.0
 filelock==3.13.1
-finnhub-python==2.4.21
+# finnhub-python==2.4.21
 fonttools==4.54.1
 fqdn==1.5.1
 frozendict==2.4.6

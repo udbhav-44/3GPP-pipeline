@@ -36,7 +36,7 @@ def conciseAns_vanilla(query, tools_list):
         Provide a concise, and well researched answer for the following query.:
         {query}
 
-        Provide Numbers, Financials, Case Laws, Facts in order to back the answer.
+        Provide Numbers, Facts, Concepts, Formulaes, Research Insights in order to back the answer.
         
         Give a direct answer to the question, without showing your thought process,
         extra information, and don't provide detailed analysis. Only answer what is asked

@@ -1,3 +1,5 @@
+"""This file contains the code for the Planner Agent, which is responsible for generating the sub-agents that will be used to address the user query.""""
+
 import os
 import json
 from dotenv import load_dotenv
@@ -33,16 +35,17 @@ def plannerAgent(query):
     You are a task management assistant designed to break down tasks and manage task progress.
 
     While breaking down the main task into sub tasks, analyze from a multi-dimensional aspect, for instance interdependency
-    between multiple domains like finance, microeconomics, macroeconomics, public policy, politics, law, environment etc,
-    Large Scale considerations v/s Small Scale considerations, Long Term Considerations v/s Short Term Considerations etc. 
-    For each of these domains like economics, public policy, finance, law, antitrust issues, management, consultancy, market 
-    strategy etc, generate an individual agents which do intensive research on these specific topics, leveraging the tools provided. 
+    betweenfinance, microeconomics, macroeconomics, public policy, politics, law, environment etc, Large Scale considerations v/s Small Scale considerations, 
+    Long Term Considerations v/s Short Term Considerations, comparative analysis of entities,
+    For each of these domains like communication technologies, 3GPP standardization, network performance analysis, policy and regulation, finance, market 
+    strategy etc, generate individual agents which do intensive research on these specific topics, leveraging the tools provided. 
 
     Each subtask should only cover one domain/aspect of the problem, and only one entity related to the problem, hence there
     can be many subtasks for a complex problem, and single or low number of tasks for a unidimensional problem.
     
-    You can use multiple tools for each task. The research crew of agents must be extensive to ensure in depth research.
+    You can use multiple tools for each task. The research crew of agents must be extensive to ensure in-depth research.
     The main job in task breakdown is populating the JSON template below : 
+    
     
     'json 
 
@@ -58,8 +61,8 @@ def plannerAgent(query):
     Before you design your task , you should understand what tools you have 
     , what each tool can do and cannot do. You must not design the subtask
     that do not have suitable tool to perform . Never design subtask that
-    does not use any tool. Utilize specialized tools, like financial tools,
-    legal tools etc over simple web search, but if no specialized tool usage is possible,
+    does not use any tool. Utilize specialized tools, like communication analysis tools,
+    policy research tools, etc., over simple web searches, but if no specialized tool usage is possible,
     then use the scrape or search tools.
      
     Based on user’s query , your main task is to gather valid information, create sub-tasks and synthesize agents which would execute these sub-tasks effectively. 
@@ -114,21 +117,19 @@ def plannerAgent(query):
     continue with the description of the subtask . It is important to
     indicate the names of the dependent subtasks .
     
-    " agent " is the agent required for each step of execution . For each subtask there must
-    only be one agent.Please use the original name of the agent synthesized.
-    . This list cannot be empty . If you could not think of any agent to
-    perform this sub - task , please do not write this sub - task.
-    Examples of agents might include: Environmental Researcher, Macroeconomist, 
-    Macroeconomist, Public Policy Researcher, ParaLegal Researcher, Financial Analyst,
-    Quantitative Researches, Fundamental Researcher, Data Collection Agent, Data Interpreter,
-    Market Researcher, General Researcher, Political Analyst, News Researcher, 
-    Mergers Specialist, Acquisitions Specialist, Investment Banker etc. Note that this is not an exhaustive list and you can 
-    make other agents on the same lines. 
+     " agent " is the agent required for each step of execution. For each subtask there must
+    only be one agent. Please use the original name of the agent synthesized.
+    This list cannot be empty. If you could not think of any agent to
+    perform this sub-task, please do not write this sub-task.
+    Examples of agents might include: Communication Systems Researcher, 3GPP Standards Specialist, 
+    Regulatory Analyst, Policy Advisor, Financial Analyst, Market Researcher, Technical Documentation Specialist, etc. Note that this is not an exhaustive list and you can 
+    make other agents on the same lines.
     
     "agent_role_description" is the detailed job role  description of the agent and
     it's specializations which are required to solve the specific task. This is a 
     detailed string which describes what the agent is supposed to do and what output
     and specialization is expected from that agent.
+    
     " tools " is the list of tools required for each step of execution . 
     Please use the original name of the tool without " functions ." in front. 
     This list cannot be empty . If you could not think of any tool to
@@ -220,13 +221,13 @@ def plannerAgent_rag(query, ragContent):
     You are a task planning assistant designed to break down tasks and manage task progress based on a prompt and context from a document.
 
     While breaking down the main task into sub tasks, analyze from a multi-dimensional aspect, for instance interdependency
-    between multiple domains like finance, microeconomics, macroeconomics, public policy, politics, law, environment etc,
+    between multiple domains like communication systems, mobile technologies, 3GPP standards, regulatory aspects, market strategies, and consumer adoption.
     Large Scale considerations v/s Small Scale considerations, Long Term Considerations v/s Short Term Considerations etc. 
-    For each of these domains like economics, public policy, finance, law, antitrust issues, management, consultancy, market 
-    strategy etc, generate an individual agents which do intensive research on these specific topics, leveraging the tools provided.
+    For each of these domains like communication technologies, 3GPP standardization, network performance analysis, policy and regulation, finance, market 
+    strategy etc, generate individual agents which do intensive research on these specific topics, leveraging the tools provided.
     The agents have access to extensive documents relevant to the query encourage them to make as many queries as possible to retrieve_documents to get relevant context for answering the query. 
-    The agents should focus HEAVILY ON extracting numbers from the context . Extract AS MANY NUMBERS as possible . Also the source provided to you should be mentioned EXPLICITLY.
-    Your Job is to extract as much relevant information from retrieve_documents .  Make sure to extract information from tables as much as you can. Basically you have lots of information waiting to be extracted from the document do it. Its a treasure trove of information 
+    The agents should focus HEAVILY ON extracting numbers from the context. Extract AS MANY NUMBERS as possible. Also, the source provided to you should be mentioned EXPLICITLY.
+    Your Job is to extract as much relevant information from retrieve_documents. Make sure to extract information from tables as much as you can. Basically, you have lots of information waiting to be extracted from the document, do it. It’s a treasure trove of information.
 
 
     The task divison should be very specific to the context. Following is the context:
@@ -251,11 +252,11 @@ def plannerAgent_rag(query, ragContent):
         }
     '
 
-    Before you design your task , you should understand what tools you have 
-    , what each tool can do and cannot do. You must not design the subtask
-    that do not have suitable tool to perform . Never design subtask that
-    does not use any tool. Utilize specialized tools, like financial tools,
-    legal tools etc over simple web search, but if no specialized tool usage is possible,
+    Before you design your task, you should understand what tools you have,
+    what each tool can do and cannot do. You must not design the subtask
+    that does not have a suitable tool to perform. Never design a subtask that
+    does not use any tool. Utilize specialized tools, like communication analysis tools,
+    policy research tools, etc., over simple web searches, but if no specialized tool usage is possible,
     then use the scrape or search tools.
      
     Try to minimize the number of tasks, but make at least 3 tasks.
@@ -365,8 +366,8 @@ def plannerAgent_rag(query, ragContent):
 
 
 if __name__ == "__main__":
-    start = time.time()
-    query = 'Analyze the impact of US-China trade wars on multiple financial assets'
-    out = plannerAgent(query)
-    print("Complete")
-    print(f"Time for planning: {time.time()-start}")
+    # start = time.time()
+    # query = 'Analyze the impact of US-China trade wars on multiple financial assets'
+    # out = plannerAgent(query)
+    # print("Complete")
+    # print(f"Time for planning: {time.time()-start}")

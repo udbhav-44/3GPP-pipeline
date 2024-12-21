@@ -80,12 +80,12 @@ class Agent:
             and the specific subtask for you {self.task}
 
             Based on your role, research and give us a comprehensive response analyzing various metrics. Try to stick to your role. 
-            Try to substantiate your answers with as much numbers, comparatives, facts, case laws and history as possible wherever required.
-            Provide Numbers and Explicitly researched facts in your response in order to back your claims. You may also provide tables of 
-            relevant information. 
-            Research, analyze and report from a multi-dimensional aspect, for instance interdependency
-            between multiple domains like finance, microeconomics, macroeconomics, public policy, politics, law, environment etc,
-            Large Scale considerations v/s Small Scale considerations, Long Term Considerations v/s Short Term Considerations etc.
+            Try to substantiate your answers with as much technical details, numerical analysis,formulaes, concepts, regulatory considerations, and historical context as possible wherever required.
+            Provide numbers, concepts and explicitly researched facts in your response in order to back your claims. You may also provide tables of 
+            relevant information.
+            Research, analyze, and report from a multi-dimensional aspect, focusing on interdependencies between communication systems, 
+            3GPP standards, market dynamics, regulatory frameworks, and technology adoption trends. Consider Large Scale considerations v/s Small Scale considerations, 
+            Long Term Considerations v/s Short Term Considerations, etc.
             You have access to the following tools:
 
             {self.func_docs}
@@ -94,9 +94,9 @@ class Agent:
             - Thought: Describe what you're thinking.
             - Action: Choose a tool from the pool of tools.
             - Action Input: Provide the input for the tool. Ensure that the input provided matches with the parameters of the tool, and the datatypes are same.
-            - Observation: Record the tool's result. In this observation, give a detailed explanation and reasoning of your response, backed by facts and numbers wherever required.
+            - Observation: Record the tool's result. In this observation, give a detailed explanation and reasoning of your response, backed by technical details, facts and numbers wherever required.
             Ensure that the Observation, that is the Final response is not short and concise, but detailed report with all the facts and figures well substantiated. 
-            Try to substantiate your answers with as much numbers, comparatives, facts, case laws and history as possible wherever required.
+            Try to substantiate your answers with as much technical details, comparisons, regulatory analysis, and historical context as possible wherever required.
             MAKE YOUR OUTPUTS EXTREMELY DETAILED AND WELL REASONED AND DO NOT OMIT ANY IMPORTANT FACTS WHICH ARE RESEARCHED BY THE TOOLS.
 
             IMPORTANT: Cite all the sources, website links, and data sources at the location where information is mentioned. 

@@ -21,20 +21,9 @@ def drafterAgentSimplified(text, query):
     user_prompt = f'''
     Following is the content:
     {text}
-        '''
+    
+    '''
     prompt = f'''{system_prompt}\n\n {user_prompt}'''
-    '''client = OpenAI(api_key=OPENAI_API_KEY)
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {
-                "role": "user",
-                "content": f"{user_prompt}"
-            }
-        ]
-    )
-    response = completion.choices[0].message.content.strip()'''
 
     response = conversation_complex.run(f'''{prompt}''')
     

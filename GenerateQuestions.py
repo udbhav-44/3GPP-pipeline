@@ -54,12 +54,13 @@ async def genQuestionSimple(query):
 
     print("Executing genQuestionSimple")
     system_prompt = '''
-        Synthesize 5 Questions Related to the given query. 
+       Synthesize 5 Questions Related to the given query with a focus on communication systems and 3GPP technical standards.
         Instructions to make the questions:
-        - The questions should be such that their answers can be detailed reports, this means that the answering those questions would require in depth research and reasoning
-        - The questions should be related to the following domains: finance, economics, law, markets, technology, politics, environment, consumers etc. Questions can also be multidisciplinary, combining facts from multiple domains.
-        - Try to make the questions as diverse as possible, but you must not deviate from the original query given. 
-        - The questions should be *at least* 20 words long
+        - The questions should focus on topics related to 3GPP technical specifications, mobile communication systems, protocols, and network architectures.
+        - Include multidisciplinary aspects like the economic impact of 3GPP technologies, legal or regulatory implications, environmental sustainability, or consumer adoption.
+        - Questions should encourage detailed answers, requiring in-depth research and reasoning.
+        - Make the questions diverse but ensure they remain relevant to the core topics of 3GPP and communication technologies.
+        - The questions should be *at least* 20 words long.
         - Output the questions according to the schema:
         {
         "question1": "...",
