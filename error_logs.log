@@ -1,24 +1,96 @@
 {
     "tool": "web_scrape",
-    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761565ca9f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
-    "timestamp": "2024-12-21T06:56:44.429223",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:3000/https://downloads.regulations.gov/NTIA-2024-0001-0004/attachment_2.pdf",
+    "timestamp": "2024-12-24T08:58:59.132471",
     "additional info": {
-        "url": "https://www.forbes.com/advisor/business/software/best-task-management-software/"
+        "url": "https://downloads.regulations.gov/NTIA-2024-0001-0004/attachment_2.pdf"
     }
 }
 {
     "tool": "web_scrape",
-    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761565cb6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
-    "timestamp": "2024-12-21T06:56:48.848474",
+    "error_message": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "timestamp": "2024-12-24T08:58:59.164917",
     "additional info": {
-        "url": "https://www.forbes.com/advisor/business/software/best-task-management-software/"
+        "url": "https://techblog.comsoc.org/2024/12/"
     }
 }
 {
     "tool": "web_scrape",
-    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/uk/advisor/business/software/best-task-management-software/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7761555167e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
-    "timestamp": "2024-12-21T06:56:48.852904",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://iclg.com/practice-areas/telecoms-media-and-internet-laws-and-regulations/01-global-regulatory-trends-in-telecom-regulation (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c7389b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T08:59:03.222767",
     "additional info": {
-        "url": "https://www.forbes.com/uk/advisor/business/software/best-task-management-software/"
+        "url": "https://iclg.com/practice-areas/telecoms-media-and-internet-laws-and-regulations/01-global-regulatory-trends-in-telecom-regulation"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.consegicbusinessintelligence.com/massive-mimo-market (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c75d5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T08:59:03.226056",
+    "additional info": {
+        "url": "https://www.consegicbusinessintelligence.com/massive-mimo-market"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://one6g.org/one6g-releases-the-4th-edition-of-the-6g-technology-overview-white-paper/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c5e86e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:02:20.224412",
+    "additional info": {
+        "url": "https://one6g.org/one6g-releases-the-4th-edition-of-the-6g-technology-overview-white-paper/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.greyb.com/blog/6g-enabling-technologies/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c5eb980>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:02:20.227279",
+    "additional info": {
+        "url": "https://www.greyb.com/blog/6g-enabling-technologies/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.globenewswire.com/news-release/2024/10/04/2958227/0/en/6G-Market-Assessment-and-Technology-Roadmap-2024-2035-Featuring-Strategic-Profiles-of-Major-Players-and-Case-Study-Analysis-Industry-Forecast-to-Reach-68-89-Billion-by-2035.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c6c31d0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:02:20.430381",
+    "additional info": {
+        "url": "https://www.globenewswire.com/news-release/2024/10/04/2958227/0/en/6G-Market-Assessment-and-Technology-Roadmap-2024-2035-Featuring-Strategic-Profiles-of-Major-Players-and-Case-Study-Analysis-Industry-Forecast-to-Reach-68-89-Billion-by-2035.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.globenewswire.com/news-release/2024/02/01/2822104/0/en/6G-Wireless-Technology-Research-Report-2024-Global-Trends-Forecasts-and-Competitive-Analysis-to-2030-Opportunities-in-AI-Automation-Robotics-IoT-and-VR-and-AR-markets.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c6c1a00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:02:20.433781",
+    "additional info": {
+        "url": "https://www.globenewswire.com/news-release/2024/02/01/2822104/0/en/6G-Wireless-Technology-Research-Report-2024-Global-Trends-Forecasts-and-Competitive-Analysis-to-2030-Opportunities-in-AI-Automation-Robotics-IoT-and-VR-and-AR-markets.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://one6g.org/one6g-releases-the-4th-edition-of-the-6g-technology-overview-white-paper/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c6eaed0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:03:04.600159",
+    "additional info": {
+        "url": "https://one6g.org/one6g-releases-the-4th-edition-of-the-6g-technology-overview-white-paper/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.ericsson.com/en/blog/2024/3/6g-standardization-timeline-and-technology-principles (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c702c30>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:03:04.602952",
+    "additional info": {
+        "url": "https://www.ericsson.com/en/blog/2024/3/6g-standardization-timeline-and-technology-principles"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.globenewswire.com/news-release/2024/02/01/2822104/0/en/6G-Wireless-Technology-Research-Report-2024-Global-Trends-Forecasts-and-Competitive-Analysis-to-2030-Opportunities-in-AI-Automation-Robotics-IoT-and-VR-and-AR-markets.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c68a990>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:03:08.528793",
+    "additional info": {
+        "url": "https://www.globenewswire.com/news-release/2024/02/01/2822104/0/en/6G-Wireless-Technology-Research-Report-2024-Global-Trends-Forecasts-and-Competitive-Analysis-to-2030-Opportunities-in-AI-Automation-Robotics-IoT-and-VR-and-AR-markets.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.maximizemarketresearch.com/market-report/6g-market/215850/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ba66c6e9ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T09:03:08.532445",
+    "additional info": {
+        "url": "https://www.maximizemarketresearch.com/market-report/6g-market/215850/"
     }
 }

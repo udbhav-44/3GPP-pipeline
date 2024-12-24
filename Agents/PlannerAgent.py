@@ -1,4 +1,4 @@
-"""This file contains the code for the Planner Agent, which is responsible for generating the sub-agents that will be used to address the user query.""""
+"""This file contains the code for the Planner Agent, which is responsible for generating the sub-agents that will be used to address the user query."""
 
 import os
 import json
@@ -366,8 +366,8 @@ def plannerAgent_rag(query, ragContent):
 
 
 if __name__ == "__main__":
-    # start = time.time()
-    # query = 'Analyze the impact of US-China trade wars on multiple financial assets'
-    # out = plannerAgent(query)
-    # print("Complete")
-    # print(f"Time for planning: {time.time()-start}")
+    start = time.time()
+    query = 'Analyze the impact of US-China trade wars on multiple financial assets'
+    out = plannerAgent(query)
+    print("Complete")
+    print(f"Time for planning: {time.time()-start}")

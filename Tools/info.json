@@ -20,5 +20,86 @@
             "type": "str",
             "description": "Summary of the Wikipedia page."
         }
+    },
+    {
+        "name": "arxiv_fetch",
+        "docstring": "Use this tool to dynamically fetch research papers from arXiv based on the query provided. The papers will be saved in the temp_rag_space for indexing and further use.",
+        "parameters": {
+            "query": "str"
+        },
+        "output": {
+            "type": "Dict",
+            "description": "Metadata of fetched papers, including title, authors, summary, and PDF link."
+        }
+    },
+    {
+        "name": "web_scrape",
+        "docstring": "Scrape a web page using links found using web search to provide a detailed response. Input should be the URL of the page to scrape.",
+        "parameters": {
+            "url": "str",
+            "query": "str"
+        },
+        "output": {
+            "type": "Union[Dict, str]",
+            "description": "The scraped data as JSON if successful, or the URL if scraping fails."
+        }
+    },
+    {
+        "name": "simple_query_documents",
+        "docstring": "Query documents using a Retrieval-Augmented Generation (RAG) endpoint. This should be the first choice before performing a web search.",
+        "parameters": {
+            "prompt": "str"
+        },
+        "output": {
+            "type": "Dict",
+            "description": "The JSON response from the RAG endpoint, containing the retrieved information and generated answer."
+        }
+    },
+    {
+        "name": "retrieve_documents",
+        "docstring": "Extract information from the provided internal document. This should be the first tool to call for accurate and verified information.",
+        "parameters": {
+            "prompt": "str"
+        },
+        "output": {
+            "type": "str",
+            "description": "The retrieved information formatted as text."
+        }
+    },
+    {
+        "name": "query_documents",
+        "docstring": "Query documents using a Retrieval-Augmented Generation (RAG) endpoint. This should be the first choice before performing a web search.",
+        "parameters": {
+            "prompt": "str",
+            "source": "str"
+        },
+        "output": {
+            "type": "Dict",
+            "description": "The JSON response from the RAG endpoint, containing the retrieved information and generated answer."
+        }
+    },
+    {
+        "name": "web_search_simple",
+        "docstring": "Perform a web search using the Google search engine.",
+        "parameters": {
+            "query": "str"
+        },
+        "output": {
+            "type": "List[Dict]",
+            "description": "Search results with basic details about the query."
+        }
+    },
+    {
+        "name" : "get_3gpp_docs",
+        "docstring" : " Use this tool to dynamically fetch 3GPP Technical Specifications (TS) and Technical Reports (TR) from 3GPP FTP server based on the query provided. The docs will be saved in the temp_rag_space for indexing and further use. Each specification will be saved as a separate file.",
+        "parameters":{
+            "query": "str"
+        },
+        "output": {
+            "type": "Dict",
+            "description": "Metadata of fetched TS or TR or an error message if the fetch fails."
+        }
     }
+
+
 ]

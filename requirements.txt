@@ -1,5 +1,6 @@
 langchain_google_genai 
 # edgartools
+faiss-cpu
 websockets
 asyncio
 watchdog
