@@ -19,7 +19,7 @@ ERROR_LOG_FILE = "./error_logs.log"
 
 
 # Logger configuration
-ERROR_LOG_FILE = "error.log"
+ERROR_LOG_FILE = "error_logs.log"
 logger = logging.getLogger('my_logger')
 file_handler = logging.FileHandler(ERROR_LOG_FILE)
 logger.setLevel(logging.DEBUG)  # Set the base logging level
@@ -49,7 +49,7 @@ def embed_texts(texts: list) -> list:
         )
         return [item.embedding for item in response.data]
     except Exception as e:
-        log_erorr(
+        log_error(
             func_name="embed_texts",
             error_message=str(e),
         )
@@ -245,7 +245,7 @@ Remember, only return JSON with an array of 5 items.
 
     except Exception as e:
         # Raise a detailed error for debugging
-        log_error("llm_rank_top_5_specs", {e} ,f"LLM did not return valid JSON:\n{llm_answer}")
+        log_error("llm_rank_top_5_specs", str(e) ,f"LLM did not return valid JSON:\n{llm_answer}")
         
     return top_5_specs
 

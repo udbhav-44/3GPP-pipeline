@@ -1,74 +1,70 @@
 ### Chain of Thoughts (COT)
 
-To address the query about the new MIMO specifications of 6G networks, we will break down the main task into several sub-tasks that focus on different aspects of MIMO technology and its specifications. Given the complexity of the topic, we will consider various dimensions such as technical specifications, research papers, industry standards, and regulatory considerations.
+To address the query regarding the Technical Specifications and Technical Reports for an Evolved Packet System (EPS) based 3GPP system, I will break down the main task into several subtasks. Each subtask will focus on a specific aspect of the query, ensuring that the research is thorough and covers various dimensions of the topic.
 
-1. **Understanding MIMO in 6G Context**: The first sub-task will focus on gathering a broad understanding of what MIMO (Multiple Input Multiple Output) technology entails in the context of 6G. This will involve a web search to identify foundational information and recent advancements.
+1. **Understanding the Query**: The main task is to gather valid information about the Technical Specifications (TS) and Technical Reports (TR) related to the Evolved Packet System (EPS) in the context of the 3GPP system. This requires an examination of both the specifications and reports.
 
-2. **Research Papers on MIMO Specifications**: The second sub-task will involve fetching recent research papers from arXiv that specifically discuss new MIMO specifications in 6G. This will provide insights from academia and ongoing research efforts.
+2. **Subtask Breakdown**:
+   - **Task 1**: Fetch the latest Technical Specifications (TS) related to EPS from the 3GPP FTP server. This task is fundamental as it will provide the primary source of information regarding the technical specifications.
+   - **Task 2**: Fetch the latest Technical Reports (TR) related to EPS from the 3GPP FTP server. Similar to Task 1, this will provide essential insights from the reports that accompany the specifications.
+   - **Task 3**: Summarize the findings from Task 1 (Technical Specifications) to extract key information and insights.
+   - **Task 4**: Summarize the findings from Task 2 (Technical Reports) to extract key information and insights.
+   - **Task 5**: Compare and analyze the insights from Tasks 3 and 4 to highlight any discrepancies or unique findings between the specifications and reports.
 
-3. **3GPP Specifications**: The third sub-task will focus on obtaining relevant technical specifications from the 3GPP (3rd Generation Partnership Project), which is crucial for understanding standardized MIMO specifications for 6G.
+3. **Dependencies**:
+   - Task 3 depends on the results of Task 1.
+   - Task 4 depends on the results of Task 2.
+   - Task 5 depends on the results of both Task 3 and Task 4.
 
-4. **Industry Trends and Applications**: The fourth sub-task will involve a web search to identify industry trends, applications, and practical implementations of MIMO technology in 6G networks.
+4. **Local Constraints**: Each subtask will have specific local constraints, such as ensuring that the fetched documents are the most recent and relevant to EPS, and that the summaries are concise and focused on the key aspects of the specifications and reports.
 
-5. **Summary of Findings**: Finally, a summarization task will compile the findings from the previous tasks to create a coherent overview of the new MIMO specifications in 6G networks.
+5. **Global Constraints**: The main task must ensure that all information gathered is accurate, up-to-date, and relevant to the Evolved Packet System within the 3GPP framework.
 
-Each sub-task is designed to be independent where possible, but the final summarization will depend on the results of the previous tasks.
-
-### Local Constraints
-- **Task 1**: The information gathered should focus specifically on MIMO technology as it relates to 6G, avoiding unrelated technologies.
-- **Task 2**: Only papers published within the last two years should be considered to ensure the information is current.
-- **Task 3**: The specifications fetched must be specifically related to MIMO technology in the context of 6G.
-- **Task 4**: The search should focus on industry reports or articles published in reputable tech magazines or journals.
-- **Task 5**: The summarization must include key points from all previous tasks and avoid duplicating information.
-
-### Global Constraints
-The global constraint for the main task is that all information must be up-to-date, relevant to MIMO specifications in 6G, and derived from credible sources.
-
-### JSON Template
+With this breakdown, I will now populate the JSON template with the identified subtasks.
 
 ```json
 {
-    "main_task": "Gather valid information on new MIMO specifications of 6G networks.",
+    "main_task": "Gather valid information about the Technical Specifications and Technical Reports for an Evolved Packet System (EPS) based 3GPP system.",
     "sub_tasks": {
         "task_1": {
-            "content": "Conduct a web search to gather foundational information about MIMO technology specifically in the context of 6G networks.",
-            "agent": "Telecommunications Researcher",
-            "agent_role_description": "A researcher specialized in telecommunications who will analyze and summarize the latest developments in MIMO technology related to 6G.",
-            "tools": ["web_search"],
-            "local_constraints": ["Focus specifically on MIMO technology as it relates to 6G, avoiding unrelated technologies."],
+            "content": "Fetch the latest Technical Specifications (TS) related to the Evolved Packet System (EPS) from the 3GPP FTP server.",
+            "agent": "3GPP Standards Specialist",
+            "agent_role_description": "The 3GPP Standards Specialist is responsible for retrieving the most recent Technical Specifications related to the Evolved Packet System from the 3GPP FTP server, ensuring the documents are relevant and up-to-date.",
+            "tools": ["get_3gpp_docs"],
+            "local_constraints": ["Ensure that the fetched Technical Specifications are the latest and specifically related to EPS."],
             "require_data": []
         },
         "task_2": {
-            "content": "Fetch recent research papers from arXiv that discuss new MIMO specifications in 6G networks.",
-            "agent": "Academic Research Analyst",
-            "agent_role_description": "An analyst who specializes in reviewing and summarizing academic research papers in telecommunications, particularly in MIMO technologies.",
-            "tools": ["arxiv_fetch"],
-            "local_constraints": ["Only consider papers published within the last two years to ensure the information is current."],
+            "content": "Fetch the latest Technical Reports (TR) related to the Evolved Packet System (EPS) from the 3GPP FTP server.",
+            "agent": "3GPP Standards Specialist",
+            "agent_role_description": "The 3GPP Standards Specialist is responsible for retrieving the most recent Technical Reports related to the Evolved Packet System from the 3GPP FTP server, ensuring the documents are relevant and up-to-date.",
+            "tools": ["get_3gpp_docs"],
+            "local_constraints": ["Ensure that the fetched Technical Reports are the latest and specifically related to EPS."],
             "require_data": []
         },
         "task_3": {
-            "content": "Obtain relevant technical specifications from the 3GPP that relate to MIMO technology in 6G.",
-            "agent": "3GPP Standards Specialist",
-            "agent_role_description": "A specialist in 3GPP standards who will extract and summarize the relevant technical specifications regarding MIMO for 6G.",
-            "tools": ["get_3gpp_docs"],
-            "local_constraints": ["The specifications fetched must be specifically related to MIMO technology in the context of 6G."],
-            "require_data": []
+            "content": "Based on the Technical Specifications fetched in task_1, summarize the key information and insights.",
+            "agent": "Technical Documentation Specialist",
+            "agent_role_description": "The Technical Documentation Specialist will analyze the Technical Specifications obtained from task_1 and summarize the key points, focusing on the main technical aspects of the EPS.",
+            "tools": ["retrieve_documents"],
+            "local_constraints": ["The summary must be concise and highlight the most relevant technical details from the specifications."],
+            "require_data": ["task_1"]
         },
         "task_4": {
-            "content": "Perform a web search to identify industry trends, applications, and practical implementations of MIMO technology in 6G networks.",
-            "agent": "Market Research Analyst",
-            "agent_role_description": "An analyst focused on market trends in telecommunications who will identify and summarize current applications of MIMO technology in 6G.",
-            "tools": ["web_search"],
-            "local_constraints": ["The search should focus on industry reports or articles published in reputable tech magazines or journals."],
-            "require_data": []
+            "content": "Based on the Technical Reports fetched in task_2, summarize the key information and insights.",
+            "agent": "Technical Documentation Specialist",
+            "agent_role_description": "The Technical Documentation Specialist will analyze the Technical Reports obtained from task_2 and summarize the key points, focusing on the main findings and recommendations related to the EPS.",
+            "tools": ["retrieve_documents"],
+            "local_constraints": ["The summary must be concise and highlight the most relevant findings from the reports."],
+            "require_data": ["task_2"]
         },
         "task_5": {
-            "content": "Summarize the findings from task_1, task_2, task_3, and task_4 to create a coherent overview of new MIMO specifications in 6G networks.",
-            "agent": "Technical Documentation Specialist",
-            "agent_role_description": "A specialist in creating technical documentation who will compile and summarize findings from various sources into a cohesive report.",
-            "tools": [],
-            "local_constraints": ["The summarization must include key points from all previous tasks and avoid duplicating information."],
-            "require_data": ["task_1", "task_2", "task_3", "task_4"]
+            "content": "Based on the summaries from task_3 and task_4, compare and analyze the insights to highlight discrepancies or unique findings between the specifications and reports.",
+            "agent": "Market Researcher",
+            "agent_role_description": "The Market Researcher will compare the insights from the Technical Specifications and Technical Reports, identifying any discrepancies or unique findings that may impact the understanding of the EPS.",
+            "tools": ["simple_query_documents"],
+            "local_constraints": ["The analysis must be thorough and should clearly outline any differences or unique aspects identified between the two documents."],
+            "require_data": ["task_3", "task_4"]
         }
     }
 }

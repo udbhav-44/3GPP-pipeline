@@ -94,3 +94,579 @@
         "url": "https://www.maximizemarketresearch.com/market-report/6g-market/215850/"
     }
 }
+2024-12-24 17:05:50,326 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb957ef60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:50.326078",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb957ef60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:50.326078",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+2024-12-24 17:05:53,728 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb95cda60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:53.728393",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb95cda60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:53.728393",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+2024-12-24 17:05:57,883 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f60bc0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:57.883908",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f60bc0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:05:57.883908",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+2024-12-24 17:06:00,996 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f34dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:00.996057",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/DynaReport/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f34dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:00.996057",
+    "additional info": {
+        "url": "https://www.3gpp.org/DynaReport/"
+    }
+}
+2024-12-24 17:06:09,690 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.telecomreviewamericas.com/articles/reports-and-coverage/6g-standardization-roadmap-for-future-connectivity/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f348f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:09.690486",
+    "additional info": {
+        "url": "https://www.telecomreviewamericas.com/articles/reports-and-coverage/6g-standardization-roadmap-for-future-connectivity/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.telecomreviewamericas.com/articles/reports-and-coverage/6g-standardization-roadmap-for-future-connectivity/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f348f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:09.690486",
+    "additional info": {
+        "url": "https://www.telecomreviewamericas.com/articles/reports-and-coverage/6g-standardization-roadmap-for-future-connectivity/"
+    }
+}
+2024-12-24 17:06:09,692 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.scribd.com/document/700948422/3GPP-Technology-Trends-2024 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f36990>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:09.692805",
+    "additional info": {
+        "url": "https://www.scribd.com/document/700948422/3GPP-Technology-Trends-2024"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.scribd.com/document/700948422/3GPP-Technology-Trends-2024 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x736bb3f36990>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:06:09.692805",
+    "additional info": {
+        "url": "https://www.scribd.com/document/700948422/3GPP-Technology-Trends-2024"
+    }
+}
+2024-12-24 17:12:51,939 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:3000/https://vdoc.pub/documents/evolved-packet-system-eps-the-lte-and-sae-evolution-of-3g-umts-41m2uh7gk660",
+    "timestamp": "2024-12-24T17:12:51.939917",
+    "additional info": {
+        "url": "https://vdoc.pub/documents/evolved-packet-system-eps-the-lte-and-sae-evolution-of-3g-umts-41m2uh7gk660"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:3000/https://vdoc.pub/documents/evolved-packet-system-eps-the-lte-and-sae-evolution-of-3g-umts-41m2uh7gk660",
+    "timestamp": "2024-12-24T17:12:51.939917",
+    "additional info": {
+        "url": "https://vdoc.pub/documents/evolved-packet-system-eps-the-lte-and-sae-evolution-of-3g-umts-41m2uh7gk660"
+    }
+}
+2024-12-24 17:12:51,950 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "timestamp": "2024-12-24T17:12:51.950206",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/book/8040170"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "timestamp": "2024-12-24T17:12:51.950206",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/book/8040170"
+    }
+}
+2024-12-24 17:34:10,183 - my_logger - ERROR - {
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-24T17:34:10.183843",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+{
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-24T17:34:10.183843",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+2024-12-24 17:37:47,529 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://dl.acm.org/doi/10.5555/1355303 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73e8dabbdaf0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:37:47.529240",
+    "additional info": {
+        "url": "https://dl.acm.org/doi/10.5555/1355303"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://dl.acm.org/doi/10.5555/1355303 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73e8dabbdaf0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:37:47.529240",
+    "additional info": {
+        "url": "https://dl.acm.org/doi/10.5555/1355303"
+    }
+}
+2024-12-24 17:37:47,531 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/8044016 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73e8dabbea20>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:37:47.531560",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/8044016"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/8044016 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x73e8dabbea20>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-24T17:37:47.531560",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/8044016"
+    }
+}
+2024-12-24 17:37:52,644 - my_logger - ERROR - {
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-24T17:37:52.644412",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+{
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-24T17:37:52.644412",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+2024-12-25 06:09:07,052 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/deliver/etsi_ts/121200_121299/121201/18.00.00_60/ts_121201v180000p.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec674bbaae0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:09:07.052108",
+    "additional info": {
+        "url": "https://www.etsi.org/deliver/etsi_ts/121200_121299/121201/18.00.00_60/ts_121201v180000p.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/deliver/etsi_ts/121200_121299/121201/18.00.00_60/ts_121201v180000p.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec674bbaae0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:09:07.052108",
+    "additional info": {
+        "url": "https://www.etsi.org/deliver/etsi_ts/121200_121299/121201/18.00.00_60/ts_121201v180000p.pdf"
+    }
+}
+2024-12-25 06:09:07,054 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/9513955 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec6741ae060>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:09:07.054091",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/9513955"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/9513955 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec6741ae060>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:09:07.054091",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/9513955"
+    }
+}
+2024-12-25 06:09:12,649 - my_logger - ERROR - {
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-25T06:09:12.649095",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+{
+    "tool": "get_3gpp_docs",
+    "error_message": "550 The system cannot find the file specified. ",
+    "timestamp": "2024-12-25T06:09:12.649095",
+    "additional info": {
+        "query": "Evolved Packet System (EPS)"
+    }
+}
+2024-12-25 06:17:37,602 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.intertekinform.com/en-us/standards/etsi-ts-129-273-v18-4-0-2024-05-497382_saig_etsi_etsi_3431785/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c848320>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:17:37.602693",
+    "additional info": {
+        "url": "https://www.intertekinform.com/en-us/standards/etsi-ts-129-273-v18-4-0-2024-05-497382_saig_etsi_etsi_3431785/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.intertekinform.com/en-us/standards/etsi-ts-129-273-v18-4-0-2024-05-497382_saig_etsi_etsi_3431785/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c848320>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:17:37.602693",
+    "additional info": {
+        "url": "https://www.intertekinform.com/en-us/standards/etsi-ts-129-273-v18-4-0-2024-05-497382_saig_etsi_etsi_3431785/"
+    }
+}
+2024-12-25 06:17:37,604 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/deliver/etsi_ts/129200_129299/129272/17.07.00_60/ts_129272v170700p.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8bc710>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:17:37.604900",
+    "additional info": {
+        "url": "https://www.etsi.org/deliver/etsi_ts/129200_129299/129272/17.07.00_60/ts_129272v170700p.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/deliver/etsi_ts/129200_129299/129272/17.07.00_60/ts_129272v170700p.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8bc710>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:17:37.604900",
+    "additional info": {
+        "url": "https://www.etsi.org/deliver/etsi_ts/129200_129299/129272/17.07.00_60/ts_129272v170700p.pdf"
+    }
+}
+2024-12-25 06:36:26,479 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.cnet.com/tech/mobile/apple-nabs-intels-modem-business-in-1-billion-bet-on-5g/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66d7b1700>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:26.479706",
+    "additional info": {
+        "url": "https://www.cnet.com/tech/mobile/apple-nabs-intels-modem-business-in-1-billion-bet-on-5g/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.cnet.com/tech/mobile/apple-nabs-intels-modem-business-in-1-billion-bet-on-5g/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66d7b1700>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:26.479706",
+    "additional info": {
+        "url": "https://www.cnet.com/tech/mobile/apple-nabs-intels-modem-business-in-1-billion-bet-on-5g/"
+    }
+}
+2024-12-25 06:36:26,482 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c849700>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:26.482180",
+    "additional info": {
+        "url": "https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c849700>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:26.482180",
+    "additional info": {
+        "url": "https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html"
+    }
+}
+2024-12-25 06:36:33,855 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.businessinsider.com/apple-year-included-ai-iphones-intelligence-china-antitrust-issues-2024-12?op=1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5fc1a0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:33.855431",
+    "additional info": {
+        "url": "https://www.businessinsider.com/apple-year-included-ai-iphones-intelligence-china-antitrust-issues-2024-12?op=1"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.businessinsider.com/apple-year-included-ai-iphones-intelligence-china-antitrust-issues-2024-12?op=1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5fc1a0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:33.855431",
+    "additional info": {
+        "url": "https://www.businessinsider.com/apple-year-included-ai-iphones-intelligence-china-antitrust-issues-2024-12?op=1"
+    }
+}
+2024-12-25 06:36:33,857 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.inquartik.com/blog/case-intel-apple-qualcomm/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c758650>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:33.857395",
+    "additional info": {
+        "url": "https://www.inquartik.com/blog/case-intel-apple-qualcomm/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.inquartik.com/blog/case-intel-apple-qualcomm/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c758650>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:33.857395",
+    "additional info": {
+        "url": "https://www.inquartik.com/blog/case-intel-apple-qualcomm/"
+    }
+}
+2024-12-25 06:36:34,162 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://applemagazine.com/apple-postpones-in-house-5g-modem-launch-extends-qualcomm-partnership-to-2027/62841 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c763680>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.162550",
+    "additional info": {
+        "url": "https://applemagazine.com/apple-postpones-in-house-5g-modem-launch-extends-qualcomm-partnership-to-2027/62841"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://applemagazine.com/apple-postpones-in-house-5g-modem-launch-extends-qualcomm-partnership-to-2027/62841 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c763680>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.162550",
+    "additional info": {
+        "url": "https://applemagazine.com/apple-postpones-in-house-5g-modem-launch-extends-qualcomm-partnership-to-2027/62841"
+    }
+}
+2024-12-25 06:36:34,164 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://9to5mac.com/2024/01/31/apple-deal-qualcomm-2027-5g-modem/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c875790>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.164725",
+    "additional info": {
+        "url": "https://9to5mac.com/2024/01/31/apple-deal-qualcomm-2027-5g-modem/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://9to5mac.com/2024/01/31/apple-deal-qualcomm-2027-5g-modem/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c875790>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.164725",
+    "additional info": {
+        "url": "https://9to5mac.com/2024/01/31/apple-deal-qualcomm-2027-5g-modem/"
+    }
+}
+2024-12-25 06:36:34,428 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/sites/jeanbaptiste/2019/07/26/confirmed-apple-buys-intels-smartphone-modem-business-for-1-billion-in-5g-bet/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c758560>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.428066",
+    "additional info": {
+        "url": "https://www.forbes.com/sites/jeanbaptiste/2019/07/26/confirmed-apple-buys-intels-smartphone-modem-business-for-1-billion-in-5g-bet/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.forbes.com/sites/jeanbaptiste/2019/07/26/confirmed-apple-buys-intels-smartphone-modem-business-for-1-billion-in-5g-bet/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c758560>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.428066",
+    "additional info": {
+        "url": "https://www.forbes.com/sites/jeanbaptiste/2019/07/26/confirmed-apple-buys-intels-smartphone-modem-business-for-1-billion-in-5g-bet/"
+    }
+}
+2024-12-25 06:36:34,430 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.reuters.com/article/business/factbox-apples-buy-of-intel-modem-unit-is-second-largest-after-decades-of-deal-idUSKCN1UK2X0/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7530b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.430489",
+    "additional info": {
+        "url": "https://www.reuters.com/article/business/factbox-apples-buy-of-intel-modem-unit-is-second-largest-after-decades-of-deal-idUSKCN1UK2X0/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.reuters.com/article/business/factbox-apples-buy-of-intel-modem-unit-is-second-largest-after-decades-of-deal-idUSKCN1UK2X0/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7530b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.430489",
+    "additional info": {
+        "url": "https://www.reuters.com/article/business/factbox-apples-buy-of-intel-modem-unit-is-second-largest-after-decades-of-deal-idUSKCN1UK2X0/"
+    }
+}
+2024-12-25 06:36:34,984 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.simplymac.com/iphone/apple-gearing-up-to-finally-release-their-own-5g-modem-in-iphones (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c760710>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.984596",
+    "additional info": {
+        "url": "https://www.simplymac.com/iphone/apple-gearing-up-to-finally-release-their-own-5g-modem-in-iphones"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.simplymac.com/iphone/apple-gearing-up-to-finally-release-their-own-5g-modem-in-iphones (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c760710>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.984596",
+    "additional info": {
+        "url": "https://www.simplymac.com/iphone/apple-gearing-up-to-finally-release-their-own-5g-modem-in-iphones"
+    }
+}
+2024-12-25 06:36:34,987 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://hs.abiresearch.com/blog/the-numbers-history-behind-apples-acquisition-of-intels-modem-business (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5fcdd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.987066",
+    "additional info": {
+        "url": "https://hs.abiresearch.com/blog/the-numbers-history-behind-apples-acquisition-of-intels-modem-business"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://hs.abiresearch.com/blog/the-numbers-history-behind-apples-acquisition-of-intels-modem-business (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5fcdd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:34.987066",
+    "additional info": {
+        "url": "https://hs.abiresearch.com/blog/the-numbers-history-behind-apples-acquisition-of-intels-modem-business"
+    }
+}
+2024-12-25 06:36:37,073 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.intc.com/news-events/press-releases/detail/58/apple-to-acquire-majority-of-intels-smartphone-modem (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8b12e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:37.073122",
+    "additional info": {
+        "url": "https://www.intc.com/news-events/press-releases/detail/58/apple-to-acquire-majority-of-intels-smartphone-modem"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.intc.com/news-events/press-releases/detail/58/apple-to-acquire-majority-of-intels-smartphone-modem (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8b12e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:37.073122",
+    "additional info": {
+        "url": "https://www.intc.com/news-events/press-releases/detail/58/apple-to-acquire-majority-of-intels-smartphone-modem"
+    }
+}
+2024-12-25 06:36:37,075 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c750e00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:37.075203",
+    "additional info": {
+        "url": "https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c750e00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:37.075203",
+    "additional info": {
+        "url": "https://www.computerworld.com/article/1671276/what-you-need-to-know-about-apples-1b-intel-5g-modem-investment.html"
+    }
+}
+2024-12-25 06:36:38,435 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.managementstudyguide.com/apples-acquisition-of-intels-modem-business.htm (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8b8b00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.435424",
+    "additional info": {
+        "url": "https://www.managementstudyguide.com/apples-acquisition-of-intels-modem-business.htm"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.managementstudyguide.com/apples-acquisition-of-intels-modem-business.htm (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c8b8b00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.435424",
+    "additional info": {
+        "url": "https://www.managementstudyguide.com/apples-acquisition-of-intels-modem-business.htm"
+    }
+}
+2024-12-25 06:36:38,437 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.abiresearch.com/blogs/2022/07/01/the-numbers-history-behind-apples-acquisition-of-intels-modem-business/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7b1070>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.437386",
+    "additional info": {
+        "url": "https://www.abiresearch.com/blogs/2022/07/01/the-numbers-history-behind-apples-acquisition-of-intels-modem-business/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.abiresearch.com/blogs/2022/07/01/the-numbers-history-behind-apples-acquisition-of-intels-modem-business/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7b1070>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.437386",
+    "additional info": {
+        "url": "https://www.abiresearch.com/blogs/2022/07/01/the-numbers-history-behind-apples-acquisition-of-intels-modem-business/"
+    }
+}
+2024-12-25 06:36:38,628 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://economictimes.indiatimes.com/tech/technology/apple-plans-three-year-modem-rollout-to-compete-with-qualcomm-bloomberg-news-reports/articleshow/116054291.cms (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c759310>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.628334",
+    "additional info": {
+        "url": "https://economictimes.indiatimes.com/tech/technology/apple-plans-three-year-modem-rollout-to-compete-with-qualcomm-bloomberg-news-reports/articleshow/116054291.cms"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://economictimes.indiatimes.com/tech/technology/apple-plans-three-year-modem-rollout-to-compete-with-qualcomm-bloomberg-news-reports/articleshow/116054291.cms (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c759310>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.628334",
+    "additional info": {
+        "url": "https://economictimes.indiatimes.com/tech/technology/apple-plans-three-year-modem-rollout-to-compete-with-qualcomm-bloomberg-news-reports/articleshow/116054291.cms"
+    }
+}
+2024-12-25 06:36:38,630 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://whatcompetitors.com/qualcomm/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5ffc80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.630349",
+    "additional info": {
+        "url": "https://whatcompetitors.com/qualcomm/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://whatcompetitors.com/qualcomm/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c5ffc80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:38.630349",
+    "additional info": {
+        "url": "https://whatcompetitors.com/qualcomm/"
+    }
+}
+2024-12-25 06:36:40,210 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.macobserver.com/news/apple-is-reportedly-interested-in-purchasing-intel/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c751e50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:40.210795",
+    "additional info": {
+        "url": "https://www.macobserver.com/news/apple-is-reportedly-interested-in-purchasing-intel/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.macobserver.com/news/apple-is-reportedly-interested-in-purchasing-intel/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c751e50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:40.210795",
+    "additional info": {
+        "url": "https://www.macobserver.com/news/apple-is-reportedly-interested-in-purchasing-intel/"
+    }
+}
+2024-12-25 06:36:40,213 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://lajong110.com/2024/10/30/apple-reportedly-considering-acquisition-of-intel-amid-chipmakers-struggles/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7b2540>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:40.213104",
+    "additional info": {
+        "url": "https://lajong110.com/2024/10/30/apple-reportedly-considering-acquisition-of-intel-amid-chipmakers-struggles/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://lajong110.com/2024/10/30/apple-reportedly-considering-acquisition-of-intel-amid-chipmakers-struggles/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ec66c7b2540>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T06:36:40.213104",
+    "additional info": {
+        "url": "https://lajong110.com/2024/10/30/apple-reportedly-considering-acquisition-of-intel-amid-chipmakers-struggles/"
+    }
+}
+2024-12-25 06:59:14,213 - my_logger - ERROR - {
+    "tool": "get_3gpp_docs",
+    "error_message": "Bad magic number for file header",
+    "timestamp": "2024-12-25T06:59:14.213803",
+    "additional info": {
+        "query": "Evolved Packet System Technical Reports"
+    }
+}
+{
+    "tool": "get_3gpp_docs",
+    "error_message": "Bad magic number for file header",
+    "timestamp": "2024-12-25T06:59:14.213803",
+    "additional info": {
+        "query": "Evolved Packet System Technical Reports"
+    }
+}
