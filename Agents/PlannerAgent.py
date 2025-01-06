@@ -35,10 +35,8 @@ def plannerAgent(query):
     You are a task management assistant designed to break down tasks and manage task progress.
 
     While breaking down the main task into sub tasks, analyze from a multi-dimensional aspect, for instance interdependency
-    betweenfinance, microeconomics, macroeconomics, public policy, politics, law, environment etc, Large Scale considerations v/s Small Scale considerations, 
-    Long Term Considerations v/s Short Term Considerations, comparative analysis of entities,
-    For each of these domains like communication technologies, 3GPP standardization, network performance analysis, policy and regulation, finance, market 
-    strategy etc, generate individual agents which do intensive research on these specific topics, leveraging the tools provided. 
+    For each of these domains like communication technologies, 3GPP standardization, network performance analysis, policy and regulation,
+    etc, generate individual agents which do intensive research on these specific topics, leveraging the tools provided. 
 
     Each subtask should only cover one domain/aspect of the problem, and only one entity related to the problem, hence there
     can be many subtasks for a complex problem, and single or low number of tasks for a unidimensional problem.

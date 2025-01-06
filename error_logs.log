@@ -670,3 +670,2033 @@
         "query": "Evolved Packet System Technical Reports"
     }
 }
+2024-12-25 13:02:44,886 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://waleed.dev/blog/latest-developments-in-machine-learning-2024-update (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x773790102870>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:44.886722",
+    "additional info": {
+        "url": "https://waleed.dev/blog/latest-developments-in-machine-learning-2024-update"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://waleed.dev/blog/latest-developments-in-machine-learning-2024-update (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x773790102870>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:44.886722",
+    "additional info": {
+        "url": "https://waleed.dev/blog/latest-developments-in-machine-learning-2024-update"
+    }
+}
+2024-12-25 13:02:44,889 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://encord.com/blog/machine-learning-trends-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3100e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:44.888987",
+    "additional info": {
+        "url": "https://encord.com/blog/machine-learning-trends-statistics/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://encord.com/blog/machine-learning-trends-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3100e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:44.888987",
+    "additional info": {
+        "url": "https://encord.com/blog/machine-learning-trends-statistics/"
+    }
+}
+2024-12-25 13:02:47,920 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2102.07306v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcb470>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.920055",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2102.07306v1"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2102.07306v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcb470>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.920055",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2102.07306v1"
+    }
+}
+2024-12-25 13:02:47,923 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2004.06171v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddfd1c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.922974",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2004.06171v1"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2004.06171v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddfd1c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.922974",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2004.06171v1"
+    }
+}
+2024-12-25 13:02:47,925 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2104.05245v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcbda0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.925769",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2104.05245v1"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2104.05245v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcbda0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.925769",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2104.05245v1"
+    }
+}
+2024-12-25 13:02:47,928 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2405.20431v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378dddbef0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.928348",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2405.20431v1"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/2405.20431v1 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378dddbef0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.928348",
+    "additional info": {
+        "url": "http://arxiv.org/abs/2405.20431v1"
+    }
+}
+2024-12-25 13:02:47,931 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/1503.04567v2 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddfe720>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.931091",
+    "additional info": {
+        "url": "http://arxiv.org/abs/1503.04567v2"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://arxiv.org/abs/1503.04567v2 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddfe720>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:47.931091",
+    "additional info": {
+        "url": "http://arxiv.org/abs/1503.04567v2"
+    }
+}
+2024-12-25 13:02:53,191 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.demandsage.com/machine-learning-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddc8f80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:53.191514",
+    "additional info": {
+        "url": "https://www.demandsage.com/machine-learning-statistics/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.demandsage.com/machine-learning-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddc8f80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:53.191514",
+    "additional info": {
+        "url": "https://www.demandsage.com/machine-learning-statistics/"
+    }
+}
+2024-12-25 13:02:53,194 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://encord.com/blog/machine-learning-trends-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddda570>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:53.194000",
+    "additional info": {
+        "url": "https://encord.com/blog/machine-learning-trends-statistics/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://encord.com/blog/machine-learning-trends-statistics/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddda570>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:53.194000",
+    "additional info": {
+        "url": "https://encord.com/blog/machine-learning-trends-statistics/"
+    }
+}
+2024-12-25 13:02:56,982 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/technologies/ct-rel18 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378dddb380>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:56.982006",
+    "additional info": {
+        "url": "https://www.3gpp.org/technologies/ct-rel18"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/technologies/ct-rel18 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378dddb380>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:56.982006",
+    "additional info": {
+        "url": "https://www.3gpp.org/technologies/ct-rel18"
+    }
+}
+2024-12-25 13:02:56,984 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d310830>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:56.984283",
+    "additional info": {
+        "url": "https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d310830>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:56.984283",
+    "additional info": {
+        "url": "https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity"
+    }
+}
+2024-12-25 13:02:58,752 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/1503.04567.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddd9d00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:58.752880",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/1503.04567.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/1503.04567.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddd9d00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:58.752880",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/1503.04567.pdf"
+    }
+}
+2024-12-25 13:02:58,759 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.sciencedirect.com/science/article/pii/S2772503024000136 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:58.759296",
+    "additional info": {
+        "url": "https://www.sciencedirect.com/science/article/pii/S2772503024000136"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.sciencedirect.com/science/article/pii/S2772503024000136 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:02:58.759296",
+    "additional info": {
+        "url": "https://www.sciencedirect.com/science/article/pii/S2772503024000136"
+    }
+}
+2024-12-25 13:03:04,324 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/1503.04567.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313500>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.324651",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/1503.04567.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/1503.04567.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313500>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.324651",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/1503.04567.pdf"
+    }
+}
+2024-12-25 13:03:04,327 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.sciencedirect.com/science/article/pii/S2772503024000136 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bec60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.327341",
+    "additional info": {
+        "url": "https://www.sciencedirect.com/science/article/pii/S2772503024000136"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.sciencedirect.com/science/article/pii/S2772503024000136 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bec60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.327341",
+    "additional info": {
+        "url": "https://www.sciencedirect.com/science/article/pii/S2772503024000136"
+    }
+}
+2024-12-25 13:03:04,330 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/technologies/ct-rel18 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcc920>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.330152",
+    "additional info": {
+        "url": "https://www.3gpp.org/technologies/ct-rel18"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/technologies/ct-rel18 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378ddcc920>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.330152",
+    "additional info": {
+        "url": "https://www.3gpp.org/technologies/ct-rel18"
+    }
+}
+2024-12-25 13:03:04,334 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313e90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.334823",
+    "additional info": {
+        "url": "https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d313e90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-25T13:03:04.334823",
+    "additional info": {
+        "url": "https://www.comsoc.org/publications/ctn/overview-ai-3gpps-ran-release-18-enhancing-next-generation-connectivity"
+    }
+}
+2024-12-27 16:32:38,954 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.xlaxiata.co.id/en/news/support-the-utilization-of-green-energy-for-sustainability-pln-xl-axiata-collaboration (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c78ffe0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:38.954469",
+    "additional info": {
+        "url": "https://www.xlaxiata.co.id/en/news/support-the-utilization-of-green-energy-for-sustainability-pln-xl-axiata-collaboration"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.xlaxiata.co.id/en/news/support-the-utilization-of-green-energy-for-sustainability-pln-xl-axiata-collaboration (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c78ffe0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:38.954469",
+    "additional info": {
+        "url": "https://www.xlaxiata.co.id/en/news/support-the-utilization-of-green-energy-for-sustainability-pln-xl-axiata-collaboration"
+    }
+}
+2024-12-27 16:32:38,956 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://dl.acm.org/doi/10.1109/MCOM.004.2200958 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bcfe0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:38.956816",
+    "additional info": {
+        "url": "https://dl.acm.org/doi/10.1109/MCOM.004.2200958"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://dl.acm.org/doi/10.1109/MCOM.004.2200958 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bcfe0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:38.956816",
+    "additional info": {
+        "url": "https://dl.acm.org/doi/10.1109/MCOM.004.2200958"
+    }
+}
+2024-12-27 16:32:39,632 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c78cb60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:39.632181",
+    "additional info": {
+        "url": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c78cb60>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:39.632181",
+    "additional info": {
+        "url": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market"
+    }
+}
+2024-12-27 16:32:39,634 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market/market-trends (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bc8f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:39.634607",
+    "additional info": {
+        "url": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market/market-trends"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market/market-trends (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bc8f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:39.634607",
+    "additional info": {
+        "url": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market/market-trends"
+    }
+}
+2024-12-27 16:32:43,489 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7be360>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:43.489936",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7be360>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:43.489936",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications"
+    }
+}
+2024-12-27 16:32:43,492 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://hongyangdu.github.io/publications/2023-04-02-Extremely+Large+Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c907fb0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:43.492324",
+    "additional info": {
+        "url": "https://hongyangdu.github.io/publications/2023-04-02-Extremely+Large+Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://hongyangdu.github.io/publications/2023-04-02-Extremely+Large+Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c907fb0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:43.492324",
+    "additional info": {
+        "url": "https://hongyangdu.github.io/publications/2023-04-02-Extremely+Large+Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+2024-12-27 16:32:51,982 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bc740>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:51.982152",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c7bc740>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:51.982152",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2024-01-02-Paper-title-A+Tutorial+on+Extremely+Large-Scale+MIMO+for+6G+Fundamentals,+Signal+Processing,+and+Applications"
+    }
+}
+2024-12-27 16:32:51,984 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c9052b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:51.984929",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378c9052b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:32:51.984929",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+2024-12-27 16:33:00,401 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bf290>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:33:00.401488",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bf290>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:33:00.401488",
+    "additional info": {
+        "url": "https://zhewang77.github.io/publications/2023-04-02-Paper-title-Extremely+Large-Scale+MIMO+Fundamentals,+Challenges,+Solutions,+and+Future+Directions"
+    }
+}
+2024-12-27 16:33:00,404 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://www.zjuisee.zju.edu.cn/weisha/Publications/Files/Extremely+Large-Scale+MIMO_Fundamentals_Challenges_Solutions_and+Future+Directions.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bca10>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:33:00.404189",
+    "additional info": {
+        "url": "http://www.zjuisee.zju.edu.cn/weisha/Publications/Files/Extremely+Large-Scale+MIMO_Fundamentals_Challenges_Solutions_and+Future+Directions.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /http://www.zjuisee.zju.edu.cn/weisha/Publications/Files/Extremely+Large-Scale+MIMO_Fundamentals_Challenges_Solutions_and+Future+Directions.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x77378d3bca10>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2024-12-27T16:33:00.404189",
+    "additional info": {
+        "url": "http://www.zjuisee.zju.edu.cn/weisha/Publications/Files/Extremely+Large-Scale+MIMO_Fundamentals_Challenges_Solutions_and+Future+Directions.pdf"
+    }
+}
+2025-01-04 06:37:01,367 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T06:37:01.367182",
+    "additional info": {
+        "prompt": "MIMO technology enhancements in 3GPP standards: a detailed summary."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T06:37:01.367182",
+    "additional info": {
+        "prompt": "MIMO technology enhancements in 3GPP standards: a detailed summary."
+    }
+}
+2025-01-04 06:37:05,594 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T06:37:05.594150",
+    "additional info": {
+        "prompt": "Summarize the key enhancements and specifications related to MIMO technology in 3GPP standards, including metrics, technical details, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T06:37:05.594150",
+    "additional info": {
+        "prompt": "Summarize the key enhancements and specifications related to MIMO technology in 3GPP standards, including metrics, technical details, and historical context."
+    }
+}
+2025-01-04 09:55:55,710 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:55:55.710266",
+    "additional info": {
+        "prompt": "current trends insights MIMO systems 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:55:55.710266",
+    "additional info": {
+        "prompt": "current trends insights MIMO systems 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market"
+    }
+}
+2025-01-04 09:55:59,574 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:55:59.574935",
+    "additional info": {
+        "prompt": "current trends insights MIMO systems 2025",
+        "source": "https://www.consegicbusinessintelligence.com/massive-mimo-market"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:55:59.574935",
+    "additional info": {
+        "prompt": "current trends insights MIMO systems 2025",
+        "source": "https://www.consegicbusinessintelligence.com/massive-mimo-market"
+    }
+}
+2025-01-04 09:56:02,340 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:02.340320",
+    "additional info": {
+        "prompt": "Fifty Years of MIMO Detection: The Road to Large-Scale MIMOs",
+        "source": "http://arxiv.org/abs/1507.05138v1"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:02.340320",
+    "additional info": {
+        "prompt": "Fifty Years of MIMO Detection: The Road to Large-Scale MIMOs",
+        "source": "http://arxiv.org/abs/1507.05138v1"
+    }
+}
+2025-01-04 09:56:05,399 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:05.399010",
+    "additional info": {
+        "prompt": "How to Diagonalize a MIMO Channel with Arbitrary Transmit Covariance?",
+        "source": "http://arxiv.org/abs/1604.06842v1"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:05.399010",
+    "additional info": {
+        "prompt": "How to Diagonalize a MIMO Channel with Arbitrary Transmit Covariance?",
+        "source": "http://arxiv.org/abs/1604.06842v1"
+    }
+}
+2025-01-04 09:56:08,196 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:08.196172",
+    "additional info": {
+        "prompt": "Energy Efficiency of Generalized Spatial Modulation Aided Massive MIMO Systems",
+        "source": "http://arxiv.org/abs/1902.00346v1"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:08.196172",
+    "additional info": {
+        "prompt": "Energy Efficiency of Generalized Spatial Modulation Aided Massive MIMO Systems",
+        "source": "http://arxiv.org/abs/1902.00346v1"
+    }
+}
+2025-01-04 09:56:11,027 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:11.027776",
+    "additional info": {
+        "prompt": "Sparse MIMO for ISAC: New Opportunities and Challenges",
+        "source": "http://arxiv.org/abs/2406.12270v1"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:11.027776",
+    "additional info": {
+        "prompt": "Sparse MIMO for ISAC: New Opportunities and Challenges",
+        "source": "http://arxiv.org/abs/2406.12270v1"
+    }
+}
+2025-01-04 09:56:13,940 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:13.940411",
+    "additional info": {
+        "prompt": "A Tutorial on Extremely Large-Scale MIMO for 6G: Fundamentals, Signal Processing, and Applications",
+        "source": "http://arxiv.org/abs/2307.07340v2"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:13.940411",
+    "additional info": {
+        "prompt": "A Tutorial on Extremely Large-Scale MIMO for 6G: Fundamentals, Signal Processing, and Applications",
+        "source": "http://arxiv.org/abs/2307.07340v2"
+    }
+}
+2025-01-04 09:56:35,506 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:35.506693",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.itu.int/en/ITU-T/focusgroups/5g/Documents/technical-reports/MIMO_Systems.pdf"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:35.506693",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.itu.int/en/ITU-T/focusgroups/5g/Documents/technical-reports/MIMO_Systems.pdf"
+    }
+}
+2025-01-04 09:56:44,375 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:44.375424",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.3gpp.org/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:44.375424",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.3gpp.org/"
+    }
+}
+2025-01-04 09:56:53,490 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:53.490163",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.itu.int/en/ITU-T/focusgroups/5g/Documents/technical-reports/MIMO_Systems.pdf"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:56:53.490163",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.itu.int/en/ITU-T/focusgroups/5g/Documents/technical-reports/MIMO_Systems.pdf"
+    }
+}
+2025-01-04 09:57:01,000 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:57:01.000313",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.3gpp.org/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:57:01.000313",
+    "additional info": {
+        "prompt": "MIMO systems specifications and analysis",
+        "source": "https://www.3gpp.org/"
+    }
+}
+2025-01-04 09:57:09,049 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:57:09.049083",
+    "additional info": {
+        "prompt": "MIMO systems specifications and research findings",
+        "source": "https://www.researchgate.net/publication/342100123_MIMO_Systems_Overview_and_Recent_Advancements"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T09:57:09.049083",
+    "additional info": {
+        "prompt": "MIMO systems specifications and research findings",
+        "source": "https://www.researchgate.net/publication/342100123_MIMO_Systems_Overview_and_Recent_Advancements"
+    }
+}
+2025-01-04 10:16:22,760 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:22.760115",
+    "additional info": {
+        "prompt": "MIMO 6G public policy regulatory frameworks 2023",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:22.760115",
+    "additional info": {
+        "prompt": "MIMO 6G public policy regulatory frameworks 2023",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+2025-01-04 10:16:23,942 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:23.942201",
+    "additional info": {
+        "prompt": "MIMO 6G specifications market strategy case studies reports 2024",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:23.942201",
+    "additional info": {
+        "prompt": "MIMO 6G specifications market strategy case studies reports 2024",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+2025-01-04 10:16:25,023 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:25.023847",
+    "additional info": {
+        "prompt": "MIMO 6G specifications impact on communication technologies 2023",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:25.023847",
+    "additional info": {
+        "prompt": "MIMO 6G specifications impact on communication technologies 2023",
+        "source": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+2025-01-04 10:16:26,623 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "timestamp": "2025-01-04T10:16:26.623361",
+    "additional info": {
+        "url": "https://www.cablelabs.com/blog/mobile-technologies-6g-era"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "timestamp": "2025-01-04T10:16:26.623361",
+    "additional info": {
+        "url": "https://www.cablelabs.com/blog/mobile-technologies-6g-era"
+    }
+}
+2025-01-04 10:16:28,132 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:28.132810",
+    "additional info": {
+        "prompt": "MIMO 6G public policy regulatory frameworks 2023",
+        "source": "https://omdia.tech.informa.com/om017443/regulation-beyond-5g-global-6g-policies-and-regulatory-activities"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:28.132810",
+    "additional info": {
+        "prompt": "MIMO 6G public policy regulatory frameworks 2023",
+        "source": "https://omdia.tech.informa.com/om017443/regulation-beyond-5g-global-6g-policies-and-regulatory-activities"
+    }
+}
+2025-01-04 10:16:28,514 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:28.514179",
+    "additional info": {
+        "prompt": "MIMO 6G specifications market strategy case studies reports 2024",
+        "source": "https://www.sciencedirect.com/science/article/abs/pii/S1878778924000668"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T10:16:28.514179",
+    "additional info": {
+        "prompt": "MIMO 6G specifications market strategy case studies reports 2024",
+        "source": "https://www.sciencedirect.com/science/article/abs/pii/S1878778924000668"
+    }
+}
+2025-01-04 10:16:36,604 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://tbri.com/special-reports/the-telecom-industry-will-be-calculated-in-its-progression-to-6g-to-ensure-meaningful-roi/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746ab6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:36.604374",
+    "additional info": {
+        "url": "https://tbri.com/special-reports/the-telecom-industry-will-be-calculated-in-its-progression-to-6g-to-ensure-meaningful-roi/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://tbri.com/special-reports/the-telecom-industry-will-be-calculated-in-its-progression-to-6g-to-ensure-meaningful-roi/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746ab6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:36.604374",
+    "additional info": {
+        "url": "https://tbri.com/special-reports/the-telecom-industry-will-be-calculated-in-its-progression-to-6g-to-ensure-meaningful-roi/"
+    }
+}
+2025-01-04 10:16:36,606 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.greyb.com/case-studies/identifying-key-6g-technologies/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746dfa10>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:36.606392",
+    "additional info": {
+        "url": "https://www.greyb.com/case-studies/identifying-key-6g-technologies/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.greyb.com/case-studies/identifying-key-6g-technologies/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746dfa10>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:36.606392",
+    "additional info": {
+        "url": "https://www.greyb.com/case-studies/identifying-key-6g-technologies/"
+    }
+}
+2025-01-04 10:16:40,353 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.gsma.com/connectivity-for-good/spectrum/setting-the-stage-for-6g/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746a9370>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:40.353635",
+    "additional info": {
+        "url": "https://www.gsma.com/connectivity-for-good/spectrum/setting-the-stage-for-6g/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.gsma.com/connectivity-for-good/spectrum/setting-the-stage-for-6g/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746a9370>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:40.353635",
+    "additional info": {
+        "url": "https://www.gsma.com/connectivity-for-good/spectrum/setting-the-stage-for-6g/"
+    }
+}
+2025-01-04 10:16:40,355 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.itu.int/en/mediacentre/Pages/PR-2023-12-01-IMT-2030-for-6G-mobile-technologies.aspx (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746deb70>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:40.355783",
+    "additional info": {
+        "url": "https://www.itu.int/en/mediacentre/Pages/PR-2023-12-01-IMT-2030-for-6G-mobile-technologies.aspx"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.itu.int/en/mediacentre/Pages/PR-2023-12-01-IMT-2030-for-6G-mobile-technologies.aspx (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746deb70>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:40.355783",
+    "additional info": {
+        "url": "https://www.itu.int/en/mediacentre/Pages/PR-2023-12-01-IMT-2030-for-6G-mobile-technologies.aspx"
+    }
+}
+2025-01-04 10:16:43,242 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746a8da0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:43.242345",
+    "additional info": {
+        "url": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746a8da0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:43.242345",
+    "additional info": {
+        "url": "https://www.linkedin.com/pulse/6g-mimo-beam-revolutionizing-wireless-communication-piyush-gupta-q6yjc"
+    }
+}
+2025-01-04 10:16:43,244 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://oa.ee.tsinghua.edu.cn/dailinglong/publications/paper/Near-Field_MIMO_Communications_for_6G_Fundamentals_Challenges_Potentials_and_Future_Directions.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746ab380>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:43.244371",
+    "additional info": {
+        "url": "https://oa.ee.tsinghua.edu.cn/dailinglong/publications/paper/Near-Field_MIMO_Communications_for_6G_Fundamentals_Challenges_Potentials_and_Future_Directions.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://oa.ee.tsinghua.edu.cn/dailinglong/publications/paper/Near-Field_MIMO_Communications_for_6G_Fundamentals_Challenges_Potentials_and_Future_Directions.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eb3746ab380>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-04T10:16:43.244371",
+    "additional info": {
+        "url": "https://oa.ee.tsinghua.edu.cn/dailinglong/publications/paper/Near-Field_MIMO_Communications_for_6G_Fundamentals_Challenges_Potentials_and_Future_Directions.pdf"
+    }
+}
+2025-01-04 12:38:23,522 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T12:38:23.522496",
+    "additional info": {
+        "prompt": "MIMO specifications performance metrics 2025",
+        "source": "https://ieeexplore.ieee.org/document/10002460/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T12:38:23.522496",
+    "additional info": {
+        "prompt": "MIMO specifications performance metrics 2025",
+        "source": "https://ieeexplore.ieee.org/document/10002460/"
+    }
+}
+2025-01-04 12:38:26,673 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T12:38:26.673722",
+    "additional info": {
+        "prompt": "MIMO specifications performance metrics 2025",
+        "source": "https://www.gsma.com/spectrum/wp-content/uploads/2021/07/Estimating-Mid-Band-Spectrum-Needs.pdf"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-04T12:38:26.673722",
+    "additional info": {
+        "prompt": "MIMO specifications performance metrics 2025",
+        "source": "https://www.gsma.com/spectrum/wp-content/uploads/2021/07/Estimating-Mid-Band-Spectrum-Needs.pdf"
+    }
+}
+2025-01-05 09:36:30,690 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:30.690349",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 market implications 2025",
+        "source": "https://www.counterpointresearch.com/insights/3gpps-release-19-continues-5g-advanced-standardization-sets-the-stage-for-6g/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:30.690349",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 market implications 2025",
+        "source": "https://www.counterpointresearch.com/insights/3gpps-release-19-continues-5g-advanced-standardization-sets-the-stage-for-6g/"
+    }
+}
+2025-01-05 09:36:30,694 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:30.694902",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 regulatory policy changes 2025",
+        "source": "https://www.lightreading.com/6g/5g-advanced-arrives-with-3gpp-s-release-18"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:30.694902",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 regulatory policy changes 2025",
+        "source": "https://www.lightreading.com/6g/5g-advanced-arrives-with-3gpp-s-release-18"
+    }
+}
+2025-01-05 09:36:33,129 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:33.129463",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 regulatory policy changes 2025",
+        "source": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:33.129463",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 regulatory policy changes 2025",
+        "source": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}
+2025-01-05 09:36:35,366 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:35.366289",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 market implications 2025",
+        "source": "https://www.mpdigest.com/2024/05/21/3gpp-release-19-unveiling-the-future-of-5g-advanced/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:35.366289",
+    "additional info": {
+        "prompt": "MIMO enhancements Release 19 market implications 2025",
+        "source": "https://www.mpdigest.com/2024/05/21/3gpp-release-19-unveiling-the-future-of-5g-advanced/"
+    }
+}
+2025-01-05 09:36:48,474 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:48.474525",
+    "additional info": {
+        "prompt": "environmental implications of MIMO specifications Release 19 2025",
+        "source": "https://www.ericsson.com/en/reports-and-papers/white-papers/5g-advanced-evolution-towards-6g"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:36:48.474525",
+    "additional info": {
+        "prompt": "environmental implications of MIMO specifications Release 19 2025",
+        "source": "https://www.ericsson.com/en/reports-and-papers/white-papers/5g-advanced-evolution-towards-6g"
+    }
+}
+2025-01-05 09:37:11,498 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:11.498887",
+    "additional info": {
+        "prompt": "MIMO specifications environmental impact analysis 2025",
+        "source": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P100EZI1.TXT"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:11.498887",
+    "additional info": {
+        "prompt": "MIMO specifications environmental impact analysis 2025",
+        "source": "https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P100EZI1.TXT"
+    }
+}
+2025-01-05 09:37:17,930 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:17.930502",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19: detailed analysis including numerical data, technical details, regulatory considerations, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:17.930502",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19: detailed analysis including numerical data, technical details, regulatory considerations, and historical context."
+    }
+}
+2025-01-05 09:37:17,998 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:17.998382",
+    "additional info": {
+        "prompt": "Analyze the impact of MIMO specifications in Release 19 on mobile communication system coverage, including detailed metrics, formulas, regulatory considerations, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:17.998382",
+    "additional info": {
+        "prompt": "Analyze the impact of MIMO specifications in Release 19 on mobile communication system coverage, including detailed metrics, formulas, regulatory considerations, and historical context."
+    }
+}
+2025-01-05 09:37:18,330 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:18.330470",
+    "additional info": {
+        "prompt": "MIMO specifications environmental impact analysis 2025",
+        "source": "https://my.avnet.com/abacus/solutions/markets/communications/5g-solutions/understanding-massive-mimo-technology/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:18.330470",
+    "additional info": {
+        "prompt": "MIMO specifications environmental impact analysis 2025",
+        "source": "https://my.avnet.com/abacus/solutions/markets/communications/5g-solutions/understanding-massive-mimo-technology/"
+    }
+}
+2025-01-05 09:37:20,970 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:20.969980",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19 and their impact on mobile communication system coverage, including metrics, regulatory considerations, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:20.969980",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19 and their impact on mobile communication system coverage, including metrics, regulatory considerations, and historical context."
+    }
+}
+2025-01-05 09:37:21,545 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:21.545744",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19: analyze how they enhance mobile communication capacity with numerical data, technical details, regulatory considerations, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:21.545744",
+    "additional info": {
+        "prompt": "MIMO specifications in Release 19: analyze how they enhance mobile communication capacity with numerical data, technical details, regulatory considerations, and historical context."
+    }
+}
+2025-01-05 09:37:25,271 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:25.271525",
+    "additional info": {
+        "prompt": "Compare the enhancements in capacity and coverage between 3GPP Release 19 and Release 18, focusing on technical details, numerical analysis, and historical context."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:25.271525",
+    "additional info": {
+        "prompt": "Compare the enhancements in capacity and coverage between 3GPP Release 19 and Release 18, focusing on technical details, numerical analysis, and historical context."
+    }
+}
+2025-01-05 09:37:28,587 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:28.587742",
+    "additional info": {
+        "prompt": "Provide a detailed comparative analysis of capacity and coverage enhancements between 3GPP Release 19 and Release 18, including technical details, numerical analysis, regulatory considerations, and market dynamics."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:28.587742",
+    "additional info": {
+        "prompt": "Provide a detailed comparative analysis of capacity and coverage enhancements between 3GPP Release 19 and Release 18, including technical details, numerical analysis, regulatory considerations, and market dynamics."
+    }
+}
+2025-01-05 09:37:31,821 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:31.821485",
+    "additional info": {
+        "prompt": "environmental impact of MIMO technology Release 19 2025",
+        "source": "https://www.telecomreview.com/articles/reports-and-coverage/8556-3gpp-releases-18-and-19-exploring-the-evolution-of-the-5g-era"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:31.821485",
+    "additional info": {
+        "prompt": "environmental impact of MIMO technology Release 19 2025",
+        "source": "https://www.telecomreview.com/articles/reports-and-coverage/8556-3gpp-releases-18-and-19-exploring-the-evolution-of-the-5g-era"
+    }
+}
+2025-01-05 09:37:34,675 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:34.675806",
+    "additional info": {
+        "prompt": "environmental impact of MIMO technology Release 19 2025",
+        "source": "https://arxiv.org/pdf/2312.15174"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:34.675806",
+    "additional info": {
+        "prompt": "environmental impact of MIMO technology Release 19 2025",
+        "source": "https://arxiv.org/pdf/2312.15174"
+    }
+}
+2025-01-05 09:37:36,193 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:36.193906",
+    "additional info": {
+        "prompt": "Detailed comparative analysis of 3GPP Release 19 and Release 18 focusing on capacity and coverage enhancements, including technical specifications, numerical data, regulatory considerations, and market dynamics."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:36.193906",
+    "additional info": {
+        "prompt": "Detailed comparative analysis of 3GPP Release 19 and Release 18 focusing on capacity and coverage enhancements, including technical specifications, numerical data, regulatory considerations, and market dynamics."
+    }
+}
+2025-01-05 09:37:39,219 - my_logger - ERROR - {
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:39.219074",
+    "additional info": {
+        "prompt": "Comparative analysis of enhancements in capacity and coverage between 3GPP Release 19 and Release 18, including metrics, technical specifications, and regulatory considerations."
+    }
+}
+{
+    "tool": "simple_query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:39.219074",
+    "additional info": {
+        "prompt": "Comparative analysis of enhancements in capacity and coverage between 3GPP Release 19 and Release 18, including metrics, technical specifications, and regulatory considerations."
+    }
+}
+2025-01-05 09:37:47,212 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:47.212825",
+    "additional info": {
+        "prompt": "MIMO specifications environmental implications 2025",
+        "source": "https://silvustechnologies.com/why-silvus/technology/introduction-to-mimo/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:47.212825",
+    "additional info": {
+        "prompt": "MIMO specifications environmental implications 2025",
+        "source": "https://silvustechnologies.com/why-silvus/technology/introduction-to-mimo/"
+    }
+}
+2025-01-05 09:37:53,647 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:53.647050",
+    "additional info": {
+        "prompt": "MIMO specifications environmental implications 2025",
+        "source": "https://www.siretta.com/2024/04/mimo-for-diversification-and-reliability-multipath-signals/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:37:53.647050",
+    "additional info": {
+        "prompt": "MIMO specifications environmental implications 2025",
+        "source": "https://www.siretta.com/2024/04/mimo-for-diversification-and-reliability-multipath-signals/"
+    }
+}
+2025-01-05 09:48:54,077 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:54.077359",
+    "additional info": {
+        "prompt": "current regulations telecommunications MIMO technology 2025",
+        "source": "https://www.lightreading.com/5g/2025-preview-5g-advanced-advances"
+    }
+}
+2025-01-05 09:48:54,077 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:54.077559",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:54.077359",
+    "additional info": {
+        "prompt": "current regulations telecommunications MIMO technology 2025",
+        "source": "https://www.lightreading.com/5g/2025-preview-5g-advanced-advances"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:54.077559",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.mordorintelligence.com/industry-reports/massive-multiple-input-multiple-output-mimo-market"
+    }
+}
+2025-01-05 09:48:57,650 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:57.650679",
+    "additional info": {
+        "prompt": "current regulations telecommunications MIMO technology 2025",
+        "source": "https://www.linkedin.com/pulse/enhancing-wireless-communication-mimo-technology-cavliwireless-wzooe"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:57.650679",
+    "additional info": {
+        "prompt": "current regulations telecommunications MIMO technology 2025",
+        "source": "https://www.linkedin.com/pulse/enhancing-wireless-communication-mimo-technology-cavliwireless-wzooe"
+    }
+}
+2025-01-05 09:48:58,491 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:58.491680",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market/market-analysis"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:48:58.491680",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market/market-analysis"
+    }
+}
+2025-01-05 09:49:11,608 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:11.608715",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market/market-analysis"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:11.608715",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.gminsights.com/industry-analysis/massive-mimo-market/market-analysis"
+    }
+}
+2025-01-05 09:49:14,529 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:14.529158",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.openpr.com/news/3791368/massive-mimo-technology-market-have-high-growth-but-may-foresee"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:14.529158",
+    "additional info": {
+        "prompt": "MIMO technology market analysis report 2025",
+        "source": "https://www.openpr.com/news/3791368/massive-mimo-technology-market-have-high-growth-but-may-foresee"
+    }
+}
+2025-01-05 09:49:15,979 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:15.978966",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications comparison with Release 15 and 16",
+        "source": "https://www.5gamericas.org/wp-content/uploads/2020/01/5G-Evolution-3GPP-R16-R17-FINAL.pdf"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:15.978966",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications comparison with Release 15 and 16",
+        "source": "https://www.5gamericas.org/wp-content/uploads/2020/01/5G-Evolution-3GPP-R16-R17-FINAL.pdf"
+    }
+}
+2025-01-05 09:49:18,208 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:18.208027",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications comparison with Release 15 and 16",
+        "source": "https://arxiv.org/pdf/2312.15174"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:18.208027",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications comparison with Release 15 and 16",
+        "source": "https://arxiv.org/pdf/2312.15174"
+    }
+}
+2025-01-05 09:49:18,941 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:18.941634",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency",
+        "source": "https://link.springer.com/article/10.1007/s44196-024-00648-9"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:18.941634",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency",
+        "source": "https://link.springer.com/article/10.1007/s44196-024-00648-9"
+    }
+}
+2025-01-05 09:49:20,619 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:20.619594",
+    "additional info": {
+        "prompt": "MIMO specifications impact on data throughput",
+        "source": "https://www.siretta.com/2024/03/lte-higher-data-throughput-mimo-and-carrier-aggregation/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:20.619594",
+    "additional info": {
+        "prompt": "MIMO specifications impact on data throughput",
+        "source": "https://www.siretta.com/2024/03/lte-higher-data-throughput-mimo-and-carrier-aggregation/"
+    }
+}
+2025-01-05 09:49:22,732 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:22.732379",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency",
+        "source": "https://ieeexplore.ieee.org/document/10334270"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:22.732379",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency",
+        "source": "https://ieeexplore.ieee.org/document/10334270"
+    }
+}
+2025-01-05 09:49:24,145 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:24.145149",
+    "additional info": {
+        "prompt": "MIMO specifications impact on data throughput",
+        "source": "https://www.mwrf.com/markets/article/21846554/understanding-benefits-of-mimo-technology"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:24.145149",
+    "additional info": {
+        "prompt": "MIMO specifications impact on data throughput",
+        "source": "https://www.mwrf.com/markets/article/21846554/understanding-benefits-of-mimo-technology"
+    }
+}
+2025-01-05 09:49:26,500 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:26.500551",
+    "additional info": {
+        "prompt": "impact of MIMO technology advancements on telecom operators market strategies 2025",
+        "source": "https://www.skyquestt.com/report/massive-mimo-market"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:26.500551",
+    "additional info": {
+        "prompt": "impact of MIMO technology advancements on telecom operators market strategies 2025",
+        "source": "https://www.skyquestt.com/report/massive-mimo-market"
+    }
+}
+2025-01-05 09:49:32,283 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:32.283649",
+    "additional info": {
+        "prompt": "impact of MIMO technology advancements on telecom operators market strategies 2025",
+        "source": "https://www.telecomreview.com/articles/reports-and-coverage/8396-5g-a-health-risk-or-technological-leap"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:32.283649",
+    "additional info": {
+        "prompt": "impact of MIMO technology advancements on telecom operators market strategies 2025",
+        "source": "https://www.telecomreview.com/articles/reports-and-coverage/8396-5g-a-health-risk-or-technological-leap"
+    }
+}
+2025-01-05 09:49:33,982 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:33.982678",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency 2025",
+        "source": "https://www.ericsson.com/en/blog/2021/12/a-holistic-approach-to-address-ran-energy-efficiency"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:33.982678",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency 2025",
+        "source": "https://www.ericsson.com/en/blog/2021/12/a-holistic-approach-to-address-ran-energy-efficiency"
+    }
+}
+2025-01-05 09:49:36,256 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:36.256078",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications details",
+        "source": "https://www.counterpointresearch.com/insights/3gpps-release-19-continues-5g-advanced-standardization-sets-the-stage-for-6g/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:36.256078",
+    "additional info": {
+        "prompt": "3GPP Release 19 MIMO specifications details",
+        "source": "https://www.counterpointresearch.com/insights/3gpps-release-19-continues-5g-advanced-standardization-sets-the-stage-for-6g/"
+    }
+}
+2025-01-05 09:49:36,344 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "timestamp": "2025-01-05T09:49:36.343989",
+    "additional info": {
+        "url": "https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/5G-A-Rel-19-Presentation.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "timestamp": "2025-01-05T09:49:36.343989",
+    "additional info": {
+        "url": "https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/documents/5G-A-Rel-19-Presentation.pdf"
+    }
+}
+2025-01-05 09:49:38,253 - my_logger - ERROR - {
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:38.253681",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency 2025",
+        "source": "https://www.siretta.com/2024/04/mimo-for-diversification-and-reliability-multipath-signals/"
+    }
+}
+{
+    "tool": "query_documents",
+    "error_message": "500 Server Error: Internal Server Error for url: http://4.188.110.145:4005/generate",
+    "timestamp": "2025-01-05T09:49:38.253681",
+    "additional info": {
+        "prompt": "MIMO specifications impact on network efficiency 2025",
+        "source": "https://www.siretta.com/2024/04/mimo-for-diversification-and-reliability-multipath-signals/"
+    }
+}
+2025-01-05 12:19:09,659 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/2312.05796 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a60da9310>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:19:09.659570",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/2312.05796"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/pdf/2312.05796 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a60da9310>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:19:09.659570",
+    "additional info": {
+        "url": "https://arxiv.org/pdf/2312.05796"
+    }
+}
+2025-01-05 12:19:09,662 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10379539 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a60da9e50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:19:09.662072",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10379539"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10379539 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a60da9e50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:19:09.662072",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10379539"
+    }
+}
+2025-01-05 12:24:15,889 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd1afc0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:15.889657",
+    "additional info": {
+        "url": "https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd1afc0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:15.889657",
+    "additional info": {
+        "url": "https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf"
+    }
+}
+2025-01-05 12:24:15,892 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10496996 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd52ed0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:15.892171",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10496996"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10496996 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd52ed0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:15.892171",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10496996"
+    }
+}
+2025-01-05 12:24:17,297 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.fcc.gov/public/attachments/DA-24-1230A1.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd6f980>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.297727",
+    "additional info": {
+        "url": "https://docs.fcc.gov/public/attachments/DA-24-1230A1.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.fcc.gov/public/attachments/DA-24-1230A1.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd6f980>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.297727",
+    "additional info": {
+        "url": "https://docs.fcc.gov/public/attachments/DA-24-1230A1.pdf"
+    }
+}
+2025-01-05 12:24:17,300 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.publicnow.com/viewDoc.aspx?filename=77458%5CEXT%5C1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7c8c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.300111",
+    "additional info": {
+        "url": "https://docs.publicnow.com/viewDoc.aspx?filename=77458\\EXT\\1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.publicnow.com/viewDoc.aspx?filename=77458%5CEXT%5C1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7c8c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.300111",
+    "additional info": {
+        "url": "https://docs.publicnow.com/viewDoc.aspx?filename=77458\\EXT\\1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF"
+    }
+}
+2025-01-05 12:24:17,393 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.researchgate.net/figure/L-MIMO-configuration-highlighting-the-spatial-non-stationary-regions-along-with-the-UPA_fig2_358705943 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5ce68e00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.393828",
+    "additional info": {
+        "url": "https://www.researchgate.net/figure/L-MIMO-configuration-highlighting-the-spatial-non-stationary-regions-along-with-the-UPA_fig2_358705943"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.researchgate.net/figure/L-MIMO-configuration-highlighting-the-spatial-non-stationary-regions-along-with-the-UPA_fig2_358705943 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5ce68e00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.393828",
+    "additional info": {
+        "url": "https://www.researchgate.net/figure/L-MIMO-configuration-highlighting-the-spatial-non-stationary-regions-along-with-the-UPA_fig2_358705943"
+    }
+}
+2025-01-05 12:24:17,396 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10496996 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd99940>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.396604",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10496996"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10496996 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd99940>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:17.396604",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10496996"
+    }
+}
+2025-01-05 12:24:26,886 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10693606/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc2a50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:26.886915",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10693606/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10693606/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc2a50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:26.886915",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10693606/"
+    }
+}
+2025-01-05 12:24:26,890 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/html/2402.11630v2 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc3b30>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:26.890041",
+    "additional info": {
+        "url": "https://arxiv.org/html/2402.11630v2"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://arxiv.org/html/2402.11630v2 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc3b30>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:26.890041",
+    "additional info": {
+        "url": "https://arxiv.org/html/2402.11630v2"
+    }
+}
+2025-01-05 12:24:32,484 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd99e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:32.484042",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd99e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:32.484042",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+2025-01-05 12:24:32,486 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://inatel.br/xgmobile/documents/artigos/standardization-steps-for-fas-in-6g-networks.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc29c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:32.486770",
+    "additional info": {
+        "url": "https://inatel.br/xgmobile/documents/artigos/standardization-steps-for-fas-in-6g-networks.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://inatel.br/xgmobile/documents/artigos/standardization-steps-for-fas-in-6g-networks.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc29c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:32.486770",
+    "additional info": {
+        "url": "https://inatel.br/xgmobile/documents/artigos/standardization-steps-for-fas-in-6g-networks.pdf"
+    }
+}
+2025-01-05 12:24:47,410 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://kpmg.com/us/en/media/news/key-regulatory-challenges-for-2025.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc3ec0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:47.410484",
+    "additional info": {
+        "url": "https://kpmg.com/us/en/media/news/key-regulatory-challenges-for-2025.html"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://kpmg.com/us/en/media/news/key-regulatory-challenges-for-2025.html (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc3ec0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:47.410484",
+    "additional info": {
+        "url": "https://kpmg.com/us/en/media/news/key-regulatory-challenges-for-2025.html"
+    }
+}
+2025-01-05 12:24:47,412 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7fef0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:47.412901",
+    "additional info": {
+        "url": "https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7fef0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:47.412901",
+    "additional info": {
+        "url": "https://smart-networks.europa.eu/wp-content/uploads/2024/12/sns-ju-ri-wp-2025_final-publication.pdf"
+    }
+}
+2025-01-05 12:24:51,787 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7f6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:51.786995",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7f6e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:51.786995",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+2025-01-05 12:24:51,789 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.linkedin.com/posts/rohit-budhiraja-b767389_near-field-channel-estimation-for-xl-mimo-activity-7241465384753643520--7c4 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc1e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:51.789536",
+    "additional info": {
+        "url": "https://www.linkedin.com/posts/rohit-budhiraja-b767389_near-field-channel-estimation-for-xl-mimo-activity-7241465384753643520--7c4"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.linkedin.com/posts/rohit-budhiraja-b767389_near-field-channel-estimation-for-xl-mimo-activity-7241465384753643520--7c4 (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cdc1e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:24:51.789536",
+    "additional info": {
+        "url": "https://www.linkedin.com/posts/rohit-budhiraja-b767389_near-field-channel-estimation-for-xl-mimo-activity-7241465384753643520--7c4"
+    }
+}
+2025-01-05 12:28:53,307 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.6gworld.com/blog/is-6g-possible-2/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7fdd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:28:53.307566",
+    "additional info": {
+        "url": "https://www.6gworld.com/blog/is-6g-possible-2/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.6gworld.com/blog/is-6g-possible-2/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7fdd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:28:53.307566",
+    "additional info": {
+        "url": "https://www.6gworld.com/blog/is-6g-possible-2/"
+    }
+}
+2025-01-05 12:29:02,096 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://5ghub.us/key-mimo-and-beamforming-upgrades-from-3gpp-release-17-to-release-18/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7c590>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:02.096090",
+    "additional info": {
+        "url": "https://5ghub.us/key-mimo-and-beamforming-upgrades-from-3gpp-release-17-to-release-18/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://5ghub.us/key-mimo-and-beamforming-upgrades-from-3gpp-release-17-to-release-18/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5cd7c590>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:02.096090",
+    "additional info": {
+        "url": "https://5ghub.us/key-mimo-and-beamforming-upgrades-from-3gpp-release-17-to-release-18/"
+    }
+}
+2025-01-05 12:29:02,098 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/news-events/3gpp-news/ahmadi-nr (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c3615b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:02.098352",
+    "additional info": {
+        "url": "https://www.3gpp.org/news-events/3gpp-news/ahmadi-nr"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/news-events/3gpp-news/ahmadi-nr (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c3615b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:02.098352",
+    "additional info": {
+        "url": "https://www.3gpp.org/news-events/3gpp-news/ahmadi-nr"
+    }
+}
+2025-01-05 12:29:11,506 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348530>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:11.506705",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348530>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:11.506705",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+2025-01-05 12:29:11,509 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.publicnow.com/viewDoc.aspx?filename=77458%5CEXT%5C1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c314cb0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:11.509081",
+    "additional info": {
+        "url": "https://docs.publicnow.com/viewDoc.aspx?filename=77458\\EXT\\1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://docs.publicnow.com/viewDoc.aspx?filename=77458%5CEXT%5C1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c314cb0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:11.509081",
+    "additional info": {
+        "url": "https://docs.publicnow.com/viewDoc.aspx?filename=77458\\EXT\\1AB9B7BCD82A0E017C01A88D574C4E8E37523FCB_73D72ED4900A387BB12A179FFC03134B90FEDBC2.PDF"
+    }
+}
+2025-01-05 12:29:14,621 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:14.621418",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348dd0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:14.621418",
+    "additional info": {
+        "url": "https://www.coleago.com/app/uploads/2024/11/Mobile-Networks-Spectrum-and-Policy-Outlook-2030.pdf"
+    }
+}
+2025-01-05 12:29:14,623 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10693606/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348080>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:14.623652",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10693606/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://ieeexplore.ieee.org/document/10693606/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c348080>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-05T12:29:14.623652",
+    "additional info": {
+        "url": "https://ieeexplore.ieee.org/document/10693606/"
+    }
+}
+2025-01-06 03:39:30,256 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/becoming-5g-advanced-the-3gpp-roadmap/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c243680>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:30.256341",
+    "additional info": {
+        "url": "https://www.5gamericas.org/becoming-5g-advanced-the-3gpp-roadmap/"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/becoming-5g-advanced-the-3gpp-roadmap/ (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c243680>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:30.256341",
+    "additional info": {
+        "url": "https://www.5gamericas.org/becoming-5g-advanced-the-3gpp-roadmap/"
+    }
+}
+2025-01-06 03:39:30,259 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/newsroom/news/2307-3gpp-commits-to-develop-6g-specifications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24bf50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:30.258984",
+    "additional info": {
+        "url": "https://www.etsi.org/newsroom/news/2307-3gpp-commits-to-develop-6g-specifications"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.etsi.org/newsroom/news/2307-3gpp-commits-to-develop-6g-specifications (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24bf50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:30.258984",
+    "additional info": {
+        "url": "https://www.etsi.org/newsroom/news/2307-3gpp-commits-to-develop-6g-specifications"
+    }
+}
+2025-01-06 03:39:59,293 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24a630>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:59.293582",
+    "additional info": {
+        "url": "https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24a630>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:59.293582",
+    "additional info": {
+        "url": "https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf"
+    }
+}
+2025-01-06 03:39:59,299 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c248e90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:59.299474",
+    "additional info": {
+        "url": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c248e90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:39:59.299474",
+    "additional info": {
+        "url": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}
+2025-01-06 03:40:04,324 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c298c50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:40:04.324440",
+    "additional info": {
+        "url": "https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c298c50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:40:04.324440",
+    "additional info": {
+        "url": "https://www.3gpp.org/ftp/Information/presentations/Presentations_2024/03_2024_09_17_Puneet_v03.pdf"
+    }
+}
+2025-01-06 03:40:04,327 - my_logger - ERROR - {
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24b800>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:40:04.327442",
+    "additional info": {
+        "url": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}
+{
+    "tool": "web_scrape",
+    "error_message": "HTTPConnectionPool(host='4.188.110.145', port=3000): Max retries exceeded with url: /https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x732a5c24b800>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+    "timestamp": "2025-01-06T03:40:04.327442",
+    "additional info": {
+        "url": "https://www.5gamericas.org/wp-content/uploads/2022/12/Becoming-5G-Advanced-the-3GPP-2025-Roadmap-InDesign.pdf"
+    }
+}

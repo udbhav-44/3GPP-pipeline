@@ -25,6 +25,7 @@ import subprocess
 from ftplib import FTP
 import zipfile
 from collections import defaultdict
+import traceback
 
 
 ERROR_LOG_FILE = "./error_logs.log"
@@ -149,185 +150,185 @@ def list_directories(ftp_client, base_path):
         traceback.print_exc()
         return []
 
-@tool
-def get_3gpp_docs(query: str) -> Union[Dict, str]:
-    """
-    Use this tool to dynamically fetch 3GPP Technical Specifications (TS) and Technical Reports (TR) from 3GPP FTP server based on the query provided.
-    The docs will be saved in the temp_rag_space for indexing and further use.
-    Each specification will be saved as a separate file.
-    Args:
-        query (str): The query related to 3GPP specifications
-    Returns:
-        Union[Dict, str]: Metadata of fetched TS or TR or an error message if the fetch fails.
-    """
-    BASE_ADDRESS = 'www.3gpp.org'
-    BASE_PATH = '/Specs/archive'
-    OUTPUT_DIR = 'temp_rag_space'
+# @tool
+# def get_3gpp_docs(query: str) -> Union[Dict, str]:
+#     """
+#     Use this tool to dynamically fetch 3GPP Technical Specifications (TS) and Technical Reports (TR) from 3GPP FTP server based on the query provided.
+#     The docs will be saved in the temp_rag_space for indexing and further use.
+#     Each specification will be saved as a separate file.
+#     Args:
+#         query (str): The query related to 3GPP specifications
+#     Returns:
+#         Union[Dict, str]: Metadata of fetched TS or TR or an error message if the fetch fails.
+#     """
+#     BASE_ADDRESS = 'www.3gpp.org'
+#     BASE_PATH = '/Specs/archive'
+#     OUTPUT_DIR = 'temp_rag_space'
 
-    index_path = "faiss_index/index_hnsw.faiss" 
-    meta_path = "faiss_index/index_hnsw.meta.json"
+#     index_path = "faiss_index/index_hnsw.faiss" 
+#     meta_path = "faiss_index/index_hnsw.meta.json"
     
-    try:
-        top_5 = get_top_5_specs(query, index_path, meta_path)
-    except Exception as e:
-        print("Error fetching top 5 specs:", e)
-        traceback.print_exc()
-        return {"status": "error", "message": "Failed to retrieve top 5 specifications."}
+#     try:
+#         top_5 = get_top_5_specs(query, index_path, meta_path)
+#     except Exception as e:
+#         print("Error fetching top 5 specs:", e)
+#         traceback.print_exc()
+#         return {"status": "error", "message": "Failed to retrieve top 5 specifications."}
     
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+#     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    print("Top 5 Specs:", top_5)
-    print("Data Type of top5:", type(top_5))
+#     print("Top 5 Specs:", top_5)
+#     print("Data Type of top5:", type(top_5))
     
-    # Extract the "Spec No" entry from each dictionary in the list
-    try:
-        spec_no_list = [spec["Spec No"] for spec in top_5]
-    except KeyError as e:
-        print(f"Missing key in top5 specs: {e}")
-        traceback.print_exc()
-        return {"status": "error", "message": "Top 5 specifications data is malformed."}
+#     # Extract the "Spec No" entry from each dictionary in the list
+#     try:
+#         spec_no_list = [spec["Spec No"] for spec in top_5]
+#     except KeyError as e:
+#         print(f"Missing key in top5 specs: {e}")
+#         traceback.print_exc()
+#         return {"status": "error", "message": "Top 5 specifications data is malformed."}
     
-    print("Spec No List:", spec_no_list)
+#     print("Spec No List:", spec_no_list)
     
-    for idx, spec_no in enumerate(spec_no_list, start=1):
-        print(f"\nProcessing Spec {idx}: {spec_no}")
-        try:
-            series, doc_number = spec_no.split('.')
-            print("Split Spec No:", series, doc_number)
+#     for idx, spec_no in enumerate(spec_no_list, start=1):
+#         print(f"\nProcessing Spec {idx}: {spec_no}")
+#         try:
+#             series, doc_number = spec_no.split('.')
+#             print("Split Spec No:", series, doc_number)
             
-            # Initialize FTP client for each spec to ensure fresh connection
-            with FTP(BASE_ADDRESS) as ftp_client:
-                print("Connecting to FTP server...")
-                ftp_client.login()  # Anonymous login
-                print("Logged in successfully.")
+#             # Initialize FTP client for each spec to ensure fresh connection
+#             with FTP(BASE_ADDRESS) as ftp_client:
+#                 print("Connecting to FTP server...")
+#                 ftp_client.login()  # Anonymous login
+#                 print("Logged in successfully.")
                 
-                # Verify if the expected series directory exists
-                available_series = list_directories(ftp_client, BASE_PATH)
-                expected_series_dir = f"{series}_series"
+#                 # Verify if the expected series directory exists
+#                 available_series = list_directories(ftp_client, BASE_PATH)
+#                 expected_series_dir = f"{series}_series"
                 
-                if expected_series_dir not in available_series:
-                    print(f"Expected series directory '{expected_series_dir}' not found. Available directories: {available_series}")
-                    continue  # Skip to the next spec
+#                 if expected_series_dir not in available_series:
+#                     print(f"Expected series directory '{expected_series_dir}' not found. Available directories: {available_series}")
+#                     continue  # Skip to the next spec
                 
-                ftp_directory = f"{BASE_PATH}/{series}_series/{series}.{doc_number}"
-                print(f"Changing directory to: {ftp_directory}")
-                ftp_client.cwd(ftp_directory)
-                print("Directory changed successfully.")
+#                 ftp_directory = f"{BASE_PATH}/{series}_series/{series}.{doc_number}"
+#                 print(f"Changing directory to: {ftp_directory}")
+#                 ftp_client.cwd(ftp_directory)
+#                 print("Directory changed successfully.")
                 
-                filenames = ftp_client.nlst()
-                print(f"Filenames in directory: {filenames}")
-                filenames.sort()
-                print(f"Sorted Filenames: {filenames}")
+#                 filenames = ftp_client.nlst()
+#                 print(f"Filenames in directory: {filenames}")
+#                 filenames.sort()
+#                 print(f"Sorted Filenames: {filenames}")
                 
-                # Find the latest major version
-                latest_major_version = None
-                for filename in filenames:
-                    if "-" in filename and filename.endswith(".zip"):
-                        parts = filename.split('-')
-                        if len(parts) < 2:
-                            continue
-                        major_version = parts[1][0]
-                        if not latest_major_version or major_version > latest_major_version.split('-')[1][0]:
-                            latest_major_version = filename
+#                 # Find the latest major version
+#                 latest_major_version = None
+#                 for filename in filenames:
+#                     if "-" in filename and filename.endswith(".zip"):
+#                         parts = filename.split('-')
+#                         if len(parts) < 2:
+#                             continue
+#                         major_version = parts[1][0]
+#                         if not latest_major_version or major_version > latest_major_version.split('-')[1][0]:
+#                             latest_major_version = filename
                 
-                print("Latest Major Version Found:", latest_major_version)
-                if not latest_major_version:
-                    print(f"No valid files found for spec {spec_no}. Skipping...")
-                    continue  # Skip to the next spec
+#                 print("Latest Major Version Found:", latest_major_version)
+#                 if not latest_major_version:
+#                     print(f"No valid files found for spec {spec_no}. Skipping...")
+#                     continue  # Skip to the next spec
                 
-                # Download the latest major version
-                zip_filename = latest_major_version
-                output_path = os.path.join(OUTPUT_DIR, zip_filename)
-                print(f"Downloading {zip_filename} to {output_path}...")
+#                 # Download the latest major version
+#                 zip_filename = latest_major_version
+#                 output_path = os.path.join(OUTPUT_DIR, zip_filename)
+#                 print(f"Downloading {zip_filename} to {output_path}...")
                 
-                with open(output_path, "wb") as fp:
-                    ftp_client.retrbinary(f"RETR {zip_filename}", fp.write)
-                    print(f"{zip_filename} downloaded successfully.")
+#                 with open(output_path, "wb") as fp:
+#                     ftp_client.retrbinary(f"RETR {zip_filename}", fp.write)
+#                     print(f"{zip_filename} downloaded successfully.")
                 
-                # Unzip the file using zipfile module
-                # unzip_dir = os.path.join(OUTPUT_DIR, zip_filename.replace(".zip", ""))
-                # os.makedirs(unzip_dir, exist_ok=True)
-                # print(f"Extracting {zip_filename} to {unzip_dir}...")
+#                 # Unzip the file using zipfile module
+#                 # unzip_dir = os.path.join(OUTPUT_DIR, zip_filename.replace(".zip", ""))
+#                 # os.makedirs(unzip_dir, exist_ok=True)
+#                 # print(f"Extracting {zip_filename} to {unzip_dir}...")
                 
-                with zipfile.ZipFile(output_path, 'r') as zip_ref:
-                    zip_ref.extractall(OUTPUT_DIR)
-                print(f"{zip_filename} extracted successfully.")
+#                 with zipfile.ZipFile(output_path, 'r') as zip_ref:
+#                     zip_ref.extractall(OUTPUT_DIR)
+#                 print(f"{zip_filename} extracted successfully.")
                 
-                # Delete the zip file after extraction
-                os.remove(output_path)
-                print(f"{zip_filename} removed after extraction.")
+#                 # Delete the zip file after extraction
+#                 os.remove(output_path)
+#                 print(f"{zip_filename} removed after extraction.")
                 
-        except Exception as e:
-            log_error(
-                "get_3gpp_docs", 
-                str(e), 
-                {"query":query}
-            )
-            # Continue with the next spec without terminating the entire process
-            continue
+#         except Exception as e:
+#             log_error(
+#                 "get_3gpp_docs", 
+#                 str(e), 
+#                 {"query":query}
+#             )
+#             # Continue with the next spec without terminating the entire process
+#             continue
     
-    return {"status": "success", "message": "Specifications fetched and processed successfully."}
+#     return {"status": "success", "message": "Specifications fetched and processed successfully."}
 
     
     
-@tool    
-def arxiv_fetch(query: str) -> Union[Dict, str]:
-    """
-    Use this tool to dynamically fetch research papers from arXiv based on the query provided.
-    The papers will be saved in the temp_rag_space for indexing and further use.
-    Each paper will be saved as a separate file.
-    Args:
-        query (str): The research topic or keywords to search for.
-    Returns:
-        Union[Dict, str]: Metadata of fetched papers or an error message if the fetch fails.
-    """
-    arxiv_api_url = f'https://export.arxiv.org/api/query?search_query=all:{urllib.parse.quote(query)}&start=0&max_results=5'
-    headers = {
-        'Accept': 'application/json',
-    }
-    output_folder = 'temp_rag_space'
+# @tool    
+# def arxiv_fetch(query: str) -> Union[Dict, str]:
+#     """
+#     Use this tool to dynamically fetch research papers from arXiv based on the query provided.
+#     The papers will be saved in the temp_rag_space for indexing and further use.
+#     Each paper will be saved as a separate file.
+#     Args:
+#         query (str): The research topic or keywords to search for.
+#     Returns:
+#         Union[Dict, str]: Metadata of fetched papers or an error message if the fetch fails.
+#     """
+#     arxiv_api_url = f'https://export.arxiv.org/api/query?search_query=all:{urllib.parse.quote(query)}&start=0&max_results=5'
+#     headers = {
+#         'Accept': 'application/json',
+#     }
+#     output_folder = 'temp_rag_space'
 
-    try:
-        # Create output folder if it doesn't exist
-        os.makedirs(output_folder, exist_ok=True)
+#     try:
+#         # Create output folder if it doesn't exist
+#         os.makedirs(output_folder, exist_ok=True)
 
-        response = requests.get(arxiv_api_url, headers=headers)
-        response.raise_for_status()
+#         response = requests.get(arxiv_api_url, headers=headers)
+#         response.raise_for_status()
 
-        # Parse the response for individual papers
-        papers = []
-        for index, entry in enumerate(re.findall(r'<entry>(.*?)</entry>', response.text, re.DOTALL)):
-            homepage_match = re.search(r'<id>(.*?)</id>', entry, re.DOTALL)
-            homepage = homepage_match.group(1).strip() if homepage_match else None
-            title = re.search(r'<title>(.*?)</title>', entry, re.DOTALL).group(1).strip()
-            summary = re.search(r'<summary>(.*?)</summary>', entry, re.DOTALL).group(1).strip()
-            pdf_link = homepage.replace("abs","pdf") if homepage else None
-            authors = re.findall(r'<author>(.*?)</author>', entry, re.DOTALL)
+#         # Parse the response for individual papers
+#         papers = []
+#         for index, entry in enumerate(re.findall(r'<entry>(.*?)</entry>', response.text, re.DOTALL)):
+#             homepage_match = re.search(r'<id>(.*?)</id>', entry, re.DOTALL)
+#             homepage = homepage_match.group(1).strip() if homepage_match else None
+#             title = re.search(r'<title>(.*?)</title>', entry, re.DOTALL).group(1).strip()
+#             summary = re.search(r'<summary>(.*?)</summary>', entry, re.DOTALL).group(1).strip()
+#             pdf_link = homepage.replace("abs","pdf") if homepage else None
+#             authors = re.findall(r'<author>(.*?)</author>', entry, re.DOTALL)
 
-            paper_data = {
-                "homepage" : homepage,
-                "title": title,
-                "summary": summary,
-                "pdf_link": pdf_link,
-                "authors": authors,
-            }
-            papers.append(paper_data)
+#             paper_data = {
+#                 "homepage" : homepage,
+#                 "title": title,
+#                 "summary": summary,
+#                 "pdf_link": pdf_link,
+#                 "authors": authors,
+#             }
+#             papers.append(paper_data)
 
-            # Save each paper to a separate file
-            filename = f"arxiv_paper_{index + 1}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-            filepath = os.path.join(output_folder, filename)
-            with open(filepath, 'w', encoding='utf-8') as f:
-                json.dump(paper_data, f, indent=4)
+#             # Save each paper to a separate file
+#             filename = f"arxiv_paper_{index + 1}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+#             filepath = os.path.join(output_folder, filename)
+#             with open(filepath, 'w', encoding='utf-8') as f:
+#                 json.dump(paper_data, f, indent=4)
 
-        return {"status": "success", "message": "Research papers saved", "papers": papers}
+#         return {"status": "success", "message": "Research papers saved", "papers": papers}
 
-    except requests.RequestException as e:
-        log_error(
-            tool_name="arxiv_fetch",
-            error_message=str(e),
-            additional_info={"query": query}
-        )
-        return "Error fetching papers from arXiv."
+#     except requests.RequestException as e:
+#         log_error(
+#             tool_name="arxiv_fetch",
+#             error_message=str(e),
+#             additional_info={"query": query}
+#         )
+#         return "Error fetching papers from arXiv."
 
 search = GoogleSearchAPIWrapper()
 @tool

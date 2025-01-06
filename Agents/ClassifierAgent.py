@@ -102,23 +102,9 @@ def classifierAgent_RAG(query, ragContext):
     else:
         return 'simple'
     
-if __name__ == '__main__':
-    queries = [
-        'What is the difference between the Annual Incomes of Apple and Google',
-        'What is the Difference between the Grades of Einstein and Tesla',
-        #'Provide the evaluation metrics of attenton is all you need along with the outputs',
-        #'Explain the Encoder-Decoder Mdodel of Transformers',
-        #'Provide the Formula in latex for Scaled Dot-Product Attention and explain how it works',
-        'What is Multi-Head attention and what are its applications',
-        'Why is self attention important in transformers',
-        #'What is the performance of Deep-Att + PosUnk, GNMT + RL, ConvS2S, Deep-Att + PosUnk Ensemble and Transformer (base model) on BLEU and Training Cost (FLOPs) performance metrics',
-        "What are the impacts of merger of FlipKart and Walmart on the Indian Economy and Markets",
-        "Analyze CoStar Group's and LoopNet's financial statements to identify potential areas of legal and financial risk associated with their overlapping business operations",
-        'Compare the legal compliance records of Tegna and Standard Media Group regarding broadcasting regulations',
-        #'Summarize the key terms and conditions of the merger agreement between Pfizer and Arena Pharmaceuticals, including payment structure and deal contingencies.',
-        "Analyze the legal implications of data privacy regulations (GDPR, CCPA) on Google's business model.",
-        "Determine the impact of the merger on the employment levels and compensation structures within Bank of America, using publicly available financial and SEC filings."
-    ]
+# if __name__ == '__main__':
+    # queries = [
+    # ]
 
-    for query in queries:
-        print(classifierAgent_RAG(query, 'ragContext'), classifierAgent(query))
+    # for query in queries:
+    #     print(classifierAgent_RAG(query, 'ragContext'), classifierAgent(query))

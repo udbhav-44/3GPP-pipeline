@@ -16,38 +16,25 @@ import time
 import json
 import google.generativeai as genai
 import re
-
 # Import custom agents for different tasks
 from Agents.Agents import Agent
 from Agents.Smack import Smack
 from Agents.ClassifierAgent import classifierAgent, classifierAgent_RAG
 from Agents.PlannerAgent import plannerAgent, plannerAgent_rag
-from Agents.ChartGenAgent import generate_chart
+# from Agents.ChartGenAgent import generate_chart
 from Agents.DrafterAgent import drafterAgent_vanilla, drafterAgent_rag
 from Agents.ConciseAnsAgent import conciseAns_vanilla, conciseAns_rag
 from Agents.RAG_Agent import ragAgent
-from Agents.LATS.Solve_subquery import SolveSubQuery
-from Agents.conciseLatsAgent import conciseAns_vanilla_LATS
-from langchain_community.callbacks import get_openai_callback
-from langchain_openai import ChatOpenAI
-
+# from Agents.conciseLatsAgent import conciseAns_vanilla_LATS
 from Agents.LATS.OldfinTools import *
-import json
-import threading
 import asyncio
 import websockets
-
 from langchain.globals import set_verbose
-
-import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor
 from typing import Dict, List, Any
-from collections import defaultdict
-
 from makeGraphJSON import makeGraphJSON
-
 from TopicalGuardrails import applyTopicalGuardails
-from GenerateQuestions import genQuestionComplex, genQuestionSimple
+from GenerateQuestions import  genQuestionSimple
 
 set_verbose(True)
 now = time.time()
@@ -137,11 +124,7 @@ async def mainBackend(query, websocket, rag):
                     out_str += f'{taskResultsDict[task]} \n'
                 resp = drafterAgent_vanilla(query, out_str)
                 resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                resp = generate_chart(resp)
-                '''additionalQuestions = []
-                for que in addn_questions:
-                    finQue = await genQuestionComplex(query, addn_questions)
-                    additionalQuestions.append(finQue)'''
+                # resp = generate_chart(resp)
                 additionalQuestions = await genQuestionSimple(addn_questions)
 
 
@@ -207,11 +190,7 @@ async def mainBackend(query, websocket, rag):
                     out_str += f'{taskResultsDict[task]} \n'
                 resp = drafterAgent_rag(query,rag_context, out_str)
                 resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                resp = generate_chart(resp)
-                '''additionalQuestions = []
-                for que in addn_questions:
-                    finQue = await genQuestionComplex(query, addn_questions)
-                    additionalQuestions.append(finQue)'''
+                # resp = generate_chart(resp)
                 additionalQuestions = await genQuestionSimple(addn_questions)
 
                     

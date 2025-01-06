@@ -1,71 +1,80 @@
 ### Chain of Thoughts (COT)
 
-To address the query regarding the Technical Specifications and Technical Reports for an Evolved Packet System (EPS) based 3GPP system, I will break down the main task into several subtasks. Each subtask will focus on a specific aspect of the query, ensuring that the research is thorough and covers various dimensions of the topic.
+The user query is focused on understanding how 3GPP technical specifications influence mobile communication systems and the implications for global interoperability among network operators. This task can be broken down into several sub-tasks, each focusing on a specific aspect of the problem. 
 
-1. **Understanding the Query**: The main task is to gather valid information about the Technical Specifications (TS) and Technical Reports (TR) related to the Evolved Packet System (EPS) in the context of the 3GPP system. This requires an examination of both the specifications and reports.
+1. **Understanding 3GPP Technical Specifications**: The first sub-task will involve gathering detailed information about what 3GPP technical specifications are and their role in mobile communication systems. This is foundational as it sets the stage for understanding their influence.
 
-2. **Subtask Breakdown**:
-   - **Task 1**: Fetch the latest Technical Specifications (TS) related to EPS from the 3GPP FTP server. This task is fundamental as it will provide the primary source of information regarding the technical specifications.
-   - **Task 2**: Fetch the latest Technical Reports (TR) related to EPS from the 3GPP FTP server. Similar to Task 1, this will provide essential insights from the reports that accompany the specifications.
-   - **Task 3**: Summarize the findings from Task 1 (Technical Specifications) to extract key information and insights.
-   - **Task 4**: Summarize the findings from Task 2 (Technical Reports) to extract key information and insights.
-   - **Task 5**: Compare and analyze the insights from Tasks 3 and 4 to highlight any discrepancies or unique findings between the specifications and reports.
+2. **Impact on Mobile Communication Systems**: The second sub-task will analyze how these specifications directly influence the development of mobile communication systems. This will require insights from the first task.
 
-3. **Dependencies**:
-   - Task 3 depends on the results of Task 1.
-   - Task 4 depends on the results of Task 2.
-   - Task 5 depends on the results of both Task 3 and Task 4.
+3. **Global Interoperability**: The third sub-task will explore the implications of 3GPP specifications for global interoperability among different network operators. This will depend on insights gained from the previous tasks.
 
-4. **Local Constraints**: Each subtask will have specific local constraints, such as ensuring that the fetched documents are the most recent and relevant to EPS, and that the summaries are concise and focused on the key aspects of the specifications and reports.
+4. **Comparative Analysis of Network Operators**: A fourth sub-task will involve a comparative analysis of how different network operators implement these specifications, which may provide insights into the variations in interoperability.
 
-5. **Global Constraints**: The main task must ensure that all information gathered is accurate, up-to-date, and relevant to the Evolved Packet System within the 3GPP framework.
+5. **Regulatory and Policy Considerations**: The fifth sub-task will investigate the regulatory and policy implications of 3GPP specifications on global interoperability, requiring an understanding of the political landscape surrounding telecommunications.
 
-With this breakdown, I will now populate the JSON template with the identified subtasks.
+6. **Future Trends and Challenges**: The final sub-task will look into future trends and challenges related to 3GPP specifications and interoperability, providing a forward-looking perspective.
+
+Each of these sub-tasks is designed to be executed independently, except where indicated that one depends on the results of another. The local constraints for each sub-task will ensure that the agents focus on specific aspects of the problem.
+
+### Global Constraints
+The main task's global constraints include the need for accurate, up-to-date information on 3GPP specifications and their impact on mobile communication systems and interoperability, considering the evolving nature of technology and regulations.
+
+### JSON Template
 
 ```json
 {
-    "main_task": "Gather valid information about the Technical Specifications and Technical Reports for an Evolved Packet System (EPS) based 3GPP system.",
+    "main_task": "Gather valid information on how 3GPP technical specifications influence the development of mobile communication systems and the implications for global interoperability among different network operators.",
     "sub_tasks": {
         "task_1": {
-            "content": "Fetch the latest Technical Specifications (TS) related to the Evolved Packet System (EPS) from the 3GPP FTP server.",
-            "agent": "3GPP Standards Specialist",
-            "agent_role_description": "The 3GPP Standards Specialist is responsible for retrieving the most recent Technical Specifications related to the Evolved Packet System from the 3GPP FTP server, ensuring the documents are relevant and up-to-date.",
-            "tools": ["get_3gpp_docs"],
-            "local_constraints": ["Ensure that the fetched Technical Specifications are the latest and specifically related to EPS."],
+            "content": "Gather detailed information about 3GPP technical specifications and their role in mobile communication systems.",
+            "agent": "Telecommunications Standards Researcher",
+            "agent_role_description": "A researcher specialized in telecommunications standards, focusing on 3GPP specifications and their implications for mobile technologies.",
+            "tools": ["web_search", "get_wikipedia_summary"],
+            "local_constraints": ["Focus on recent developments in 3GPP specifications and their historical context."],
             "require_data": []
         },
         "task_2": {
-            "content": "Fetch the latest Technical Reports (TR) related to the Evolved Packet System (EPS) from the 3GPP FTP server.",
-            "agent": "3GPP Standards Specialist",
-            "agent_role_description": "The 3GPP Standards Specialist is responsible for retrieving the most recent Technical Reports related to the Evolved Packet System from the 3GPP FTP server, ensuring the documents are relevant and up-to-date.",
-            "tools": ["get_3gpp_docs"],
-            "local_constraints": ["Ensure that the fetched Technical Reports are the latest and specifically related to EPS."],
-            "require_data": []
-        },
-        "task_3": {
-            "content": "Based on the Technical Specifications fetched in task_1, summarize the key information and insights.",
-            "agent": "Technical Documentation Specialist",
-            "agent_role_description": "The Technical Documentation Specialist will analyze the Technical Specifications obtained from task_1 and summarize the key points, focusing on the main technical aspects of the EPS.",
-            "tools": ["retrieve_documents"],
-            "local_constraints": ["The summary must be concise and highlight the most relevant technical details from the specifications."],
+            "content": "Based on the information gathered in task_1, analyze how 3GPP specifications directly influence the development of mobile communication systems.",
+            "agent": "Mobile Communication Systems Analyst",
+            "agent_role_description": "An analyst with expertise in mobile communication systems, evaluating the impact of technical specifications on system design and implementation.",
+            "tools": ["simple_query_documents"],
+            "local_constraints": ["Ensure to include examples of specific mobile communication systems influenced by 3GPP."],
             "require_data": ["task_1"]
         },
-        "task_4": {
-            "content": "Based on the Technical Reports fetched in task_2, summarize the key information and insights.",
-            "agent": "Technical Documentation Specialist",
-            "agent_role_description": "The Technical Documentation Specialist will analyze the Technical Reports obtained from task_2 and summarize the key points, focusing on the main findings and recommendations related to the EPS.",
-            "tools": ["retrieve_documents"],
-            "local_constraints": ["The summary must be concise and highlight the most relevant findings from the reports."],
+        "task_3": {
+            "content": "Based on the insights from task_2, explore the implications of 3GPP specifications for global interoperability among different network operators.",
+            "agent": "Interoperability Specialist",
+            "agent_role_description": "A specialist in telecommunications interoperability, focusing on how standards affect compatibility among different operators.",
+            "tools": ["web_search"],
+            "local_constraints": ["Consider various global regions and their adherence to 3GPP specifications."],
             "require_data": ["task_2"]
         },
+        "task_4": {
+            "content": "Conduct a comparative analysis of how different network operators implement 3GPP specifications and the resulting variations in interoperability.",
+            "agent": "Network Operator Analyst",
+            "agent_role_description": "An analyst who studies various network operators' approaches to implementing technical specifications and their effects on interoperability.",
+            "tools": ["web_scrape"],
+            "local_constraints": ["Focus on at least three different operators from various regions."],
+            "require_data": ["task_3"]
+        },
         "task_5": {
-            "content": "Based on the summaries from task_3 and task_4, compare and analyze the insights to highlight discrepancies or unique findings between the specifications and reports.",
-            "agent": "Market Researcher",
-            "agent_role_description": "The Market Researcher will compare the insights from the Technical Specifications and Technical Reports, identifying any discrepancies or unique findings that may impact the understanding of the EPS.",
-            "tools": ["simple_query_documents"],
-            "local_constraints": ["The analysis must be thorough and should clearly outline any differences or unique aspects identified between the two documents."],
-            "require_data": ["task_3", "task_4"]
+            "content": "Investigate the regulatory and policy implications of 3GPP specifications on global interoperability, considering political factors.",
+            "agent": "Telecommunications Policy Analyst",
+            "agent_role_description": "An analyst who examines telecommunications regulations and policies, focusing on their impact on interoperability and standards compliance.",
+            "tools": ["retrieve_documents"],
+            "local_constraints": ["Analyze recent policy changes and their implications for network operators."],
+            "require_data": ["task_3"]
+        },
+        "task_6": {
+            "content": "Explore future trends and challenges related to 3GPP specifications and interoperability based on findings from previous tasks.",
+            "agent": "Future Trends Researcher",
+            "agent_role_description": "A researcher focused on emerging trends in telecommunications, particularly in relation to standards and interoperability challenges.",
+            "tools": ["web_search_simple"],
+            "local_constraints": ["Identify potential technological advancements that could affect 3GPP specifications."],
+            "require_data": ["task_4", "task_5"]
         }
     }
 }
-```
+``` 
+
+This breakdown allows for a comprehensive exploration of the user's query while ensuring that each aspect is addressed by a specialized agent using the appropriate tools.
