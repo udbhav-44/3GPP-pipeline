@@ -1,6 +1,9 @@
-"""This file contains the code for the Classifier Agent, which is used to classify the user query into different categories, based on the intent of the user."""
+"""
+This file contains the code for the Classifier Agent, 
+which is used to classify the user query into different categories, based on the intent of the user.
+"""
 
-import google.generativeai as genai
+
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -8,7 +11,6 @@ load_dotenv('../../.env')
 load_dotenv('.env')
 
 OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
-# print(OPENAI_API_KEY)
 client = OpenAI(
     api_key=OPENAI_API_KEY
 )
@@ -102,9 +104,4 @@ def classifierAgent_RAG(query, ragContext):
     else:
         return 'simple'
     
-# if __name__ == '__main__':
-    # queries = [
-    # ]
 
-    # for query in queries:
-    #     print(classifierAgent_RAG(query, 'ragContext'), classifierAgent(query))

@@ -137,6 +137,4 @@ def conciseAns_vanilla(query, tools_list, thread_id=None):
     return response['output']
 
 
-def conciseAns_rag(query,rag_context, text, api_key, LLM):
-    # return response #TODO: Implement this function
-    return "Not Implemented Yet"
+

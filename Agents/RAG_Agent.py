@@ -4,7 +4,6 @@ import os
 import json
 import logging
 from dotenv import load_dotenv
-import time
 load_dotenv('.env')
 logger = logging.getLogger(__name__)
 
