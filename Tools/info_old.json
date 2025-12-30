@@ -90,14 +90,16 @@
         }
     },
     {
-        "name" : "get_3gpp_docs",
-        "docstring" : " Use this tool to dynamically fetch 3GPP Technical Specifications (TS) and Technical Reports (TR) from 3GPP FTP server based on the query provided. The docs will be saved in the temp_rag_space for indexing and further use. Each specification will be saved as a separate file.",
-        "parameters":{
-            "query": "str"
+
+        "name": "search_and_generate",
+        "docstring": "Query the Graph-3GPP for all communication related queries to get the Relevant Documents for the Query and Returns a tuple of (DataFrame of Resultant Documents or None, formatted response string with the AI Ans). meeting_id is optional and can be used to filter documents by meeting.",
+        "parameters": {
+            "query_str": "str",
+            "meeting_id": "Optional[str]"
         },
         "output": {
-            "type": "Dict",
-            "description": "Metadata of fetched TS or TR or an error message if the fetch fails."
+            "type": "Tuple[Optional[Any], str]",
+            "description": "A tuple containing a DataFrame of results (or None) and a formatted response string."
         }
     }
 

@@ -77,6 +77,19 @@
             "type": "List[Dict]",
             "description": "Search results with basic details about the query."
         }
+    },
+    {
+
+        "name": "search_and_generate",
+        "docstring": "Query the Graph-3GPP for all communication related queries to get the Relevant Documents for the Query and Returns a tuple of (DataFrame of Resultant Documents or None, formatted response string with the AI Ans). meeting_id is optional and can be used to filter documents by meeting.",
+        "parameters": {
+            "query_str": "str",
+            "meeting_id": "Optional[str]"
+        },
+        "output": {
+            "type": "Tuple[Optional[Any], str]",
+            "description": "A tuple containing a DataFrame of results (or None) and a formatted response string."
+        }
     }
 
 
