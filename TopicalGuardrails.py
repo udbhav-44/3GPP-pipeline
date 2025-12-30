@@ -3,10 +3,10 @@ The file sets up an OpenAI client and prepares prompts for classifying queries b
 specific rules and the current date and time.
 """
 import os
+import logging
 from openai import OpenAI
 import concurrent.futures
 import threading
-import time
 from dotenv import load_dotenv
 import json
 from datetime import datetime
@@ -33,6 +33,7 @@ OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 client = OpenAI(
     api_key=OPENAI_API_KEY
 )
+logger = logging.getLogger(__name__)
 
 def get_chat_response(user_request):
     """
@@ -286,16 +287,15 @@ def run_parallel_with_early_exit(query, *functions):
             if result == 'True':
                 result = True
             else:
-                print(func.__name__)
-                print(reasoning)
+                logger.warning("Guardrail failed: %s, reasoning=%s", func.__name__, reasoning)
                 result = False
                 reasonings[naming[func.__name__]] = reasoning
             results[index] = result
             
             if result is False:
                 cancel_event.set()
-        except Exception as e:
-            print(e)
+        except Exception:
+            logger.exception("Guardrail evaluation failed")
             results[index] = False
             cancel_event.set()
     
@@ -324,7 +324,7 @@ def applyTopicalGuardails(query):
         tuple: A boolean indicating if the query passed all guardrails, 
                and a dictionary containing the reasoning for any failed guardrail.
     """
-    print(query)
+    logger.debug("Applying guardrails to query")
     if query == "":
         return False, {"Empty Query": "Please Enter a Query"}
     return run_parallel_with_early_exit(query, topical_guardrail_1,topical_guardrail_2,topical_guardrail_3,topical_guardrail_4,topical_guardrail_5)

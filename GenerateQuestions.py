@@ -1,14 +1,14 @@
 """
 This file provides functions to generate complex and simple questions based on user prompts.
 """
-import google.generativeai as genai
 import os
-from datetime import datetime
+import logging
 from dotenv import load_dotenv
 import json
-from LLMs import conversation_complex, GPT4o_mini_Complex
+from LLMs import GPT4o_mini_Complex
 
 load_dotenv('.env')
+logger = logging.getLogger(__name__)
 
 OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 
@@ -22,7 +22,7 @@ async def genQuestionSimple(query):
             list: A list of five synthesized questions.
     """
 
-    print("Executing genQuestionSimple")
+    logger.info("Executing genQuestionSimple")
     system_prompt = '''
        Synthesize 5 Questions Related to the given query with a focus on communication systems and 3GPP technical standards.
         Instructions to make the questions:
@@ -49,5 +49,5 @@ async def genQuestionSimple(query):
     prompt = f'''{system_prompt}\n\n {user_prompt}'''
     response = GPT4o_mini_Complex.invoke(f'''{prompt}''').content
 
-    print("Executed genQuestionSimple")
+    logger.info("Executed genQuestionSimple")
     return json.loads(response).values()

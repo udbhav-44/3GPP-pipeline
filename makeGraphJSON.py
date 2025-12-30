@@ -1,3 +1,7 @@
+import logging
+
+logger = logging.getLogger(__name__)
+
 def makeGraphJSON(plan_subTasks):
     """
     Functions:
@@ -54,5 +58,5 @@ def makeGraphJSON(plan_subTasks):
 
     graphData["nodes"] = graphData_nodes
     graphData["edges"] = graphData_edges
-    print(mapping)
+    logger.debug("Graph mapping: %s", mapping)
     return graphData
