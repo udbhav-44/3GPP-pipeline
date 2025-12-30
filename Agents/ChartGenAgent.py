@@ -14,6 +14,7 @@ import requests
 from langchain_openai import ChatOpenAI
 
 load_dotenv('.env')
+logger = logging.getLogger(__name__)
 api_gemini = os.getenv("GEMINI_API_KEY_30")
 api_img = os.getenv("IMGBB_API_KEY")
 openai_api_key=os.getenv("OPEN_AI_API_KEY_30")
@@ -49,13 +50,13 @@ def gen_url(image_paths):
 
         response_json = response.json()
         if response_json['success']:
-            print("Image uploaded successfully!")
+            logger.info("Image uploaded successfully")
             # print(f"Image URL: {response_json['data']['url_viewer']}")
-            print(f"Image URL (direct link): {response_json['data']['url']}")
+            logger.info("Image URL (direct link): %s", response_json['data']['url'])
             url.append(response_json['data']['url'])
         else:
-            print("Image upload failed!")
-            print(response_json)
+            logger.error("Image upload failed")
+            logger.error("Image upload response: %s", response_json)
 
     return url
 
@@ -128,7 +129,7 @@ def generate_chart(content: str) -> str:
     file_path = 'response-withCharts.md'
     with open(file_path, 'w', encoding='utf-8') as md_file:
         md_file.write(response_text)
-    print("done")
+    logger.info("Chart markdown generated")
     repl = PythonREPL()
 
 

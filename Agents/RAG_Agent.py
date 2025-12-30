@@ -2,15 +2,17 @@
 
 import os
 import json
+import logging
 from dotenv import load_dotenv
 import time
 load_dotenv('.env')
+logger = logging.getLogger(__name__)
 
 from datetime import datetime
 import google.generativeai as genai
 
 from langchain.globals import set_verbose
-set_verbose(True)
+set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
 
 from Agents.LATS.OldfinTools import *
 
@@ -41,14 +43,16 @@ def ragAgent(query, state):
         rag_result_str = ''
         if type(rag_result) is list:
             for i in rag_result:
-                if type(i) is str:
+                if isinstance(i, str):
                     rag_result_str += i
-                elif type(i) is str:
-                    rag_result_str += f"{i['url']}+{i['content']}"
+                elif isinstance(i, dict):
+                    url = i.get("url", "")
+                    content = i.get("content", "")
+                    rag_result_str += f"{url}+{content}"
         elif type(rag_result) is str:
             rag_result_str = rag_result
         else:
-            print(type(rag_result))
+            logger.debug("Unexpected rag_result type: %s", type(rag_result))
             
 
         prompt = f"""Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses must be with respect to this time frame""" + sys_prompt + rag_result_str
@@ -64,11 +68,11 @@ def ragAgent(query, state):
         return fin_context
         
     elif state == "concise":
-        print("Hello This is concise")
+        logger.info("Running concise RAG")
         #return json.dumps(simple_query_documents.invoke(query))
         resp = simple_query_documents.invoke(query)
         if type(resp) == str:
             return resp
         elif type(resp) == dict:
             return resp['answer']
-
+        return str(resp)

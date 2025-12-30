@@ -25,15 +25,16 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 parser = JsonOutputToolsParser(return_id=True)
 
-from LLMs import GPT4o_mini_LATS
+from LLMs import GPT4o_mini_LATS, get_llm
 
-def custom_generate_candidates(tools):
+def custom_generate_candidates(tools, model="gpt-4o-mini"):
     """ 
     Generate candidates for the LATS agent.
     """
     def generate_candidates(messages: ChatPromptValue, config: RunnableConfig):
-        bound_kwargs = GPT4o_mini_LATS.bind_tools(tools=tools).kwargs
-        chat_result = GPT4o_mini_LATS.generate(
+        llm = get_llm(model=model, provider="deepseek" if "deepseek" in model else "openai")
+        bound_kwargs = llm.bind_tools(tools=tools).kwargs
+        chat_result = llm.generate(
             [messages.to_messages()],
             callbacks=config["callbacks"],
             run_name="GenerateCandidates",
@@ -57,14 +58,14 @@ def select(root: Node) -> dict:
 
     return node
 
-def custom_expand(tools):
+def custom_expand(tools, model="gpt-4o-mini"):
     """ Expand the tree for the LATS agent.
     Args:
         tools: The tools available to the agent.
     Returns:
         function: The function to expand the tree.
     """
-    expansion_chain = prompt_template | custom_generate_candidates(tools)
+    expansion_chain = prompt_template | custom_generate_candidates(tools, model=model)
     tool_node = tool_node = ToolNode(tools=tools)
 
     def expand(state: TreeState, config: RunnableConfig) -> dict:

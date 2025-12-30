@@ -2,11 +2,14 @@ import concurrent.futures
 from collections import defaultdict
 from typing import List, Any, Dict
 import threading
+import logging
 from Agents.Agents import Agent
+
+logger = logging.getLogger(__name__)
 
 def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock]):
     agent, task_results_internal, completed_tasks_internal, results_lock, completed_lock = task_info
-    print(f"Executing {agent.taskNumber}")
+    logger.info("Executing %s", agent.taskNumber)
     with open("ProcessLogs.md", 'a') as f:
         f.write(f"### Executing {agent.taskNumber}\n")
     try:
@@ -24,16 +27,16 @@ def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock]
         with completed_lock:
             completed_tasks_internal.add(agent.taskNumber)
         
-        print(f"Executed {agent.taskNumber}")
+        logger.info("Executed %s", agent.taskNumber)
         with open("ProcessLogs.md", 'a') as f:
             f.write(f"### Executed {agent.taskNumber}\n\n")
         
         return response
     except Exception as e:
-        print(f"Error in task {agent.taskNumber}: {e}")
+        logger.exception("Error in task %s", agent.taskNumber)
         with open("ProcessLogs.md", 'a') as f:
             f.write(f"### Error in task {agent.taskNumber}: {e}\n\n")
-        print(f"Executed {agent.taskNumber}")
+        logger.info("Executed %s", agent.taskNumber)
         return None
 
 

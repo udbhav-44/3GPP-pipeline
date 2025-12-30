@@ -8,14 +8,15 @@ functions:
 import google.generativeai as genai
 from Agents.LATS.OldfinTools import *
 from datetime import datetime
+import os
 from langchain.globals import set_verbose
-set_verbose(True)
+set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
 import logging
-logging.basicConfig(level=logging.INFO)
 from Agents.LATS.Solve_subquery import SolveSubQuery
+logger = logging.getLogger(__name__)
 
 class Agent:
-    def __init__(self, number, name, role, constraints, task, dependencies, tools_list, state):
+    def __init__(self, number, name, role, constraints, task, dependencies, tools_list, state, thread_id=None, model="gpt-4o-mini"):
         self.taskNumber = number
         self.name = name
         self.role = role
@@ -24,6 +25,8 @@ class Agent:
         self.context = ''
         self.task = task
         self.state = state
+        self.thread_id = thread_id
+        self.model = model
 
         tl_lis = []
 
@@ -55,7 +58,7 @@ class Agent:
             if task in response_dict:
                 self.context += response_dict[task]
             else:
-                print(f"{task} not executed yet, it should have been executed before {self.taskNumber}")
+                logger.warning("%s not executed yet, expected before %s", task, self.taskNumber)
 
         ROLE_TEMPLATE = f"""
 
@@ -96,7 +99,14 @@ class Agent:
         """
         PROMPT_TEMPLATE = self.PREFIX_TEMPLATE + self.CONSTRAINT_TEMPLATE + ROLE_TEMPLATE
         
-        response = SolveSubQuery(PROMPT_TEMPLATE, self.tools_list)
+        checkpoint_ns = f"{self.name}-{self.taskNumber}"
+        response = SolveSubQuery(
+            PROMPT_TEMPLATE,
+            self.tools_list,
+            thread_id=self.thread_id,
+            checkpoint_ns=checkpoint_ns,
+            model=self.model
+        )
 
         return response
 
@@ -104,10 +114,5 @@ class Agent:
         
 
         
-
-
-
-
-
 
 

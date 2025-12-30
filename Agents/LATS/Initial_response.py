@@ -18,7 +18,7 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-from LLMs import GPT4o_mini_LATS
+from LLMs import GPT4o_mini_LATS, get_llm
 
 prompt_template = ChatPromptTemplate.from_messages(
         [
@@ -34,13 +34,13 @@ prompt_template = ChatPromptTemplate.from_messages(
                 5. Cite the sources,the link of the exact webpage  next to there relevant information in each response.
                 """,
             ),
-            ("user", "{input}"),
             MessagesPlaceholder(variable_name="messages", optional=True),
+            ("user", "{input}"),
         ]
     )
 
 # Define the node we will add to the graph
-def custom_generate_initial_response(tools):
+def custom_generate_initial_response(tools, model="gpt-4o-mini"):
     """ 
     Generate the initial response for the LATS agent.
     Args:
@@ -50,14 +50,17 @@ def custom_generate_initial_response(tools):
     """
     tool_node = ToolNode(tools=tools)
     def generate_initial_response(state: TreeState) -> dict:
-        initial_answer_chain = prompt_template | GPT4o_mini_LATS.bind_tools(tools=tools).with_config(
+        llm = get_llm(model=model, provider="deepseek" if "deepseek" in model else "openai")
+        initial_answer_chain = prompt_template | llm.bind_tools(tools=tools).with_config(
             run_name="GenerateInitialCandidate"
         )
 
         parser = JsonOutputToolsParser(return_id=True)
 
         #Generate the initial candidate response.
-        res = initial_answer_chain.invoke({"input": state["input"]})
+        res = initial_answer_chain.invoke(
+            {"input": state["input"], "messages": state.get("messages")}
+        )
         parsed = parser.invoke(res)
         tool_responses = [
             tool_node.invoke(

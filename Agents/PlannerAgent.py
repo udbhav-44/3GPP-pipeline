@@ -14,8 +14,11 @@ OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 
 import google.generativeai as genai
 
+import os
+import logging
 from langchain.globals import set_verbose
-set_verbose(True)
+set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
+logger = logging.getLogger(__name__)
 
 from datetime import datetime
 from LLMs import conversation_complex, GPT4o_mini_Complex
@@ -166,10 +169,10 @@ def plannerAgent(query):
                 data = json.load(file)  # Parse JSON into a Python dictionary or list
                 return data
         except FileNotFoundError:
-            print(f"Error: The file '{file_path}' was not found.")
+            logger.error("The file '%s' was not found.", file_path)
             return None
         except json.JSONDecodeError as e:
-            print(f"Error decoding JSON: {e}")
+            logger.exception("Error decoding JSON")
             return None
 
     # Access specific information from the JSON
@@ -178,7 +181,7 @@ def plannerAgent(query):
             value = data.get(key)  # Fetch value associated with the key
             return value
         except AttributeError:
-            print("Error: The JSON data is not a dictionary.")
+            logger.error("JSON data is not a dictionary.")
             return None
 
     # Example usage
@@ -318,10 +321,10 @@ def plannerAgent_rag(query, ragContent):
                 data = json.load(file)  # Parse JSON into a Python dictionary or list
                 return data
         except FileNotFoundError:
-            print(f"Error: The file '{file_path}' was not found.")
+            logger.error("The file '%s' was not found.", file_path)
             return None
         except json.JSONDecodeError as e:
-            print(f"Error decoding JSON: {e}")
+            logger.exception("Error decoding JSON")
             return None
 
     # Access specific information from the JSON
@@ -330,7 +333,7 @@ def plannerAgent_rag(query, ragContent):
             value = data.get(key)  # Fetch value associated with the key
             return value
         except AttributeError:
-            print("Error: The JSON data is not a dictionary.")
+            logger.error("JSON data is not a dictionary.")
             return None
 
     # Example usage
@@ -367,5 +370,5 @@ if __name__ == "__main__":
     start = time.time()
     query = 'Analyze the impact of US-China trade wars on multiple financial assets'
     out = plannerAgent(query)
-    print("Complete")
-    print(f"Time for planning: {time.time()-start}")
+    logger.info("Planning complete")
+    logger.info("Time for planning: %.2fs", time.time() - start)

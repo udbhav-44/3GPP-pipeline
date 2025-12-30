@@ -1,4 +1,4 @@
-""""This file contains the code for the Classifier Agent, which is used to classify the user query into different categories, based on the intent of the user."""
+"""This file contains the code for the Classifier Agent, which is used to classify the user query into different categories, based on the intent of the user."""
 
 import google.generativeai as genai
 import os
