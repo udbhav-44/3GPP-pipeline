@@ -8,14 +8,13 @@ load_dotenv('.env')
 logger = logging.getLogger(__name__)
 
 from datetime import datetime
-import google.generativeai as genai
 
 from langchain.globals import set_verbose
 set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
 
 from Agents.LATS.OldfinTools import *
 
-from LLMs import conversation_complex, GPT4o_mini_Complex
+from LLMs import get_llm_for_role
 
 
 
@@ -23,7 +22,7 @@ def clean(text):
     return text[text.index('{'):text.rfind('}')+1]
 
 
-def ragAgent(query, state):
+def ragAgent(query, state, model=None, provider=None):
     fin_context = ''''''
     
     if state == "report":
@@ -55,7 +54,8 @@ def ragAgent(query, state):
             
 
         prompt = f"""Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses must be with respect to this time frame""" + sys_prompt + rag_result_str
-        response = GPT4o_mini_Complex.invoke(f'''{prompt}''').content
+        llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+        response = llm.invoke(f'''{prompt}''').content
 
         dic =  dict(json.loads(clean(response.split("```")[-2].split("json")[1])))
         for p in dic:

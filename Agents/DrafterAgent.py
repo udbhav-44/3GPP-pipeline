@@ -1,15 +1,11 @@
-import os
 from datetime import datetime
 from dotenv import load_dotenv
-from openai import OpenAI
 
-from LLMs import conversation_complex, GPT4o_mini_Complex
+from LLMs import get_llm_for_role
 
 load_dotenv('.env')
-GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY_30')
-OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 
-def drafterAgent_vanilla(query, text):
+def drafterAgent_vanilla(query, text, model=None, provider=None):
     system_prompt = f'''
     Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. 
     All your searches and responses must be with respect to this time frame.
@@ -84,12 +80,13 @@ def drafterAgent_vanilla(query, text):
     {text}
     '''
 
-    response = GPT4o_mini_Complex.invoke(f'''{system_prompt}\n\n+{user_prompt}''').content
+    llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+    response = llm.invoke(f'''{system_prompt}\n\n+{user_prompt}''').content
 
     return response
 
 
-def drafterAgent_rag(query,rag_context, text):
+def drafterAgent_rag(query,rag_context, text, model=None, provider=None):
     system_prompt = f'''
 
     You are a researcher specializing in communication systems and 3GPP standards research, who takes raw data and compiles it into comprehensive answers with detailed analysis.
@@ -151,6 +148,7 @@ def drafterAgent_rag(query,rag_context, text):
     Check the facts in your response and DO NOT write anything which is incorrect or unclear.
     '''
 
-    response = GPT4o_mini_Complex.invoke(f'''{system_prompt}''').content
+    llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+    response = llm.invoke(f'''{system_prompt}''').content
 
     return response

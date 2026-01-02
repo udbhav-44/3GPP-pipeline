@@ -4,18 +4,26 @@ which is used to classify the user query into different categories, based on the
 """
 
 
-import os
-from openai import OpenAI
 from dotenv import load_dotenv
+from langchain_core.messages import SystemMessage
+
+from LLMs import get_llm_for_role
+
 load_dotenv('../../.env')
 load_dotenv('.env')
 
-OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
-client = OpenAI(
-    api_key=OPENAI_API_KEY
-)
 
-def classifierAgent(query):
+def _invoke_classifier(prompt: str, model=None, provider=None) -> str:
+    llm = get_llm_for_role(
+        "classifier",
+        model=model,
+        provider=provider,
+        temperature=0,
+    )
+    response = llm.invoke([SystemMessage(content=prompt)])
+    return response.content if hasattr(response, "content") else str(response)
+
+def classifierAgent(query, model=None, provider=None):
     
     prompt = f'''
     Instructions:
@@ -43,15 +51,9 @@ def classifierAgent(query):
     Following is the query
     {query}
     '''
-    messages = [
-        {"role": "system", "content": prompt},
-    ]
-    response = client.chat.completions.create(
-        model='gpt-4o-mini', messages=messages, temperature=0
-    )
-    return response.choices[0].message.content
+    return _invoke_classifier(prompt, model=model, provider=provider)
 
-def classifierAgent_RAG(query, ragContext):
+def classifierAgent_RAG(query, ragContext, model=None, provider=None):
     prompt = f'''
     You are a classifier which determines if a question asks for a detailed response or a concise response.
     
@@ -70,13 +72,7 @@ def classifierAgent_RAG(query, ragContext):
     Following is the query:
     {query}
     '''
-    messages = [
-        {"role": "system", "content": prompt},
-    ]
-    response = client.chat.completions.create(
-        model='gpt-4o-mini', messages=messages, temperature=0
-    )
-    cat_1 = response.choices[0].message.content.lower()
+    cat_1 = _invoke_classifier(prompt, model=model, provider=provider).lower()
 
     if cat_1 == 'detailed':
         query2 = f'''''Does the following answer the query to its fullest extent? Evaluate on the following metrics, only return yes when all metrics are fulfilled:
@@ -89,13 +85,7 @@ def classifierAgent_RAG(query, ragContext):
         Answer only in 'yes' or 'no'
         '''
         
-        messages = [
-            {"role": "system", "content": query2},
-        ]
-        response = client.chat.completions.create(
-            model='gpt-4o-mini', messages=messages, temperature=0
-        )
-        cat_2 = response.choices[0].message.content.lower()
+        cat_2 = _invoke_classifier(query2, model=model, provider=provider).lower()
         if cat_2 == 'yes':
             return 'simple'
         else:
@@ -104,4 +94,3 @@ def classifierAgent_RAG(query, ragContext):
     else:
         return 'simple'
     
-

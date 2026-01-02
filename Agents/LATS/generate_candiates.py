@@ -5,8 +5,6 @@ functions:
     - select: This function selects the best node in the tree.
     - custom_expand: This function expands the tree.
 """
-import os
-from langchain_openai import ChatOpenAI
 from Agents.LATS.Reflection import  Node,reflection_chain
 from langchain_core.prompt_values import ChatPromptValue
 from langchain_core.runnables import RunnableConfig
@@ -25,14 +23,14 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 parser = JsonOutputToolsParser(return_id=True)
 
-from LLMs import GPT4o_mini_LATS, get_llm
+from LLMs import get_llm
 
-def custom_generate_candidates(tools, model="gpt-4o-mini"):
+def custom_generate_candidates(tools, model=None, provider=None):
     """ 
     Generate candidates for the LATS agent.
     """
     def generate_candidates(messages: ChatPromptValue, config: RunnableConfig):
-        llm = get_llm(model=model, provider="deepseek" if "deepseek" in model else "openai")
+        llm = get_llm(model=model, provider=provider, role="lats")
         bound_kwargs = llm.bind_tools(tools=tools).kwargs
         chat_result = llm.generate(
             [messages.to_messages()],
@@ -58,14 +56,18 @@ def select(root: Node) -> dict:
 
     return node
 
-def custom_expand(tools, model="gpt-4o-mini"):
+def custom_expand(tools, model=None, provider=None):
     """ Expand the tree for the LATS agent.
     Args:
         tools: The tools available to the agent.
     Returns:
         function: The function to expand the tree.
     """
-    expansion_chain = prompt_template | custom_generate_candidates(tools, model=model)
+    expansion_chain = prompt_template | custom_generate_candidates(
+        tools,
+        model=model,
+        provider=provider,
+    )
     tool_node = tool_node = ToolNode(tools=tools)
 
     def expand(state: TreeState, config: RunnableConfig) -> dict:
@@ -116,7 +118,15 @@ def custom_expand(tools, model="gpt-4o-mini"):
 
         # Reflect on each candidate
         reflections = reflection_chain.batch(
-            [{"input": state["input"], "candidate": msges} for msges in output_messages],
+            [
+                {
+                    "input": state["input"],
+                    "candidate": msges,
+                    "_model": model,
+                    "_provider": provider,
+                }
+                for msges in output_messages
+            ],
             config,
         )
 

@@ -1,70 +1,54 @@
 ### Chain of Thoughts (COT)
 
-The main task is to determine which college the user is from. This is a straightforward query that typically requires some form of search or retrieval of data. Given the tools available, we can approach this task by breaking it down into several subtasks, each focusing on a specific method of information retrieval.
+To address the user query regarding summarizing the latest RAN meeting outcomes for Release 18, we need to break down the task into several sub-tasks that focus on specific domains and utilize the available tools effectively. The main task is complex and requires gathering information from different sources, ensuring a comprehensive summary.
 
-1. **Initial Search for College Information**: The first subtask will involve performing a web search to find general information about the user's college. This will help establish a baseline of knowledge and potentially identify specific colleges that the user might be associated with.
+1. **Understanding the Main Task**: The main task is to summarize the outcomes of the latest RAN meeting for Release 18. This involves collecting information from various documents and possibly querying specific meeting outcomes.
 
-2. **Wikipedia Summary Retrieval**: The second subtask will involve fetching a summary from Wikipedia based on the information gathered in the first task. This can provide a more structured and reliable source of information about the college.
+2. **Identifying Sub-Tasks**: Given the complexity of the main task, I will create sub-tasks that focus on specific aspects:
+   - **Task 1**: Querying documents related to the latest RAN meeting outcomes.
+   - **Task 2**: Summarizing the outcomes from the documents retrieved in Task 1.
+   - **Task 3**: Fetching a summary from Wikipedia about Release 18 to provide contextual information.
 
-3. **Detailed Web Scraping**: If the initial search yields a specific college, the next subtask will be to scrape detailed information from the relevant web page. This will provide comprehensive data about the college, including its programs, location, and other pertinent details.
+3. **Dependencies**: 
+   - Task 2 depends on the results of Task 1, as it requires the documents retrieved to summarize the outcomes.
+   - Task 3 is independent and can be executed concurrently.
 
-4. **Document Retrieval**: If specific documents related to the user's college are available internally, we can query those documents for more accurate and verified information. This can serve as a secondary verification step.
+4. **Local Constraints**: Each sub-task will have specific local constraints to ensure the accuracy and relevance of the information gathered.
 
-5. **Final Synthesis of Information**: The last subtask will involve synthesizing the information gathered from the previous tasks to provide a clear answer to the user regarding which college they are from.
+5. **Global Constraints**: The overall task must ensure that all gathered information is up-to-date and relevant to Release 18.
 
-Each subtask is designed to be independent, with the exception of the web scraping task, which depends on the results of the initial search. The local constraints for each task will ensure that the agents focus on the specific aspects required for their subtasks.
-
-### Global Constraints
-The main task has the following global constraints:
-- The information must be accurate and relevant to the user's query about their college.
-- The subtasks must be executed in a manner that respects the dependencies outlined.
-
-### JSON Template
+Now, I will structure the identified sub-tasks into the specified JSON format.
 
 ```json
 {
-    "main_task": "Determine which college the user is from.",
+    "main_task": "Summarize the latest RAN meeting outcomes for Release 18.",
     "sub_tasks": {
         "task_1": {
-            "content": "Perform a web search to find general information about colleges that the user might be associated with.",
-            "agent": "Web Researcher",
-            "agent_role_description": "The Web Researcher will conduct an extensive search to identify potential colleges based on the user's query.",
-            "tools": ["web_search"],
-            "local_constraints": ["Search must focus on educational institutions and avoid irrelevant results."],
+            "content": "Query documents to retrieve the latest outcomes from the RAN meeting related to Release 18.",
+            "agent": "Communication Systems Researcher",
+            "agent_role_description": "The researcher specializes in communication systems and standards, focusing on gathering relevant documents and information from meetings.",
+            "tools": ["search_and_generate"],
+            "local_constraints": ["Only include documents from the latest RAN meeting that are specifically related to Release 18."],
             "require_data": []
         },
         "task_2": {
-            "content": "Based on the information gathered in task_1, fetch a summary from Wikipedia about the identified college.",
-            "agent": "Wikipedia Researcher",
-            "agent_role_description": "The Wikipedia Researcher will retrieve a summary from Wikipedia to provide structured information about the college identified in task_1.",
-            "tools": ["get_wikipedia_summary"],
-            "local_constraints": ["The Wikipedia summary must pertain specifically to the college identified in task_1."],
+            "content": "Based on the documents retrieved in task_1, summarize the key outcomes of the latest RAN meeting.",
+            "agent": "Technical Documentation Specialist",
+            "agent_role_description": "The specialist is responsible for analyzing technical documents and synthesizing key information into concise summaries.",
+            "tools": ["retrieve_documents"],
+            "local_constraints": ["Ensure the summary captures the main points and decisions made during the RAN meeting for Release 18."],
             "require_data": ["task_1"]
         },
         "task_3": {
-            "content": "If a specific college is identified from task_1, scrape detailed information from the relevant web page.",
-            "agent": "Web Scraper",
-            "agent_role_description": "The Web Scraper will extract detailed information about the college from the identified webpage to provide comprehensive data.",
-            "tools": ["web_scrape"],
-            "local_constraints": ["The scraping must be conducted on a webpage specifically related to the college identified in task_1."],
-            "require_data": ["task_1"]
-        },
-        "task_4": {
-            "content": "Query internal documents to extract verified information about the user's college, if available.",
-            "agent": "Document Retrieval Specialist",
-            "agent_role_description": "The Document Retrieval Specialist will query internal documents to find accurate and verified information regarding the college.",
-            "tools": ["retrieve_documents"],
-            "local_constraints": ["Documents must be relevant to the college identified in task_1."],
+            "content": "Fetch a summary from Wikipedia about Release 18 to provide additional context to the meeting outcomes.",
+            "agent": "Market Researcher",
+            "agent_role_description": "The researcher focuses on gathering market and technology trends, providing context to the outcomes of meetings through external sources.",
+            "tools": ["get_wikipedia_summary"],
+            "local_constraints": ["The summary must be relevant to Release 18 and should reflect the latest information available."],
             "require_data": []
-        },
-        "task_5": {
-            "content": "Synthesize the information gathered from tasks 2, 3, and 4 to provide a clear answer about which college the user is from.",
-            "agent": "Information Synthesizer",
-            "agent_role_description": "The Information Synthesizer will compile and summarize the information obtained from previous tasks to provide a definitive answer to the user's query.",
-            "tools": [],
-            "local_constraints": ["Synthesis must accurately reflect the findings from tasks 2, 3, and 4."],
-            "require_data": ["task_2", "task_3", "task_4"]
         }
     }
 }
-```
+``` 
+
+This structured approach allows for parallel execution of independent tasks while ensuring that dependent tasks are executed in the correct order, leading to a comprehensive summary of the RAN meeting outcomes for Release 18.

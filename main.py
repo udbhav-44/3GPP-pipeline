@@ -37,7 +37,6 @@ import asyncio
 import websockets
 from langchain.globals import set_verbose
 from makeGraphJSON import makeGraphJSON
-from TopicalGuardrails import applyTopicalGuardails
 from GenerateQuestions import  genQuestionSimple
 
 set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
@@ -46,6 +45,7 @@ PROCESS_LOG_PATH = BASE_DIR / "ProcessLogs.md"
 GRAPH_PATH = BASE_DIR / "Graph.json"
 BAD_QUESTION_PATH = BASE_DIR / "Bad_Question.md"
 OUTPUT_DIR = BASE_DIR / "output"
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
 def should_abort(cancel_event):
     return cancel_event is not None and cancel_event.is_set()
@@ -61,6 +61,28 @@ def _get_checkpoint_conn_str():
     db = os.getenv("POSTGRES_DB", "postgres")
     return f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
+def ensure_checkpoint_tables() -> bool:
+    try:
+        from langgraph.checkpoint.postgres import PostgresSaver
+    except ImportError:
+        logger.warning(
+            "langgraph-checkpoint-postgres not installed; Postgres checkpointing disabled."
+        )
+        return False
+
+    conn_str = _get_checkpoint_conn_str()
+    try:
+        with PostgresSaver.from_conn_string(conn_str) as saver:
+            if hasattr(saver, "setup"):
+                saver.setup()
+        logger.info("Postgres checkpoint tables are ready.")
+        return True
+    except Exception:
+        logger.exception("Failed to initialize Postgres checkpointer.")
+        return False
+
+CHECKPOINT_READY = ensure_checkpoint_tables()
+
 def _build_thread_filters(thread_id: str):
     base = str(thread_id)
     exact_ids = {base, f"concise:{base}"}
@@ -73,6 +95,9 @@ def delete_thread_state(thread_id: str) -> bool:
     except ImportError:
         logger.warning("psycopg not installed; skipping thread delete for %s", thread_id)
         return False
+    if not CHECKPOINT_READY:
+        logger.info("Checkpoint tables not ready; skipping thread delete for %s", thread_id)
+        return False
 
     conn_str = _get_checkpoint_conn_str()
     exact_ids, prefixes = _build_thread_filters(thread_id)
@@ -82,6 +107,13 @@ def delete_thread_state(thread_id: str) -> bool:
     try:
         with psycopg.connect(conn_str) as conn:
             with conn.cursor() as cur:
+                cur.execute(
+                    "SELECT to_regclass(%s), to_regclass(%s), to_regclass(%s)",
+                    ("checkpoint_writes", "checkpoint_blobs", "checkpoints"),
+                )
+                if not all(cur.fetchone() or []):
+                    logger.info("Checkpoint tables missing; skipping delete for %s", thread_id)
+                    return False
                 for table in tables:
                     for tid in exact_ids:
                         cur.execute(
@@ -102,7 +134,7 @@ def delete_thread_state(thread_id: str) -> bool:
         logger.exception("Failed to delete thread state for %s", thread_id)
         return False
 
-async def mainBackend(query, websocket, rag, model="gpt-4o-mini", cancel_event=None, thread_id=None):
+async def mainBackend(query, websocket, rag, model=None, provider=None, allow_web_tools=False, cancel_event=None, thread_id=None, user_id=None):
     """
     Main backend function to process queries and interact with a websocket.
     This function handles different types of queries (simple or complex) and 
@@ -118,10 +150,19 @@ async def mainBackend(query, websocket, rag, model="gpt-4o-mini", cancel_event=N
 
     if should_abort(cancel_event):
         return
+    user_token = None
+    try:
+        user_token = set_current_user_id(user_id)
+    except Exception:
+        logger.exception("Failed to set user context")
     logger.info("Running mainBackend: %s", query)
+    if model and "gpt-5" in str(model).lower():
+        logger.warning("GPT-5 is disabled; falling back to default model.")
+        model = None
     GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY_30')
     OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    if WRITE_ARTIFACTS:
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
     LLM = 'OPENAI'
     key_dict = {
         'OPENAI': OPENAI_API_KEY,
@@ -136,202 +177,246 @@ async def mainBackend(query, websocket, rag, model="gpt-4o-mini", cancel_event=N
     else:
         logger.info("RAG is OFF")
 
-    with open(PROCESS_LOG_PATH, "w") as f:
-        f.write("")
+    if WRITE_ARTIFACTS:
+        with open(PROCESS_LOG_PATH, "w") as f:
+            f.write("")
 
-    guard_rails, reasonings = applyTopicalGuardails(query)
-    if should_abort(cancel_event):
-        return
-    
     resp = ''
     additionalQuestions = None
     addn_questions = []
-    
-    if guard_rails:
+
+    if should_abort(cancel_event):
+        return
+    web_tool_names = {"web_search", "web_scrape", "web_search_simple"}
+
+    def filter_web_tools(tool_names):
+        if allow_web_tools:
+            return tool_names
+        return [tool for tool in tool_names if tool not in web_tool_names]
+
+    if not IS_RAG:
+        logger.info("Running without internal docs context")
         if should_abort(cancel_event):
             return
-        if not IS_RAG:
-            logger.info("Running without internal docs context")
+        raw_query_type = classifierAgent(query, model=model, provider=provider)
+        query_type = raw_query_type.lower().strip()
+        if "simple" in query_type:
+            query_type = "simple"
+        elif "complex" in query_type:
+            query_type = "complex"
+        else:
+            logger.warning("Unexpected classifier output '%s'; defaulting to simple.", raw_query_type)
+            query_type = "simple"
+        if query_type == "complex":
+            logger.info("Running complex task pipeline")
             if should_abort(cancel_event):
                 return
-            query_type = classifierAgent(query).lower()
-            if query_type == "complex":
-                logger.info("Running complex task pipeline")
-                if should_abort(cancel_event):
-                    return
-                
-                # plan -> dict
-                plan = plannerAgent(query)
-                if should_abort(cancel_event):
-                    return
-                #This is the dictionary for UI Graph Construction
-                dic_for_UI_graph = makeGraphJSON(plan['sub_tasks'])
-                logger.debug("Graph payload: %s", dic_for_UI_graph)
-                await asyncio.sleep(1)
-                if should_abort(cancel_event):
-                    return
-                await websocket.send(json.dumps({"type": "graph", "response": json.dumps(dic_for_UI_graph)}))
-                with open(GRAPH_PATH, 'w') as fp:
-                    json.dump(dic_for_UI_graph, fp)
-                
-                out_str = ''''''
-                agentsList = []
-                
-                for sub_task in plan['sub_tasks']:
-                    if should_abort(cancel_event):
-                        return
-                    addn_questions.append(plan['sub_tasks'][sub_task]['content'])
-                    agent_name = plan['sub_tasks'][sub_task]['agent']
-                    agent_role = plan['sub_tasks'][sub_task]['agent_role_description']
-                    local_constraints = plan['sub_tasks'][sub_task]['local_constraints']
-                    task = plan['sub_tasks'][sub_task]['content']
-                    dependencies = plan['sub_tasks'][sub_task]['require_data']
-                    tools_list = plan['sub_tasks'][sub_task]['tools']
-                    agent_state = 'vanilla'
-                    logger.info("Processing agent: %s", agent_name)
-                    agent = Agent(sub_task, agent_name, agent_role, local_constraints, task,dependencies, tools_list, agent_state, thread_id=thread_id, model=model)
-                    agentsList.append(agent)
-                
-                # Execute the task results using the Smack agent
-                smack = Smack(agentsList)
-                taskResultsDict = smack.executeSmack()
-                if should_abort(cancel_event):
-                    return
-                for task in taskResultsDict:
-                    out_str += f'{taskResultsDict[task]} \n'
-                resp = drafterAgent_vanilla(query, out_str)
-                if should_abort(cancel_event):
-                    return
-                resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                # resp = generate_chart(resp)
-                additionalQuestions = await genQuestionSimple(addn_questions)
-                if should_abort(cancel_event):
-                    return
-
-
-            elif query_type == "simple":
-                logger.info("Running simple task pipeline")
-                async def executeSimplePipeline(query):
-                    tools_list = [web_search_simple]
-                    resp = conciseAns_vanilla(query, tools_list, thread_id=thread_id)   
-                    resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                    return str(resp)
-
-                async def run_parallel(query):
-                    resp, additionalQuestions = await asyncio.gather(
-                        executeSimplePipeline(query),
-                        genQuestionSimple(query)
-                    )
-                    return (str(resp), additionalQuestions)
-                # resp = await executeSimplePipeline(query)
-                resp, additionalQuestions = await run_parallel(query)
-                if should_abort(cancel_event):
-                    return
-
-        elif IS_RAG:
-            logger.info("Running internal docs RAG")
-            rag_context = ragAgent(query, state = "concise")
-            if should_abort(cancel_event):
-                return
-                query_type = classifierAgent_RAG(query, rag_context).lower()
-                logger.info("RAG query type: %s", query_type)
             
-            if query_type == "complex":
-                agent_state = 'RAG'
-                logger.info("Running complex task pipeline")
-
-                rag_context = ragAgent(query, state = 'report')
-                if should_abort(cancel_event):
-                    return
-                plan = plannerAgent_rag(query, rag_context)
-                if should_abort(cancel_event):
-                    return
-                
-                dic_for_UI_graph = makeGraphJSON(plan['sub_tasks'])
-                for node in dic_for_UI_graph['nodes']:
-                    node['metadata']['tools'].append('retrieve_documents')
-
-                logger.debug("Graph payload: %s", dic_for_UI_graph)
-                await asyncio.sleep(1)
-                if should_abort(cancel_event):
-                    return
-                await websocket.send(json.dumps({"type": "graph", "response": json.dumps(dic_for_UI_graph)}))
+            # plan -> dict
+            plan = plannerAgent(query, model=model, provider=provider, allow_web_tools=allow_web_tools)
+            if should_abort(cancel_event):
+                return
+            #This is the dictionary for UI Graph Construction
+            dic_for_UI_graph = makeGraphJSON(plan['sub_tasks'])
+            logger.debug("Graph payload: %s", dic_for_UI_graph)
+            await asyncio.sleep(1)
+            if should_abort(cancel_event):
+                return
+            await websocket.send(json.dumps({"type": "graph", "response": json.dumps(dic_for_UI_graph)}))
+            if WRITE_ARTIFACTS:
                 with open(GRAPH_PATH, 'w') as fp:
                     json.dump(dic_for_UI_graph, fp)
-                
-                out_str = ''''''
-                agentsList = []
-                
-                for sub_task in plan['sub_tasks']:
-                    if should_abort(cancel_event):
-                        return
-                    addn_questions.append(plan['sub_tasks'][sub_task]['content'])
-                    agent_name = plan['sub_tasks'][sub_task]['agent']
-                    agent_role = plan['sub_tasks'][sub_task]['agent_role_description']
-                    local_constraints = plan['sub_tasks'][sub_task]['local_constraints']
-                    task = plan['sub_tasks'][sub_task]['content']
-                    dependencies = plan['sub_tasks'][sub_task]['require_data']
-                    tools_list = plan['sub_tasks'][sub_task]['tools']
-                    logger.info("Processing agent: %s", agent_name)
-                    agent = Agent(sub_task, agent_name, agent_role, local_constraints, task,dependencies, tools_list, agent_state, thread_id=thread_id, model=model)
-                    agentsList.append(agent)
-                
-                # Execute the task results using the Smack agent
-                smack = Smack(agentsList)
-                taskResultsDict = smack.executeSmack()
+            
+            out_str = ''''''
+            agentsList = []
+            
+            for sub_task in plan['sub_tasks']:
                 if should_abort(cancel_event):
                     return
-                for task in taskResultsDict:
-                    out_str += f'{taskResultsDict[task]} \n'
-                resp = drafterAgent_rag(query,rag_context, out_str)
-                if should_abort(cancel_event):
-                    return
-                resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                # resp = generate_chart(resp)
-                additionalQuestions = await genQuestionSimple(addn_questions)
-                if should_abort(cancel_event):
-                    return
+                addn_questions.append(plan['sub_tasks'][sub_task]['content'])
+                agent_name = plan['sub_tasks'][sub_task]['agent']
+                agent_role = plan['sub_tasks'][sub_task]['agent_role_description']
+                local_constraints = plan['sub_tasks'][sub_task]['local_constraints']
+                task = plan['sub_tasks'][sub_task]['content']
+                dependencies = plan['sub_tasks'][sub_task]['require_data']
+                tools_list = filter_web_tools(plan['sub_tasks'][sub_task]['tools'])
+                agent_state = 'vanilla'
+                logger.info("Processing agent: %s", agent_name)
+                agent = Agent(
+                    sub_task,
+                    agent_name,
+                    agent_role,
+                    local_constraints,
+                    task,
+                    dependencies,
+                    tools_list,
+                    agent_state,
+                    thread_id=thread_id,
+                    model=model,
+                    provider=provider,
+                    allow_web_tools=allow_web_tools,
+                )
+                agentsList.append(agent)
+            
+            # Execute the task results using the Smack agent
+            smack = Smack(agentsList)
+            taskResultsDict = smack.executeSmack()
+            if should_abort(cancel_event):
+                return
+            for task in taskResultsDict:
+                out_str += f'{taskResultsDict[task]} \n'
+            resp = drafterAgent_vanilla(query, out_str, model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
+            resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
+            # resp = generate_chart(resp)
+            additionalQuestions = await genQuestionSimple(addn_questions, model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
 
-                    
+
+        elif query_type == "simple":
+            logger.info("Running simple task pipeline")
+            async def executeSimplePipeline(query):
+                tools_list = [web_search_simple] if allow_web_tools else []
+                resp = conciseAns_vanilla(query, tools_list, thread_id=thread_id, model=model, provider=provider)   
+                resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
+                return str(resp)
+
+            async def run_parallel(query):
+                resp, additionalQuestions = await asyncio.gather(
+                    executeSimplePipeline(query),
+                    genQuestionSimple(query, model=model, provider=provider)
+                )
+                
+                return (str(resp), additionalQuestions)
+            
+            
+            resp, additionalQuestions = await run_parallel(query)
+            if should_abort(cancel_event):
+                return
+
+    elif IS_RAG:
+        logger.info("Running internal docs RAG")
+        rag_context = ragAgent(query, state="concise", model=model, provider=provider)
+        if should_abort(cancel_event):
+            return
+        raw_query_type = classifierAgent_RAG(query, rag_context, model=model, provider=provider)
+        query_type = raw_query_type.lower().strip()
+        if "simple" in query_type:
+            query_type = "simple"
+        elif "complex" in query_type:
+            query_type = "complex"
+        else:
+            logger.warning("Unexpected RAG classifier output '%s'; defaulting to simple.", raw_query_type)
+            query_type = "simple"
+        logger.info("RAG query type: %s", query_type)
+        
+        if query_type == "complex":
+            agent_state = 'RAG'
+            logger.info("Running complex task pipeline")
+
+            rag_context = ragAgent(query, state="report", model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
+            plan = plannerAgent_rag(query, rag_context, model=model, provider=provider, allow_web_tools=allow_web_tools)
+            if should_abort(cancel_event):
+                return
+            
+            dic_for_UI_graph = makeGraphJSON(plan['sub_tasks'])
+            for node in dic_for_UI_graph['nodes']:
+                node['metadata']['tools'].append('retrieve_documents')
+
+            logger.debug("Graph payload: %s", dic_for_UI_graph)
+            await asyncio.sleep(1)
+            if should_abort(cancel_event):
+                return
+            await websocket.send(json.dumps({"type": "graph", "response": json.dumps(dic_for_UI_graph)}))
+            if WRITE_ARTIFACTS:
+                with open(GRAPH_PATH, 'w') as fp:
+                    json.dump(dic_for_UI_graph, fp)
+            
+            out_str = ''''''
+            agentsList = []
+            
+            for sub_task in plan['sub_tasks']:
+                if should_abort(cancel_event):
+                    return
+                addn_questions.append(plan['sub_tasks'][sub_task]['content'])
+                agent_name = plan['sub_tasks'][sub_task]['agent']
+                agent_role = plan['sub_tasks'][sub_task]['agent_role_description']
+                local_constraints = plan['sub_tasks'][sub_task]['local_constraints']
+                task = plan['sub_tasks'][sub_task]['content']
+                dependencies = plan['sub_tasks'][sub_task]['require_data']
+                tools_list = filter_web_tools(plan['sub_tasks'][sub_task]['tools'])
+                logger.info("Processing agent: %s", agent_name)
+                agent = Agent(
+                    sub_task,
+                    agent_name,
+                    agent_role,
+                    local_constraints,
+                    task,
+                    dependencies,
+                    tools_list,
+                    agent_state,
+                    thread_id=thread_id,
+                    model=model,
+                    provider=provider,
+                    allow_web_tools=allow_web_tools,
+                )
+                agentsList.append(agent)
+            
+            # Execute the task results using the Smack agent
+            smack = Smack(agentsList)
+            taskResultsDict = smack.executeSmack()
+            if should_abort(cancel_event):
+                return
+            for task in taskResultsDict:
+                out_str += f'{taskResultsDict[task]} \n'
+            resp = drafterAgent_rag(query, rag_context, out_str, model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
+            resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
+            # resp = generate_chart(resp)
+            additionalQuestions = await genQuestionSimple(addn_questions, model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
+
+                
+            if WRITE_ARTIFACTS:
                 with open(OUTPUT_DIR / 'drafted_response.md', 'w') as f:
                     f.write(str(resp))
 
-            elif query_type == 'simple':
-                logger.info("Running simple task pipeline")
-                resp = rag_context
-                resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-                additionalQuestions = await genQuestionSimple(query)
-                if should_abort(cancel_event):
-                    return
+        elif query_type == 'simple':
+            logger.info("Running simple task pipeline")
+            resp = rag_context
+            resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
+            additionalQuestions = await genQuestionSimple(query, model=model, provider=provider)
+            if should_abort(cancel_event):
+                return
                 
-        await asyncio.sleep(1)
-        if should_abort(cancel_event):
-            return
-        await websocket.send(json.dumps({"type": "response", "response": resp}))
-        if additionalQuestions is None:
-            additionalQuestions = []
-        elif not isinstance(additionalQuestions, list):
-            try:
-                additionalQuestions = list(additionalQuestions)
-            except TypeError:
-                additionalQuestions = [str(additionalQuestions)]
-        logger.debug("Additional questions: %s", additionalQuestions)
-        await asyncio.sleep(1)
-        if should_abort(cancel_event):
-            return
-        await websocket.send(json.dumps({"type": "questions", "response": additionalQuestions[:3]}))
+    await asyncio.sleep(1)
+    if should_abort(cancel_event):
+        return
+    await websocket.send(json.dumps({"type": "response", "response": resp}))
+    if additionalQuestions is None:
+        additionalQuestions = []
+    elif not isinstance(additionalQuestions, list):
+        try:
+            additionalQuestions = list(additionalQuestions)
+        except TypeError:
+            additionalQuestions = [str(additionalQuestions)]
+    logger.debug("Additional questions: %s", additionalQuestions)
+    await asyncio.sleep(1)
+    if should_abort(cancel_event):
+        return
+    await websocket.send(json.dumps({"type": "questions", "response": additionalQuestions[:3]}))
+    if user_token is not None:
+        try:
+            reset_current_user_id(user_token)
+        except Exception:
+            logger.exception("Failed to reset user context")
 
-    else:
-        for key in reasonings:
-            resp += f'''**{key}**\n\n'''
-            resp += f'''{reasonings[key]}\n\n'''
-        with open(BAD_QUESTION_PATH, "w") as f:
-            f.write(resp)
-        logger.info("Total time: %.2fs", time.time() - now)
-        await asyncio.sleep(1)
-        if should_abort(cancel_event):
-            return
-        await websocket.send(json.dumps({"type": "response", "response": resp}))
 
 async def handle_connection(websocket):
     """
@@ -344,14 +429,16 @@ async def handle_connection(websocket):
         None: The function processes messages asynchronously and sends back responses to the client.
     """
     rag = False
+    allow_web_tools = False
     active_task = None
     active_cancel_event = None
     active_response_id = None
     connection_thread_id = f"conn-{uuid.uuid4().hex}"
+    connection_user_id = None
 
     async def start_query(data):
         nonlocal active_task, active_cancel_event, active_response_id
-        nonlocal connection_thread_id
+        nonlocal connection_thread_id, connection_user_id
         if active_task and not active_task.done():
             if active_cancel_event:
                 active_cancel_event.set()
@@ -363,18 +450,33 @@ async def handle_connection(websocket):
         else:
             thread_id = connection_thread_id
 
+        user_payload = data.get("user")
+        user_id = data.get("user_id")
+        if not user_id and isinstance(user_payload, dict):
+            user_id = user_payload.get("id") or user_payload.get("email")
+        if user_id:
+            connection_user_id = str(user_id)
+        else:
+            user_id = connection_user_id
+
         active_cancel_event = asyncio.Event()
         active_response_id = data.get("response_id")
 
         async def runner():
             try:
+                web_tools_flag = allow_web_tools
+                if "web_tools" in data:
+                    web_tools_flag = bool(data.get("web_tools"))
                 await mainBackend(
                     data['query'],
                     websocket,
                     rag,
-                    model=data.get('model', 'gpt-4o-mini'), # Default to gpt-4o-mini if not provided
+                    model=data.get("model"),
+                    provider=data.get("provider"),
+                    allow_web_tools=web_tools_flag,
                     cancel_event=active_cancel_event,
                     thread_id=thread_id,
+                    user_id=user_id,
                 )
             except asyncio.CancelledError:
                 return
@@ -419,45 +521,13 @@ async def handle_connection(websocket):
             logger.info("Received toggleRag")
             if "query" in data:
                 rag = bool(data["query"])
+
+        if data['type'] == 'toggleWebTools':
+            logger.info("Received toggleWebTools")
+            if "query" in data:
+                allow_web_tools = bool(data["query"])
             else:
                 rag = not rag
-
-        if data['type'] == 'cred':
-                logger.info("Received credentials update")
-                env_file_path = BASE_DIR / ".env"
-                with open(env_file_path, 'r') as fp:
-                    env_content = fp.readlines()
-
-                env_dict = {}
-                for line in env_content:
-                    if line.strip() and not line.startswith('#'):
-                        key, value = line.strip().split('=', 1)
-                        value = value.strip('"')
-                        env_dict[key] = value
-
-                # Update the env_dict with new values from formData
-                form_data = data['formData']
-                for key, value in form_data.items():
-                    if value:  # Only update if the value is not empty
-                        if key in env_dict:
-                            logger.info("Updating API key for %s", key)
-                        else:
-                            logger.info("Adding new API key for %s", key)
-                        env_dict[key] = value
-
-                # Write the updated environment variables back to the .env file
-                with open(env_file_path, 'w') as fp:
-                    for key, value in env_dict.items():
-                        fp.write(f"{key}=\"{value}\"\n")
-
-                os.environ.update(env_dict)
-                try:
-                    import LLMs
-                    LLMs.reload_llms()
-                except Exception as exc:
-                    logger.exception("Failed to reload LLMs")
-
-                logger.info(".env file has been updated.")
 
 async def main():
     """       

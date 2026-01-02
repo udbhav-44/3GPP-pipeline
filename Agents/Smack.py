@@ -3,15 +3,24 @@ from collections import defaultdict
 from typing import List, Any, Dict
 import threading
 import logging
+import os
 from Agents.Agents import Agent
 
 logger = logging.getLogger(__name__)
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
-def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock]):
-    agent, task_results_internal, completed_tasks_internal, results_lock, completed_lock = task_info
+def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock, str | None]):
+    agent, task_results_internal, completed_tasks_internal, results_lock, completed_lock, user_id = task_info
+    if user_id:
+        try:
+            from Agents.LATS.OldfinTools import set_current_user_id
+            set_current_user_id(user_id)
+        except Exception:
+            logger.exception("Failed to set user context for task %s", agent.taskNumber)
     logger.info("Executing %s", agent.taskNumber)
-    with open("ProcessLogs.md", 'a') as f:
-        f.write(f"### Executing {agent.taskNumber}\n")
+    if WRITE_ARTIFACTS:
+        with open("ProcessLogs.md", 'a') as f:
+            f.write(f"### Executing {agent.taskNumber}\n")
     try:
         dependency_results = {
             dep: task_results_internal.get(dep) 
@@ -28,14 +37,16 @@ def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock]
             completed_tasks_internal.add(agent.taskNumber)
         
         logger.info("Executed %s", agent.taskNumber)
-        with open("ProcessLogs.md", 'a') as f:
-            f.write(f"### Executed {agent.taskNumber}\n\n")
+        if WRITE_ARTIFACTS:
+            with open("ProcessLogs.md", 'a') as f:
+                f.write(f"### Executed {agent.taskNumber}\n\n")
         
         return response
     except Exception as e:
         logger.exception("Error in task %s", agent.taskNumber)
-        with open("ProcessLogs.md", 'a') as f:
-            f.write(f"### Error in task {agent.taskNumber}: {e}\n\n")
+        if WRITE_ARTIFACTS:
+            with open("ProcessLogs.md", 'a') as f:
+                f.write(f"### Error in task {agent.taskNumber}: {e}\n\n")
         logger.info("Executed %s", agent.taskNumber)
         return None
 
@@ -65,6 +76,11 @@ class Smack:
 
         results_lock = threading.Lock()
         completed_lock = threading.Lock()
+        try:
+            from Agents.LATS.OldfinTools import get_current_user_id
+            user_id = get_current_user_id()
+        except Exception:
+            user_id = None
 
 
         with concurrent.futures.ThreadPoolExecutor() as executor:
@@ -78,7 +94,7 @@ class Smack:
                         # Submit task for execution
                         future = executor.submit(
                             executeTask, 
-                            (agent, task_results, completed_tasks, results_lock, completed_lock)
+                            (agent, task_results, completed_tasks, results_lock, completed_lock, user_id)
                         )
                         futures[future] = task
                 done, _ = concurrent.futures.wait(

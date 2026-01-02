@@ -1,4 +1,5 @@
 import math
+import os
 from collections import deque
 from typing import Optional
 from langchain_core.runnables import chain as as_runnable
@@ -13,8 +14,9 @@ from dotenv import load_dotenv
 load_dotenv('.env')
 
 
-from LLMs import GPT4o_mini_LATS
+from LLMs import get_llm
 
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
 class Reflection(BaseModel):
     reflections: str = Field(
@@ -111,20 +113,21 @@ class Node:
 
     def get_messages(self, include_reflections: bool = True):
         if include_reflections:
-            with open("ProcessLogs.md", "a") as f:
-                for i in self.messages + [self.reflection.as_message()]:
-                    if 'tool_calls' in i.additional_kwargs:
-                        f.write("CALLING TOOLS NOW\n")
-                        for j in i.additional_kwargs['tool_calls']:
-                            f.write("Calling Tool ")
-                            f.write(f"{j['function']['name']}\n")
-                            f.write("Function has Arguments\n")
-                            f.write(f"{j['function']['arguments']}\n\n")
-                        f.write("Agent Tools RAW Output:\n")
-                        f.write(f"{i.content}\n\n")
-                    else:
-                        f.write("Reflections Output\n")
-                        f.write(f"{i.content}\n\n")
+            if WRITE_ARTIFACTS:
+                with open("ProcessLogs.md", "a") as f:
+                    for i in self.messages + [self.reflection.as_message()]:
+                        if 'tool_calls' in i.additional_kwargs:
+                            f.write("CALLING TOOLS NOW\n")
+                            for j in i.additional_kwargs['tool_calls']:
+                                f.write("Calling Tool ")
+                                f.write(f"{j['function']['name']}\n")
+                                f.write("Function has Arguments\n")
+                                f.write(f"{j['function']['arguments']}\n\n")
+                            f.write("Agent Tools RAW Output:\n")
+                            f.write(f"{i.content}\n\n")
+                        else:
+                            f.write("Reflections Output\n")
+                            f.write(f"{i.content}\n\n")
 
             
             return self.messages + [self.reflection.as_message()]
@@ -186,17 +189,26 @@ prompt = ChatPromptTemplate.from_messages(
 )
 
 
-reflection_llm_chain = (
-    prompt
-    | GPT4o_mini_LATS.bind_tools(tools=[Reflection], tool_choice="Reflection").with_config(
-        run_name="Reflection"
-    )
-    | PydanticToolsParser(tools=[Reflection])
-)
-
 @as_runnable
 def reflection_chain(inputs) -> Reflection:
-    tool_choices = reflection_llm_chain.invoke(inputs)
+    llm = get_llm(
+        model=inputs.get("_model"),
+        provider=inputs.get("_provider"),
+        role="lats",
+    )
+    reflection_llm_chain = (
+        prompt
+        | llm.bind_tools(tools=[Reflection], tool_choice="Reflection").with_config(
+            run_name="Reflection"
+        )
+        | PydanticToolsParser(tools=[Reflection])
+    )
+    tool_choices = reflection_llm_chain.invoke(
+        {
+            "input": inputs.get("input"),
+            "candidate": inputs.get("candidate"),
+        }
+    )
     reflection = tool_choices[0]
     if reflection.score >= 6:
         reflection.found_solution = True

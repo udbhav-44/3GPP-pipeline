@@ -1,19 +1,16 @@
 """
 This file provides functions to generate complex and simple questions based on user prompts.
 """
-import os
 import logging
 from dotenv import load_dotenv
 import json
-from LLMs import GPT4o_mini_Complex
+from LLMs import get_llm_for_role
 
 load_dotenv('.env')
 logger = logging.getLogger(__name__)
 
-OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
 
-
-async def genQuestionSimple(query):
+async def genQuestionSimple(query, model=None, provider=None):
     """ 
     Synthesizes five detailed questions related to a given query.
         Args:
@@ -47,7 +44,8 @@ async def genQuestionSimple(query):
     '''
 
     prompt = f'''{system_prompt}\n\n {user_prompt}'''
-    response = GPT4o_mini_Complex.invoke(f'''{prompt}''').content
+    llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+    response = llm.invoke(f'''{prompt}''').content
 
     logger.info("Executed genQuestionSimple")
     return json.loads(response).values()

@@ -1,11 +1,9 @@
 """
  This file contains list of all tools that can be used by the agents. 
 """
-from typing import Type , Dict , List , Union, Tuple, Any, Optional, Annotated
+from typing import Type , Dict , List , Union, Tuple, Any, Optional
 from pydantic import BaseModel, Field
-import wikipedia
 import requests
-from langchain_google_community import GoogleSearchAPIWrapper
 import json
 import re
 import os 
@@ -56,6 +54,7 @@ RESULTS_COLUMNS = [
 ]
 JINA_SCRAPE_URL = os.getenv("JINA_SCRAPE_URL", "http://172.26.189.83:3000")
 NEO4J_URI = os.getenv("NEO4J_URI", "bolt://172.26.189.83:7687")
+NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "login123")
 RAG_GENERATE_URL = os.getenv("RAG_GENERATE_URL", "http://172.26.189.83:4005/generate")
 RAG_STATS_URL = os.getenv("RAG_STATS_URL", "http://172.26.189.83:4004/v1/statistics")
@@ -65,6 +64,7 @@ import contextvars
 # Context variable to store the current model. 
 # This must be set by the caller (Agent/SolveSubQuery) before invoking tools.
 current_model_var = contextvars.ContextVar("current_model", default="gpt-4o-mini")
+current_user_var = contextvars.ContextVar("current_user_id", default=None)
 
 def get_current_model():
     return current_model_var.get()
@@ -74,6 +74,19 @@ def set_current_model(model):
 
 def reset_current_model(token):
     current_model_var.reset(token)
+
+
+def get_current_user_id():
+    return current_user_var.get()
+
+
+def set_current_user_id(user_id):
+    return current_user_var.set(str(user_id) if user_id else None)
+
+
+def reset_current_user_id(token):
+    if token is not None:
+        current_user_var.reset(token)
 
 
 
@@ -149,7 +162,7 @@ def _tavily_search_request(
             error_message=f"{type(e).__name__}: {e}",
             additional_info={
                 "query": query,
-                "status_code": getattr(getattr(e, "response", None), "status_code", None),
+                # "status_code": getattr(getattr(e, "response", None), "status_code", None),
             },
         )
         return []
@@ -188,7 +201,7 @@ def web_scrape(url, query) -> Union[Dict, str]:
     Returns:
         Union[Dict, str]: The scraped data as JSON if successful
     """
-    
+    print("web_scrape invoked")
     # JINA HOSTING - URL Change
     api_url = f"{JINA_SCRAPE_URL.rstrip('/')}/{url}"
     headers = {
@@ -463,7 +476,7 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
             time.sleep(5)
 
         if not ready:
-            msg = f"❌ Timeout: AI service not ready after {max_wait/60:.1f} minutes."
+            msg = f"Timeout: AI service not ready after {max_wait/60:.1f} minutes."
             logging.error(msg)
             return df, msg
 
@@ -474,7 +487,7 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
             response.raise_for_status()
             formatted_response = format_response(json.dumps(response.json()))
         except Exception as e:
-            formatted_response = f"❌ Failed to generate response: {e}"
+            formatted_response = f"Failed to generate response: {e}"
             log_error("search_and_generate", str(e), {"query": query_str, "meeting_id": meeting_id})
 
         save_results_csv(df)
@@ -484,11 +497,11 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
 
     except Exception as e:
         log_error("search_and_generate", str(e), {"query": query_str, "meeting_id": meeting_id})
-        return None, f"❌ Error: {e}"  
+        return None, f"Error: {e}"  
     
 
 
-search = GoogleSearchAPIWrapper()
+
 @tool
 def web_search(query: str):
     """
@@ -499,6 +512,7 @@ def web_search(query: str):
     Returns:
         str: The URL of the most relevant page to scrape.
     """
+    print("web_search invoked")
     try:
         res = []
         search_results = _tavily_search_request(
@@ -544,6 +558,9 @@ def web_search_simple(query: str):
     Returns:
         str: The URL of the most relevant page to scrape.      
     """
+    
+    print("web_search_simple invoked")
+    
     try:
         return _tavily_search_request(
             query=query,
@@ -560,6 +577,25 @@ def web_search_simple(query: str):
             additional_info={"query": query},
         )
         return ''
+
+
+def _user_path_matches(metadata: Dict[str, Any], user_id: str) -> bool:
+    path = str(metadata.get("path", "")).replace("\\", "/").lower()
+    token = f"/user_uploads/{user_id}/".lower()
+    return token in path or path.startswith(f"user_uploads/{user_id}/".lower())
+
+
+def _filter_docs_for_user(docs: List[Dict[str, Any]], user_id: str) -> List[Dict[str, Any]]:
+    if not user_id:
+        return docs
+    filtered = []
+    for doc in docs:
+        if not isinstance(doc, dict):
+            continue
+        meta = doc.get("metadata", {}) if isinstance(doc.get("metadata"), dict) else {}
+        if _user_path_matches(meta, user_id):
+            filtered.append(doc)
+    return filtered
 
 
 
@@ -580,11 +616,14 @@ def query_documents(prompt: str, source: str) -> Dict:
         logging.info("query_documents started")
         start = time.time()
         
+        user_id = get_current_user_id()
         payload = {
             "query": prompt,  # No need to quote the prompt
             "source": source,  # source should be a string, not a set
             "model": get_current_model()
         }
+        if user_id:
+            payload["user_id"] = user_id
         
         response = requests.post(
             "http://172.26.189.83:4005/generate",
@@ -619,36 +658,36 @@ def query_documents(prompt: str, source: str) -> Dict:
         return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
 
 
-@tool
-def get_wikipedia_summary(query: str):
-    """
-    Fetches a summary from Wikipedia based on a search query.
-    Args:
-        query (str): The search query terms to look up on Wikipedia. Also there should be less than four terms.
+# @tool
+# def get_wikipedia_summary(query: str):
+#     """
+#     Fetches a summary from Wikipedia based on a search query.
+#     Args:
+#         query (str): The search query terms to look up on Wikipedia. Also there should be less than four terms.
 
-    Returns:
-        str: A summary of the Wikipedia page found for the query. If no results are found,
-             or if there is an error fetching the page, appropriate messages are returned.
-    """
+#     Returns:
+#         str: A summary of the Wikipedia page found for the query. If no results are found,
+#              or if there is an error fetching the page, appropriate messages are returned.
+#     """
     
-    try:
-        search_results = wikipedia.search(query)
-        if not search_results:
-            return web_search_simple.invoke(query)
-        try:
-            result = wikipedia.page(search_results[0])
-            return f"Found match with {search_results[0]}, Here is the result:\n{result.summary}"
-        except:
-            result = wikipedia.page(search_results[1])
-            return f"Found match with {search_results[1]}, Here is the result:\n{result.summary}"
-    except Exception as e:
-        log_error(
-            tool_name="get_wikipedia_summary",
-            error_message=str(e),
-            additional_info={"query": query}
-        )
+#     try:
+#         search_results = wikipedia.search(query)
+#         if not search_results:
+#             return web_search_simple.invoke(query)
+#         try:
+#             result = wikipedia.page(search_results[0])
+#             return f"Found match with {search_results[0]}, Here is the result:\n{result.summary}"
+#         except:
+#             result = wikipedia.page(search_results[1])
+#             return f"Found match with {search_results[1]}, Here is the result:\n{result.summary}"
+#     except Exception as e:
+#         log_error(
+#             tool_name="get_wikipedia_summary",
+#             error_message=str(e),
+#             additional_info={"query": query}
+#         )
         
-        return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
+#         return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
 
 
 
@@ -670,11 +709,14 @@ def simple_query_documents(prompt: str) -> Dict:
         logging.info("simple_query_documents started")
         start = time.time()
         
+        user_id = get_current_user_id()
         payload = {
             "query": prompt, 
             "destination": 'user',
             "model": get_current_model()
         }
+        if user_id:
+            payload["user_id"] = user_id
         logging.debug("simple_query_documents payload: %s", payload)
         response = requests.post(
             "http://172.26.189.83:4005/generate",
@@ -726,10 +768,14 @@ def retrieve_documents(prompt: str) -> str:
         logging.info("retrieve_documents started")
         start = time.time()
         
+        user_id = get_current_user_id()
+        k = 2
+        if user_id:
+            k = 12
         payload = {
             "query": prompt,
-            "k" : 2  , 
-            "destination" : 'user'
+            "k": k,
+            "destination": 'user'
         }
         
         response = requests.post(
@@ -749,6 +795,10 @@ def retrieve_documents(prompt: str) -> str:
         logging.info("retrieve_documents time taken: %.2fs", end - start)
         
         result = response.json()
+        if user_id:
+            result = _filter_docs_for_user(result, user_id)
+            if not result:
+                return "No matching documents found for this user. Ask the user to upload relevant documents."
         out = ''
         for i in result:
             for j in i.values():
@@ -772,4 +822,5 @@ def retrieve_documents(prompt: str) -> str:
             error_message=str(e),
             additional_info={"prompt": prompt}
         )
-        return web_search_simple.invoke(prompt)
+        return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
+        # return web_search_simple.invoke(prompt)

@@ -11,14 +11,14 @@ import os
 import google.generativeai as genai
 from langchain_experimental.utilities import PythonREPL
 import requests
-from langchain_openai import ChatOpenAI
+from LLMs import get_llm_for_role
 
 load_dotenv('.env')
 logger = logging.getLogger(__name__)
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 api_gemini = os.getenv("GEMINI_API_KEY_30")
 api_img = os.getenv("IMGBB_API_KEY")
-openai_api_key=os.getenv("OPEN_AI_API_KEY_30")
-GPT4o_mini_GraphGen = ChatOpenAI(model="gpt-4o-mini",openai_api_key = openai_api_key, temperature=0.2, model_kwargs={"top_p": 0.1})
+GPT4o_mini_GraphGen = get_llm_for_role("graph", temperature=0.2, top_p=0.1)
 
 
 def gen_url(image_paths):
@@ -78,9 +78,10 @@ def get_paths(response):
     HUMAN: Markdown : {response}, URLS : {url}"""
 
     ai_msg = model.generate_content(message)
-    file_path = 'response-withCharts.md'
-    with open(file_path, 'w', encoding='utf-8') as md_file:
-        md_file.write(ai_msg.text)
+    if WRITE_ARTIFACTS:
+        file_path = 'response-withCharts.md'
+        with open(file_path, 'w', encoding='utf-8') as md_file:
+            md_file.write(ai_msg.text)
     return ai_msg.text
 
 
@@ -126,9 +127,10 @@ def generate_chart(content: str) -> str:
 
     response_text = GPT4o_mini_GraphGen.invoke(f'''{messages}\n\n {content}''').content
 
-    file_path = 'response-withCharts.md'
-    with open(file_path, 'w', encoding='utf-8') as md_file:
-        md_file.write(response_text)
+    if WRITE_ARTIFACTS:
+        file_path = 'response-withCharts.md'
+        with open(file_path, 'w', encoding='utf-8') as md_file:
+            md_file.write(response_text)
     logger.info("Chart markdown generated")
     repl = PythonREPL()
 

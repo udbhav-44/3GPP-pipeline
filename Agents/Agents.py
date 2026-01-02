@@ -16,7 +16,21 @@ from Agents.LATS.Solve_subquery import SolveSubQuery
 logger = logging.getLogger(__name__)
 
 class Agent:
-    def __init__(self, number, name, role, constraints, task, dependencies, tools_list, state, thread_id=None, model="gpt-4o-mini"):
+    def __init__(
+        self,
+        number,
+        name,
+        role,
+        constraints,
+        task,
+        dependencies,
+        tools_list,
+        state,
+        thread_id=None,
+        model=None,
+        provider=None,
+        allow_web_tools=True,
+    ):
         self.taskNumber = number
         self.name = name
         self.role = role
@@ -27,10 +41,12 @@ class Agent:
         self.state = state
         self.thread_id = thread_id
         self.model = model
+        self.provider = provider
+        self.allow_web_tools = allow_web_tools
 
         tl_lis = []
 
-        if len(tools_list)<1:
+        if len(tools_list) < 1 and self.allow_web_tools:
             tools_list.append('web_search')
 
         for function_name in tools_list:
@@ -105,7 +121,8 @@ class Agent:
             self.tools_list,
             thread_id=self.thread_id,
             checkpoint_ns=checkpoint_ns,
-            model=self.model
+            model=self.model,
+            provider=self.provider,
         )
 
         return response
@@ -114,5 +131,3 @@ class Agent:
         
 
         
-
-

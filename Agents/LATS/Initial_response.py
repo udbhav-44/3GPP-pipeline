@@ -13,12 +13,10 @@ from Agents.LATS.Reflection import reflection_chain, Node
 from langchain_core.messages import AIMessage, BaseMessage, HumanMessage, ToolMessage
 from langgraph.prebuilt import ToolNode
 from Agents.LATS.OldfinTools import *
-import os
-from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-from LLMs import GPT4o_mini_LATS, get_llm
+from LLMs import get_llm
 
 prompt_template = ChatPromptTemplate.from_messages(
         [
@@ -40,7 +38,7 @@ prompt_template = ChatPromptTemplate.from_messages(
     )
 
 # Define the node we will add to the graph
-def custom_generate_initial_response(tools, model="gpt-4o-mini"):
+def custom_generate_initial_response(tools, model=None, provider=None):
     """ 
     Generate the initial response for the LATS agent.
     Args:
@@ -50,7 +48,7 @@ def custom_generate_initial_response(tools, model="gpt-4o-mini"):
     """
     tool_node = ToolNode(tools=tools)
     def generate_initial_response(state: TreeState) -> dict:
-        llm = get_llm(model=model, provider="deepseek" if "deepseek" in model else "openai")
+        llm = get_llm(model=model, provider=provider, role="lats")
         initial_answer_chain = prompt_template | llm.bind_tools(tools=tools).with_config(
             run_name="GenerateInitialCandidate"
         )
@@ -80,7 +78,12 @@ def custom_generate_initial_response(tools, model="gpt-4o-mini"):
         ]
         output_messages = [res] + [tr["messages"][0] for tr in tool_responses]
         reflection = reflection_chain.invoke(
-            {"input": state["input"], "candidate": output_messages}
+            {
+                "input": state["input"],
+                "candidate": output_messages,
+                "_model": model,
+                "_provider": provider,
+            }
         )
         root = Node(output_messages, reflection=reflection)
         return {

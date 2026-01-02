@@ -1,27 +1,21 @@
 """This file contains the code for the Planner Agent, which is responsible for generating the sub-agents that will be used to address the user query."""
 
-import os
 import json
 from dotenv import load_dotenv
 import time
 
-
-load_dotenv('.env')
-GOOGLE_API_KEY = os.getenv('GEMINI_API_KEY_30')
-OPENAI_API_KEY = os.getenv('OPEN_AI_API_KEY_30')
-
-
-
-import google.generativeai as genai
-
-import os
 import logging
 from langchain.globals import set_verbose
+import os
+
+load_dotenv('.env')
+
 set_verbose(os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true")
 logger = logging.getLogger(__name__)
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
 from datetime import datetime
-from LLMs import conversation_complex, GPT4o_mini_Complex
+from LLMs import get_llm_for_role
 
 
 
@@ -29,7 +23,7 @@ def clean(text):
     return text[text.index('{'):text.rfind('}')+1]
 
 
-def plannerAgent(query):
+def plannerAgent(query, model=None, provider=None, allow_web_tools=True):
     
     sys = f'''Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
         must be with respect to this time frame.'''
@@ -187,6 +181,9 @@ def plannerAgent(query):
     # Example usage
     file_path = 'Tools/info.json'  # Replace with your JSON file path
     json_data = load_json(file_path)
+    if not allow_web_tools:
+        blocked = {"web_search", "web_scrape", "web_search_simple"}
+        json_data = [tool for tool in json_data if tool.get("name") not in blocked]
 
 
     tools_prompt = f'''
@@ -199,21 +196,23 @@ def plannerAgent(query):
     '''
     prompt = prompt + tools_prompt
 
-    response = GPT4o_mini_Complex.invoke(f'''{prompt}''').content
+    llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+    response = llm.invoke(f'''{prompt}''').content
     dic =  json.loads(clean(response.split("```")[-2].split("json")[1]))
 
 
-    with open('./Agents/plan.txt', 'w') as f:
-        f.write(response)
-    
-    with open('./Agents/plan.json', 'w') as f:
-        json.dump(dic, f)
+    if WRITE_ARTIFACTS:
+        with open('./Agents/plan.txt', 'w') as f:
+            f.write(response)
+
+        with open('./Agents/plan.json', 'w') as f:
+            json.dump(dic, f)
 
     return dic
 
 
 
-def plannerAgent_rag(query, ragContent):
+def plannerAgent_rag(query, ragContent, model=None, provider=None, allow_web_tools=True):
     
     sys = f'''Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
         must be with respect to this time frame.'''
@@ -339,6 +338,9 @@ def plannerAgent_rag(query, ragContent):
     # Example usage
     file_path = 'Tools/info.json'  # Replace with your JSON file path
     json_data = load_json(file_path)
+    if not allow_web_tools:
+        blocked = {"web_search", "web_scrape", "web_search_simple"}
+        json_data = [tool for tool in json_data if tool.get("name") not in blocked]
 
 
     tools_prompt = f'''
@@ -351,15 +353,17 @@ def plannerAgent_rag(query, ragContent):
     '''
     prompt = prompt + tools_prompt
 
-    response = GPT4o_mini_Complex.invoke(f'''{prompt}''').content
+    llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
+    response = llm.invoke(f'''{prompt}''').content
     dic =  json.loads(clean(response.split("```")[-2].split("json")[1]))
 
 
-    with open('./Agents/plan.txt', 'w') as f:
-        f.write(response)
-    
-    with open('./Agents/plan.json', 'w') as f:
-        json.dump(dic, f)
+    if WRITE_ARTIFACTS:
+        with open('./Agents/plan.txt', 'w') as f:
+            f.write(response)
+
+        with open('./Agents/plan.json', 'w') as f:
+            json.dump(dic, f)
 
     return dic
 

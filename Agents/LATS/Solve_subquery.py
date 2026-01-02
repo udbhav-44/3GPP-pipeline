@@ -4,19 +4,34 @@ from dotenv import load_dotenv
 from langchain_core.messages import AIMessage, HumanMessage
 import uuid
 import logging
+from LLMs import resolve_llm_settings
 load_dotenv('.env')
 logger = logging.getLogger(__name__)
 
-def SolveSubQuery(query: str, tools, thread_id=None, checkpoint_ns=None, model="gpt-4o-mini"):
+def SolveSubQuery(query: str, tools, thread_id=None, checkpoint_ns=None, model=None, provider=None):
     question = query
     last_step = None
-    token = set_current_model(model)
-    graph = generateGraph_forLATS(tools, model=model)
+    _, resolved_model = resolve_llm_settings(
+        model=model,
+        provider=provider,
+        role="lats",
+    )
+    token = set_current_model(resolved_model)
+    graph = generateGraph_forLATS(
+        tools,
+        model=resolved_model,
+        provider=provider,
+    )
+    checkpointer = getattr(graph, "checkpointer", None)
+    if checkpointer is None:
+        checkpointer = getattr(graph, "_checkpointer", None)
+    has_checkpointer = checkpointer is not None
     config = None
-    thread_key = str(thread_id) if thread_id else f"lats-{uuid.uuid4().hex}"
-    if checkpoint_ns:
-        thread_key = f"{thread_key}:{checkpoint_ns}"
-    config = {"configurable": {"thread_id": thread_key}}
+    if has_checkpointer:
+        thread_key = str(thread_id) if thread_id else f"lats-{uuid.uuid4().hex}"
+        if checkpoint_ns:
+            thread_key = f"{thread_key}:{checkpoint_ns}"
+        config = {"configurable": {"thread_id": thread_key}}
 
     messages = None
     if config:

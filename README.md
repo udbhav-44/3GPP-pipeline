@@ -57,7 +57,12 @@ The system is built around a central WebSocket server (`main.py`) that handles i
 3.  **Environment Configuration**:
     Create a `.env` file in the root directory. You will need to configure API keys for the LLMs and other services. Key variables typically include:
     -   `OPEN_AI_API_KEY_30`
+    -   `DEEPSEEK_API_KEY` (required when `LLM_PROVIDER=deepseek`)
     -   `GEMINI_API_KEY_30`
+    -   `LLM_PROVIDER` (e.g., `openai` or `deepseek`)
+    -   `LLM_MODEL` (e.g., `gpt-4o-mini` or `deepseek-chat`)
+    -   `LLM_PROVIDER_<ROLE>` / `LLM_MODEL_<ROLE>` (optional per-role overrides; roles: `LATS`, `GRAPH`, `COMPLEX`, `GUARDRAILS`, `CLASSIFIER`)
+    -   `OPENAI_API_BASE` or `DEEPSEEK_API_BASE` (optional for custom endpoints)
     -   `LANGCHAIN_VERBOSE` (optional)
     -   `POSTGRES_USER`, `POSTGRES_PASSWORD`, etc. (if using database checkpoints)
 
@@ -73,6 +78,6 @@ The server will start listening on `ws://0.0.0.0:8080`.
 
 **Client Interaction**:
 Clients should connect to the WebSocket endpoint and send JSON messages.
--   **Send Query**: `{"type": "query", "query": "Your question here", "thread_id": "optional-id"}`
+-   **Send Query**: `{"type": "query", "query": "Your question here", "thread_id": "optional-id", "model": "gpt-4o-mini", "provider": "openai", "user_id": "user-identifier"}`. When `user_id` is provided, RAG tools are scoped to that user's private uploads.
 -   **Toggle RAG**: `{"type": "toggleRag", "query": true/false}`
 -   **Abort**: `{"type": "abort"}`

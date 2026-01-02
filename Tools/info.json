@@ -11,17 +11,6 @@
         }
     },
     {
-        "name": "get_wikipedia_summary",
-        "docstring": "Fetches a summary from Wikipedia based on a search query.",
-        "parameters": {
-            "query": "str"
-        },
-        "output": {
-            "type": "str",
-            "description": "Summary of the Wikipedia page."
-        }
-    },
-    {
         "name": "web_scrape",
         "docstring": "Scrape a web page using links found using web search to provide a detailed response. Input should be the URL of the page to scrape.",
         "parameters": {

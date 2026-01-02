@@ -1,5 +1,6 @@
 import os
 import logging
+import atexit
 from dotenv import load_dotenv
 from datetime import datetime
 
@@ -20,11 +21,11 @@ except ImportError:
     from langgraph.graph import add_messages
 
 
-#TO CHANGE IF POSSIBLE
-from LLMs import GPT4o_mini_LATS
+from LLMs import get_llm_for_role
 
 load_dotenv('.env')
 logger = logging.getLogger(__name__)
+WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
 def _get_checkpoint_conn_str():
     url = os.getenv("LANGGRAPH_CHECKPOINT_URL") or os.getenv("CHECKPOINT_DATABASE_URL")
@@ -37,12 +38,35 @@ def _get_checkpoint_conn_str():
     db = os.getenv("POSTGRES_DB", "postgres")
     return f"postgresql://{user}:{password}@{host}:{port}/{db}"
 
+_POSTGRES_SAVER = None
+_POSTGRES_SAVER_CTX = None
+
+def _close_postgres_saver():
+    global _POSTGRES_SAVER_CTX, _POSTGRES_SAVER
+    if _POSTGRES_SAVER_CTX is None:
+        return
+    try:
+        _POSTGRES_SAVER_CTX.__exit__(None, None, None)
+    except Exception:
+        logger.exception("Failed to close Postgres checkpointer")
+    _POSTGRES_SAVER_CTX = None
+    _POSTGRES_SAVER = None
+
+def _open_postgres_saver(conn_str: str):
+    global _POSTGRES_SAVER_CTX, _POSTGRES_SAVER
+    if _POSTGRES_SAVER is not None:
+        return _POSTGRES_SAVER
+    _POSTGRES_SAVER_CTX = PostgresSaver.from_conn_string(conn_str)
+    _POSTGRES_SAVER = _POSTGRES_SAVER_CTX.__enter__()
+    atexit.register(_close_postgres_saver)
+    return _POSTGRES_SAVER
+
 def _build_checkpointer():
     if PostgresSaver is None:
         return MemorySaver()
     conn_str = _get_checkpoint_conn_str()
     try:
-        saver = PostgresSaver.from_conn_string(conn_str)
+        saver = _open_postgres_saver(conn_str)
         if hasattr(saver, "setup"):
             saver.setup()
         return saver
@@ -76,7 +100,7 @@ def _get_thread_config(thread_id):
     }
 
 
-def conciseAns_vanilla(query, tools_list, thread_id=None):
+def conciseAns_vanilla(query, tools_list, thread_id=None, model=None, provider=None):
     logger.info("Running conciseAns_vanilla")
     system_prompt = f"""
         Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
@@ -99,12 +123,7 @@ def conciseAns_vanilla(query, tools_list, thread_id=None):
             MessagesPlaceholder(variable_name="agent_scratchpad"),
         ]
     )
-    agent = create_tool_calling_agent(GPT4o_mini_LATS, tools_list, prompt)
-    agent_executor = AgentExecutor(
-        agent=agent,
-        tools=tools_list,
-        verbose=os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true",
-    )
+    llm = get_llm_for_role("lats", model=model, provider=provider, temperature=0.4, top_p=0.4)
     payload = {"input": query}
     config = _get_thread_config(thread_id)
     if config:
@@ -120,21 +139,35 @@ def conciseAns_vanilla(query, tools_list, thread_id=None):
                     payload["chat_history"] = history_messages
         except Exception as exc:
             logger.exception("Concise memory read failed")
-    response = agent_executor.invoke(payload)
+    if tools_list:
+        agent = create_tool_calling_agent(llm, tools_list, prompt)
+        agent_executor = AgentExecutor(
+            agent=agent,
+            tools=tools_list,
+            verbose=os.getenv("LANGCHAIN_VERBOSE", "false").lower() == "true",
+        )
+        response = agent_executor.invoke(payload)
+        output_text = response["output"]
+    else:
+        messages = prompt.format_messages(
+            input=query,
+            chat_history=payload.get("chat_history", []),
+            agent_scratchpad=[],
+        )
+        response = llm.invoke(messages)
+        output_text = response.content if hasattr(response, "content") else str(response)
     if config:
         try:
             MEMORY_GRAPH.update_state(
                 config,
-                {"messages": [HumanMessage(content=query), AIMessage(content=response["output"])]},
+                {"messages": [HumanMessage(content=query), AIMessage(content=output_text)]},
                 as_node=MEMORY_NODE,
             )
         except Exception as exc:
             logger.exception("Concise memory update failed")
-    with open("conciseResponse.md", "w") as f:
-        f.write(response['output'])
+    if WRITE_ARTIFACTS:
+        with open("conciseResponse.md", "w") as f:
+            f.write(output_text)
     logger.info("Completed conciseAns_vanilla")
     logger.debug("Concise response type: %s", type(response))
-    return response['output']
-
-
-
+    return output_text

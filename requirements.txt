@@ -1,5 +1,4 @@
 langchain_google_genai 
-# edgartools
 faiss-cpu
 websockets
 asyncio
@@ -18,8 +17,6 @@ langchain
 langchain-google-genai
 langchain-community
 langgraph
-# yfinance
-# finnhub-python
 openai
 langchain-openai
 langsmith
@@ -114,8 +111,8 @@ langchain-google-genai==2.0.5
 langchain-openai==0.2.10
 langchain-text-splitters==0.3.2
 langgraph==0.2.53
-langgraph-checkpoint==2.0.5
-langgraph-checkpoint-postgres>=2.0.0
+langgraph-checkpoint==2.1.2
+langgraph-checkpoint-postgres==2.0.5
 psycopg[binary]>=3.1.0
 langgraph-sdk==0.1.36
 langsmith==0.1.146
@@ -138,7 +135,6 @@ nest-asyncio==1.6.0
 networkx==3.2.1
 notebook_shim==0.2.4
 numpy==1.26.4
-
 openai==1.55.1
 orjson==3.10.12
 overrides==7.7.0
