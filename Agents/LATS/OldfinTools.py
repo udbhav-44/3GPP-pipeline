@@ -52,12 +52,13 @@ RESULTS_COLUMNS = [
     "total_score",
     "boosted_score",
 ]
-JINA_SCRAPE_URL = os.getenv("JINA_SCRAPE_URL", "http://172.26.189.83:3000")
-NEO4J_URI = os.getenv("NEO4J_URI", "bolt://172.26.189.83:7687")
+JINA_SCRAPE_URL = os.getenv("JINA_SCRAPE_URL", "http://wisdomlab3gpp.live:3000")
+NEO4J_URI = os.getenv("NEO4J_URI", "bolt://wisdomlab3gpp.live:7687")
 NEO4J_USER = os.getenv("NEO4J_USER", "neo4j")
 NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD", "login123")
-RAG_GENERATE_URL = os.getenv("RAG_GENERATE_URL", "http://172.26.189.83:4005/generate")
-RAG_STATS_URL = os.getenv("RAG_STATS_URL", "http://172.26.189.83:4004/v1/statistics")
+RAG_GENERATE_URL = os.getenv("RAG_GENERATE_URL", "http://wisdomlab3gpp.live:4005/generate")
+RAG_STATS_URL = os.getenv("RAG_STATS_URL", "http://wisdomlab3gpp.live:4004/v1/statistics")
+RAG_RETRIEVE_URL = os.getenv("RAG_RETRIEVE_URL", "http://wisdomlab3gpp.live:4006/v1/retrieve")
 RAG_UPLOADS_DIR = os.getenv("RAG_UPLOADS_DIR", "/git_folder/udbhav/code/RAG/uploads")
 
 import contextvars
@@ -626,11 +627,9 @@ def query_documents(prompt: str, source: str) -> Dict:
             payload["user_id"] = user_id
         
         response = requests.post(
-            "http://172.26.189.83:4005/generate",
+            RAG_GENERATE_URL,
             headers={"Content-Type": "application/json"},
-
             json=payload
-
         )
         
         logging.info("query_documents response status: %s", response.status_code)
@@ -719,7 +718,7 @@ def simple_query_documents(prompt: str) -> Dict:
             payload["user_id"] = user_id
         logging.debug("simple_query_documents payload: %s", payload)
         response = requests.post(
-            "http://172.26.189.83:4005/generate",
+            RAG_GENERATE_URL,
             headers={"Content-Type": "application/json"},
             json=payload
         )
@@ -779,11 +778,9 @@ def retrieve_documents(prompt: str) -> str:
         }
         
         response = requests.post(
-            "http://172.26.189.83:4006/v1/retrieve",
+            RAG_RETRIEVE_URL,
             headers={"Content-Type": "application/json"},
-
             json=payload
-
         )
         
         logging.info("retrieve_documents response status: %s", response.status_code)
