@@ -22,6 +22,7 @@ setup_logging()
 logger = logging.getLogger("backend")
 
 import time
+import contextlib
 import json
 import re
 # Import custom agents for different tasks
@@ -183,6 +184,7 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
 
     resp = ''
     additionalQuestions = None
+    send_questions = False
     addn_questions = []
 
     if should_abort(cancel_event):
@@ -271,6 +273,7 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
             # resp = generate_chart(resp)
             additionalQuestions = await genQuestionSimple(addn_questions, model=model, provider=provider)
+            send_questions = True
             if should_abort(cancel_event):
                 return
 
@@ -283,16 +286,8 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
                 resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
                 return str(resp)
 
-            async def run_parallel(query):
-                resp, additionalQuestions = await asyncio.gather(
-                    executeSimplePipeline(query),
-                    genQuestionSimple(query, model=model, provider=provider)
-                )
-                
-                return (str(resp), additionalQuestions)
-            
-            
-            resp, additionalQuestions = await run_parallel(query)
+            resp = await executeSimplePipeline(query)
+            additionalQuestions = []
             if should_abort(cancel_event):
                 return
 
@@ -379,6 +374,7 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
             # resp = generate_chart(resp)
             additionalQuestions = await genQuestionSimple(addn_questions, model=model, provider=provider)
+            send_questions = True
             if should_abort(cancel_event):
                 return
 
@@ -391,7 +387,7 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             logger.info("Running simple task pipeline")
             resp = rag_context
             resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
-            additionalQuestions = await genQuestionSimple(query, model=model, provider=provider)
+            additionalQuestions = []
             if should_abort(cancel_event):
                 return
                 
@@ -399,18 +395,19 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
     if should_abort(cancel_event):
         return
     await websocket.send(json.dumps({"type": "response", "response": resp}))
-    if additionalQuestions is None:
-        additionalQuestions = []
-    elif not isinstance(additionalQuestions, list):
-        try:
-            additionalQuestions = list(additionalQuestions)
-        except TypeError:
-            additionalQuestions = [str(additionalQuestions)]
-    logger.debug("Additional questions: %s", additionalQuestions)
-    await asyncio.sleep(1)
-    if should_abort(cancel_event):
-        return
-    await websocket.send(json.dumps({"type": "questions", "response": additionalQuestions[:3]}))
+    if send_questions:
+        if additionalQuestions is None:
+            additionalQuestions = []
+        elif not isinstance(additionalQuestions, list):
+            try:
+                additionalQuestions = list(additionalQuestions)
+            except TypeError:
+                additionalQuestions = [str(additionalQuestions)]
+        logger.debug("Additional questions: %s", additionalQuestions)
+        await asyncio.sleep(1)
+        if should_abort(cancel_event):
+            return
+        await websocket.send(json.dumps({"type": "questions", "response": additionalQuestions[:3]}))
     if user_token is not None:
         try:
             reset_current_user_id(user_token)
@@ -483,58 +480,94 @@ async def handle_connection(websocket):
 
         active_task = asyncio.create_task(runner())
 
-    async for message in websocket:
-        data = json.loads(message)
-        if data['type'] == 'query':
-            logger.info("Received query: %s", data['query'])
-            await start_query(data)
+    try:
+        async for message in websocket:
+            data = json.loads(message)
+            if data['type'] == 'query':
+                logger.info("Received query: %s", data['query'])
+                await start_query(data)
 
-        if data['type'] == 'abort':
-            if active_task and not active_task.done():
-                if active_response_id and data.get("response_id") and data.get("response_id") != active_response_id:
-                    continue
-                if active_cancel_event:
-                    active_cancel_event.set()
-                active_task.cancel()
+            if data['type'] == 'abort':
+                if active_task and not active_task.done():
+                    if active_response_id and data.get("response_id") and data.get("response_id") != active_response_id:
+                        continue
+                    if active_cancel_event:
+                        active_cancel_event.set()
+                    active_task.cancel()
 
-        if data['type'] == 'delete_thread':
-            target_thread_id = data.get("thread_id") or connection_thread_id
-            logger.info("Deleting thread: %s", target_thread_id)
-            if active_task and not active_task.done():
-                if active_cancel_event:
-                    active_cancel_event.set()
-                active_task.cancel()
-            success = delete_thread_state(str(target_thread_id))
-            if target_thread_id == connection_thread_id:
-                connection_thread_id = f"conn-{uuid.uuid4().hex}"
-            await websocket.send(
-                json.dumps(
-                    {
-                        "type": "thread_deleted",
-                        "thread_id": str(target_thread_id),
-                        "success": success,
-                    }
+            if data['type'] == 'delete_thread':
+                target_thread_id = data.get("thread_id") or connection_thread_id
+                logger.info("Deleting thread: %s", target_thread_id)
+                if active_task and not active_task.done():
+                    if active_cancel_event:
+                        active_cancel_event.set()
+                    active_task.cancel()
+                success = delete_thread_state(str(target_thread_id))
+                if target_thread_id == connection_thread_id:
+                    connection_thread_id = f"conn-{uuid.uuid4().hex}"
+                await websocket.send(
+                    json.dumps(
+                        {
+                            "type": "thread_deleted",
+                            "thread_id": str(target_thread_id),
+                            "success": success,
+                        }
+                    )
                 )
-            )
 
-        if data['type'] == 'toggleRag':
-            logger.info("Received toggleRag")
-            if "query" in data:
-                rag = bool(data["query"])
+            if data['type'] == 'toggleRag':
+                logger.info("Received toggleRag")
+                if "query" in data:
+                    rag = bool(data["query"])
 
-        if data['type'] == 'toggleWebTools':
-            logger.info("Received toggleWebTools")
-            if "query" in data:
-                allow_web_tools = bool(data["query"])
-            else:
-                rag = not rag
+            if data['type'] == 'toggleWebTools':
+                logger.info("Received toggleWebTools")
+                if "query" in data:
+                    allow_web_tools = bool(data["query"])
+                else:
+                    rag = not rag
+    except websockets.exceptions.ConnectionClosed as exc:
+        logger.info("WebSocket closed: %s", exc)
+    except Exception:
+        logger.exception("Unexpected error in websocket handler")
+    finally:
+        if active_task and not active_task.done():
+            if active_cancel_event:
+                active_cancel_event.set()
+            active_task.cancel()
+            with contextlib.suppress(asyncio.CancelledError):
+                await active_task
+
+
+def _get_env_seconds(name, default):
+    value = os.getenv(name)
+    if value is None:
+        return default
+    value = value.strip().lower()
+    if value in {"none", "null", "disabled", "false", "0"}:
+        return None
+    try:
+        return float(value)
+    except ValueError:
+        logger.warning("Invalid %s=%r; using default %s", name, value, default)
+        return default
 
 async def main():
     """       
      Starts the WebSocket server and keeps it running indefinitely.
     """
     logger.info("WebSocket server starting on ws://0.0.0.0:8080")
-    async with websockets.serve(handle_connection, "0.0.0.0", 8080):
+    ping_interval = _get_env_seconds("WS_PING_INTERVAL", 20)
+    ping_timeout = _get_env_seconds("WS_PING_TIMEOUT", 20)
+    close_timeout = _get_env_seconds("WS_CLOSE_TIMEOUT", 10)
+    async with websockets.serve(
+        handle_connection,
+        "0.0.0.0",
+        8080,
+        ping_interval=ping_interval,
+        ping_timeout=ping_timeout,
+        close_timeout=close_timeout,
+    ):
         await asyncio.Future()  # run forever
 
 
