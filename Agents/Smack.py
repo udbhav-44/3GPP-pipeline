@@ -5,12 +5,22 @@ import threading
 import logging
 import os
 from Agents.Agents import Agent
+from Agents.LATS.OldfinTools import (
+    get_process_log_path,
+    reset_current_thread_id,
+    set_current_thread_id,
+)
 
 logger = logging.getLogger(__name__)
 WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
 def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock, str | None]):
     agent, task_results_internal, completed_tasks_internal, results_lock, completed_lock, user_id = task_info
+    thread_token = None
+    try:
+        thread_token = set_current_thread_id(agent.thread_id)
+    except Exception:
+        logger.exception("Failed to set thread context for task %s", agent.taskNumber)
     if user_id:
         try:
             from Agents.LATS.OldfinTools import set_current_user_id
@@ -18,8 +28,9 @@ def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock,
         except Exception:
             logger.exception("Failed to set user context for task %s", agent.taskNumber)
     logger.info("Executing %s", agent.taskNumber)
+    log_path = get_process_log_path(agent.thread_id)
     if WRITE_ARTIFACTS:
-        with open("ProcessLogs.md", 'a') as f:
+        with open(log_path, 'a') as f:
             f.write(f"### Executing {agent.taskNumber}\n")
     try:
         dependency_results = {
@@ -38,17 +49,23 @@ def executeTask(task_info: tuple[Any, Dict, set, threading.Lock, threading.Lock,
         
         logger.info("Executed %s", agent.taskNumber)
         if WRITE_ARTIFACTS:
-            with open("ProcessLogs.md", 'a') as f:
+            with open(log_path, 'a') as f:
                 f.write(f"### Executed {agent.taskNumber}\n\n")
         
         return response
     except Exception as e:
         logger.exception("Error in task %s", agent.taskNumber)
         if WRITE_ARTIFACTS:
-            with open("ProcessLogs.md", 'a') as f:
+            with open(log_path, 'a') as f:
                 f.write(f"### Error in task {agent.taskNumber}: {e}\n\n")
         logger.info("Executed %s", agent.taskNumber)
         return None
+    finally:
+        if thread_token is not None:
+            try:
+                reset_current_thread_id(thread_token)
+            except Exception:
+                logger.exception("Failed to reset thread context for task %s", agent.taskNumber)
 
 
 class Smack:

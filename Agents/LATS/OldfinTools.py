@@ -42,7 +42,12 @@ def log_error(tool_name, error_message, additional_info=None):
 
 PIPELINE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 load_dotenv(os.path.join(PIPELINE_ROOT, ".env"), override=False)
-RESULTS_CSV_PATH = os.path.join(PIPELINE_ROOT, "Results.csv")
+ARTIFACTS_DIR = os.getenv("PIPELINE_ARTIFACTS_DIR")
+if ARTIFACTS_DIR:
+    ARTIFACTS_DIR = os.path.abspath(ARTIFACTS_DIR)
+else:
+    ARTIFACTS_DIR = os.path.join(PIPELINE_ROOT, "output", "artifacts")
+RESULTS_CSV_PATH = os.path.join(ARTIFACTS_DIR, "global", "Results.csv")
 RESULTS_COLUMNS = [
     "doc_id",
     "title",
@@ -66,6 +71,7 @@ import contextvars
 # This must be set by the caller (Agent/SolveSubQuery) before invoking tools.
 current_model_var = contextvars.ContextVar("current_model", default="gpt-4o-mini")
 current_user_var = contextvars.ContextVar("current_user_id", default=None)
+current_thread_var = contextvars.ContextVar("current_thread_id", default=None)
 
 def get_current_model():
     return current_model_var.get()
@@ -90,8 +96,45 @@ def reset_current_user_id(token):
         current_user_var.reset(token)
 
 
+def _sanitize_thread_id(thread_id):
+    if not thread_id:
+        return None
+    value = str(thread_id).strip()
+    if not value:
+        return None
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value)
 
-def save_results_csv(df, csv_path=RESULTS_CSV_PATH):
+def _get_artifact_dir(thread_id=None):
+    safe_thread_id = _sanitize_thread_id(thread_id) or get_current_thread_id() or "global"
+    path = os.path.join(ARTIFACTS_DIR, safe_thread_id)
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+def get_current_thread_id():
+    return current_thread_var.get()
+
+
+def set_current_thread_id(thread_id):
+    return current_thread_var.set(_sanitize_thread_id(thread_id))
+
+
+def reset_current_thread_id(token):
+    if token is not None:
+        current_thread_var.reset(token)
+
+
+def get_results_csv_path(thread_id=None):
+    return os.path.join(_get_artifact_dir(thread_id), "Results.csv")
+
+
+def get_process_log_path(thread_id=None):
+    return os.path.join(_get_artifact_dir(thread_id), "ProcessLogs.md")
+
+
+
+def save_results_csv(df, csv_path=None):
+    csv_path = csv_path or get_results_csv_path()
     tmp_csv_path = f"{csv_path}.tmp"
     try:
         os.makedirs(os.path.dirname(csv_path), exist_ok=True)

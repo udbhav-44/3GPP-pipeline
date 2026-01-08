@@ -51,6 +51,9 @@ WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true",
 def should_abort(cancel_event):
     return cancel_event is not None and cancel_event.is_set()
 
+async def run_blocking(func, *args, **kwargs):
+    return await asyncio.to_thread(func, *args, **kwargs)
+
 def _get_checkpoint_conn_str():
     url = os.getenv("LANGGRAPH_CHECKPOINT_URL") or os.getenv("CHECKPOINT_DATABASE_URL")
     if url:
@@ -152,10 +155,15 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
     if should_abort(cancel_event):
         return
     user_token = None
+    thread_token = None
     try:
         user_token = set_current_user_id(user_id)
     except Exception:
         logger.exception("Failed to set user context")
+    try:
+        thread_token = set_current_thread_id(thread_id)
+    except Exception:
+        logger.exception("Failed to set thread context")
     logger.info("Running mainBackend: %s", query)
     if model and "gpt-5" in str(model).lower():
         logger.warning("GPT-5 is disabled; falling back to default model.")
@@ -179,7 +187,8 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
         logger.info("RAG is OFF")
 
     if WRITE_ARTIFACTS:
-        with open(PROCESS_LOG_PATH, "w") as f:
+        process_log_path = get_process_log_path(thread_id)
+        with open(process_log_path, "w") as f:
             f.write("")
 
     resp = ''
@@ -200,7 +209,7 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
         logger.info("Running without internal docs context")
         if should_abort(cancel_event):
             return
-        raw_query_type = classifierAgent(query, model=model, provider=provider)
+        raw_query_type = await run_blocking(classifierAgent, query, model=model, provider=provider)
         query_type = raw_query_type.lower().strip()
         if "simple" in query_type:
             query_type = "simple"
@@ -215,7 +224,13 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
                 return
             
             # plan -> dict
-            plan = plannerAgent(query, model=model, provider=provider, allow_web_tools=allow_web_tools)
+            plan = await run_blocking(
+                plannerAgent,
+                query,
+                model=model,
+                provider=provider,
+                allow_web_tools=allow_web_tools,
+            )
             if should_abort(cancel_event):
                 return
             #This is the dictionary for UI Graph Construction
@@ -262,12 +277,12 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             
             # Execute the task results using the Smack agent
             smack = Smack(agentsList)
-            taskResultsDict = smack.executeSmack()
+            taskResultsDict = await run_blocking(smack.executeSmack)
             if should_abort(cancel_event):
                 return
             for task in taskResultsDict:
                 out_str += f'{taskResultsDict[task]} \n'
-            resp = drafterAgent_vanilla(query, out_str, model=model, provider=provider)
+            resp = await run_blocking(drafterAgent_vanilla, query, out_str, model=model, provider=provider)
             if should_abort(cancel_event):
                 return
             resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
@@ -282,7 +297,14 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             logger.info("Running simple task pipeline")
             async def executeSimplePipeline(query):
                 tools_list = [web_search_simple] if allow_web_tools else []
-                resp = conciseAns_vanilla(query, tools_list, thread_id=thread_id, model=model, provider=provider)   
+                resp = await run_blocking(
+                    conciseAns_vanilla,
+                    query,
+                    tools_list,
+                    thread_id=thread_id,
+                    model=model,
+                    provider=provider,
+                )
                 resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
                 return str(resp)
 
@@ -293,10 +315,16 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
 
     elif IS_RAG:
         logger.info("Running internal docs RAG")
-        rag_context = ragAgent(query, state="concise", model=model, provider=provider)
+        rag_context = await run_blocking(ragAgent, query, state="concise", model=model, provider=provider)
         if should_abort(cancel_event):
             return
-        raw_query_type = classifierAgent_RAG(query, rag_context, model=model, provider=provider)
+        raw_query_type = await run_blocking(
+            classifierAgent_RAG,
+            query,
+            rag_context,
+            model=model,
+            provider=provider,
+        )
         query_type = raw_query_type.lower().strip()
         if "simple" in query_type:
             query_type = "simple"
@@ -311,10 +339,17 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             agent_state = 'RAG'
             logger.info("Running complex task pipeline")
 
-            rag_context = ragAgent(query, state="report", model=model, provider=provider)
+            rag_context = await run_blocking(ragAgent, query, state="report", model=model, provider=provider)
             if should_abort(cancel_event):
                 return
-            plan = plannerAgent_rag(query, rag_context, model=model, provider=provider, allow_web_tools=allow_web_tools)
+            plan = await run_blocking(
+                plannerAgent_rag,
+                query,
+                rag_context,
+                model=model,
+                provider=provider,
+                allow_web_tools=allow_web_tools,
+            )
             if should_abort(cancel_event):
                 return
             
@@ -363,12 +398,19 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             
             # Execute the task results using the Smack agent
             smack = Smack(agentsList)
-            taskResultsDict = smack.executeSmack()
+            taskResultsDict = await run_blocking(smack.executeSmack)
             if should_abort(cancel_event):
                 return
             for task in taskResultsDict:
                 out_str += f'{taskResultsDict[task]} \n'
-            resp = drafterAgent_rag(query, rag_context, out_str, model=model, provider=provider)
+            resp = await run_blocking(
+                drafterAgent_rag,
+                query,
+                rag_context,
+                out_str,
+                model=model,
+                provider=provider,
+            )
             if should_abort(cancel_event):
                 return
             resp = re.sub(r'\\\[(.*?)\\\]', lambda m: f'$${m.group(1)}$$', resp, flags=re.DOTALL)
@@ -413,6 +455,11 @@ async def mainBackend(query, websocket, rag, model=None, provider=None, allow_we
             reset_current_user_id(user_token)
         except Exception:
             logger.exception("Failed to reset user context")
+    if thread_token is not None:
+        try:
+            reset_current_thread_id(thread_token)
+        except Exception:
+            logger.exception("Failed to reset thread context")
 
 
 async def handle_connection(websocket):

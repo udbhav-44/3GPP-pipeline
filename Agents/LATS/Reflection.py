@@ -15,6 +15,7 @@ load_dotenv('.env')
 
 
 from LLMs import get_llm
+from Agents.LATS.OldfinTools import get_process_log_path
 
 WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true", "yes"}
 
@@ -114,7 +115,8 @@ class Node:
     def get_messages(self, include_reflections: bool = True):
         if include_reflections:
             if WRITE_ARTIFACTS:
-                with open("ProcessLogs.md", "a") as f:
+                log_path = get_process_log_path()
+                with open(log_path, "a") as f:
                     for i in self.messages + [self.reflection.as_message()]:
                         if 'tool_calls' in i.additional_kwargs:
                             f.write("CALLING TOOLS NOW\n")

@@ -1,11 +1,12 @@
 """
 WebSocket server that watches files and streams updates to clients.
 
-- ProcessLogs.md → plain appended logs (NO diff format)
-- Results.csv     → structured table for sidebar
+- output/artifacts/<thread>/ProcessLogs.md → plain appended logs (NO diff format)
+- output/artifacts/<thread>/Results.csv     → structured table for sidebar
 """
 
 import time
+import os
 import json
 import threading
 import asyncio
@@ -19,6 +20,10 @@ from pathlib import Path
 import csv
 
 BASE_DIR = Path(__file__).resolve().parent
+ARTIFACTS_DIR = Path(
+    os.getenv("PIPELINE_ARTIFACTS_DIR") or (BASE_DIR / "output" / "artifacts")
+).resolve()
+ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 setup_logging()
 logger = logging.getLogger("watcher")
 
@@ -31,13 +36,8 @@ class MyHandler(FileSystemEventHandler):
         super().__init__()
         self.message_queue = message_queue
 
-        # Track how much of the log file we've already read
-        self.log_offset = 0
-
-        self.watch_files = {
-            BASE_DIR / "ProcessLogs.md": "logs",
-            BASE_DIR / "Results.csv": "results"
-        }
+        # Track how much of each log file we've already read
+        self.log_offsets = {}
 
     def on_modified(self, event):
         self._handle_event(event.src_path)
@@ -50,36 +50,59 @@ class MyHandler(FileSystemEventHandler):
 
     def _handle_event(self, src_path):
         resolved_path = Path(src_path).resolve()
-
-        if resolved_path not in self.watch_files:
+        file_info = self._classify_path(resolved_path)
+        if not file_info:
             return
-
-        file_type = self.watch_files[resolved_path]
+        file_type, thread_id = file_info
 
         if file_type == "logs":
-            self.handle_logs(resolved_path)
+            self.handle_logs(resolved_path, thread_id)
 
         elif file_type == "results":
-            self.handle_results(resolved_path)
+            self.handle_results(resolved_path, thread_id)
+
+    def _classify_path(self, path: Path):
+        name = path.name
+        if name in {"ProcessLogs.md", "Results.csv"} and ARTIFACTS_DIR in path.parents:
+            thread_id = None
+            parent = path.parent
+            if parent != ARTIFACTS_DIR:
+                thread_id = parent.name or None
+            if thread_id == "global":
+                thread_id = None
+            return ("logs" if name == "ProcessLogs.md" else "results", thread_id)
+        if name == "ProcessLogs.md":
+            return ("logs", None)
+        if name.startswith("ProcessLogs-") and name.endswith(".md"):
+            thread_id = name[len("ProcessLogs-"):-3] or None
+            return ("logs", None if thread_id == "global" else thread_id)
+        if name == "Results.csv":
+            return ("results", None)
+        if name.startswith("Results-") and name.endswith(".csv"):
+            thread_id = name[len("Results-"):-4] or None
+            return ("results", None if thread_id == "global" else thread_id)
+        return None
 
     # --------------------------------------------------
     # ProcessLogs.md → plain tail-style logs
     # --------------------------------------------------
-    def handle_logs(self, path: Path):
+    def handle_logs(self, path: Path, thread_id):
         try:
             # Handle file truncation / rewrite
-            if path.stat().st_size < self.log_offset:
-                self.log_offset = 0
+            offset = self.log_offsets.get(path, 0)
+            if path.stat().st_size < offset:
+                offset = 0
 
             with open(path, "r") as f:
-                f.seek(self.log_offset)
+                f.seek(offset)
                 new_content = f.read()
-                self.log_offset = f.tell()
+                self.log_offsets[path] = f.tell()
 
             if new_content.strip():
                 self.message_queue.put({
                     "type": "logs",
-                    "response": new_content
+                    "response": new_content,
+                    "thread_id": thread_id
                 })
 
         except FileNotFoundError:
@@ -88,7 +111,7 @@ class MyHandler(FileSystemEventHandler):
     # --------------------------------------------------
     # Results.csv → sidebar table
     # --------------------------------------------------
-    def handle_results(self, path: Path):
+    def handle_results(self, path: Path, thread_id):
         try:
             with open(path, "r") as f:
                 reader = csv.DictReader(f)
@@ -98,7 +121,8 @@ class MyHandler(FileSystemEventHandler):
                 "type": "results",
                 "format": "table",
                 "columns": reader.fieldnames,
-                "rows": rows
+                "rows": rows,
+                "thread_id": thread_id
             })
 
         except FileNotFoundError:
@@ -112,7 +136,7 @@ class MyHandler(FileSystemEventHandler):
 def start_observer(message_queue):
     event_handler = MyHandler(message_queue)
     observer = Observer()
-    observer.schedule(event_handler, path=str(BASE_DIR), recursive=False)
+    observer.schedule(event_handler, path=str(ARTIFACTS_DIR), recursive=True)
     observer.start()
 
     try:
