@@ -16,6 +16,8 @@ import urllib.parse
 import zipfile
 import traceback
 import shutil
+import tempfile
+import threading
 from neo4j import GraphDatabase
 import pandas as pd
 from spire.doc import Document, FileFormat
@@ -65,6 +67,12 @@ RAG_GENERATE_URL = os.getenv("RAG_GENERATE_URL", "http://wisdomlab3gpp.live:4005
 RAG_STATS_URL = os.getenv("RAG_STATS_URL", "http://wisdomlab3gpp.live:4004/v1/statistics")
 RAG_RETRIEVE_URL = os.getenv("RAG_RETRIEVE_URL", "http://wisdomlab3gpp.live:4006/v1/retrieve")
 RAG_UPLOADS_DIR = os.getenv("RAG_UPLOADS_DIR", "/git_folder/udbhav/code/RAG/uploads")
+USER_UPLOADS_DIR = os.getenv(
+    "RAG_USER_UPLOADS_DIR",
+    os.path.join(os.path.dirname(RAG_UPLOADS_DIR), "user_uploads"),
+)
+_results_lock = threading.Lock()
+_results_lock_by_thread: Dict[str, threading.Lock] = {}
 
 import contextvars
 # Context variable to store the current model. 
@@ -94,6 +102,27 @@ def set_current_user_id(user_id):
 def reset_current_user_id(token):
     if token is not None:
         current_user_var.reset(token)
+
+def _dir_has_files(path: Optional[str]) -> bool:
+    if not path or not os.path.isdir(path):
+        return False
+    for _, _, files in os.walk(path):
+        for name in files:
+            if not name.startswith("."):
+                return True
+    return False
+
+
+def has_user_uploads(user_id: Optional[str] = None) -> bool:
+    if user_id is None:
+        user_id = get_current_user_id()
+    if user_id is None:
+        return False
+    user_id = str(user_id).strip()
+    if not user_id:
+        return False
+    user_dir = os.path.join(USER_UPLOADS_DIR, user_id)
+    return _dir_has_files(user_dir)
 
 
 def _sanitize_thread_id(thread_id):
@@ -130,6 +159,137 @@ def get_results_csv_path(thread_id=None):
 
 def get_process_log_path(thread_id=None):
     return os.path.join(_get_artifact_dir(thread_id), "ProcessLogs.md")
+
+
+def _get_results_lock(thread_id=None) -> threading.Lock:
+    key = _sanitize_thread_id(thread_id) or get_current_thread_id() or "global"
+    with _results_lock:
+        lock = _results_lock_by_thread.get(key)
+        if lock is None:
+            lock = threading.Lock()
+            _results_lock_by_thread[key] = lock
+    return lock
+
+
+def _get_thread_uploads_key(thread_id=None, user_id=None) -> str:
+    safe_thread_id = _sanitize_thread_id(thread_id) or get_current_thread_id() or "global"
+    safe_user_id = _sanitize_thread_id(user_id) or "anonymous"
+    return f"{safe_user_id}__{safe_thread_id}"
+
+
+def _get_thread_uploads_dir(thread_id=None, user_id=None) -> str:
+    uploads_key = _get_thread_uploads_key(thread_id=thread_id, user_id=user_id)
+    path = os.path.join(RAG_UPLOADS_DIR, uploads_key)
+    os.makedirs(path, exist_ok=True)
+    return path
+
+
+def _sanitize_filename(value: str) -> str:
+    cleaned = re.sub(r"[^A-Za-z0-9_.-]+", "_", str(value or "").strip())
+    return cleaned.strip("_.") or "doc"
+
+
+def _dedupe_results(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df
+    def _resolve_column(base_name: str) -> Optional[str]:
+        if base_name in df.columns:
+            return base_name
+        suffix = f".{base_name}".lower()
+        for col in df.columns:
+            if str(col).lower().endswith(suffix):
+                return col
+        return None
+
+    score_col = _resolve_column("boosted_score") or _resolve_column("total_score")
+    if score_col:
+        df[score_col] = pd.to_numeric(df[score_col], errors="coerce")
+        df = df.sort_values(score_col, ascending=False, na_position="last")
+
+    doc_id_col = _resolve_column("doc_id")
+    source_col = _resolve_column("source_path")
+    if doc_id_col:
+        doc_series = df[doc_id_col].fillna("").astype(str).str.strip()
+        has_doc_id = doc_series != ""
+        with_doc_id = df[has_doc_id]
+        without_doc_id = df[~has_doc_id]
+        if not with_doc_id.empty:
+            with_doc_id = with_doc_id.drop_duplicates(subset=[doc_id_col], keep="first")
+        if source_col and not without_doc_id.empty:
+            source_series = without_doc_id[source_col].fillna("").astype(str).str.strip()
+            has_source = source_series != ""
+            with_source = without_doc_id[has_source]
+            without_source = without_doc_id[~has_source]
+            if not with_source.empty:
+                with_source = with_source.drop_duplicates(subset=[source_col], keep="first")
+            return pd.concat([with_doc_id, with_source, without_source], ignore_index=True)
+        return pd.concat([with_doc_id, without_doc_id], ignore_index=True)
+    if source_col:
+        return df.drop_duplicates(subset=[source_col], keep="first")
+    return df.drop_duplicates()
+
+
+def _align_results_columns(df: pd.DataFrame) -> pd.DataFrame:
+    cols = [c for c in RESULTS_COLUMNS if c in df.columns]
+    extras = [c for c in df.columns if c not in cols]
+    return df.reindex(columns=cols + extras)
+
+
+def _normalize_results_columns(df: pd.DataFrame) -> pd.DataFrame:
+    if df.empty:
+        return df
+    result = df.copy()
+    for base in RESULTS_COLUMNS:
+        candidates = []
+        for col in result.columns:
+            if col == base:
+                candidates.append(col)
+                continue
+            col_str = str(col)
+            if col_str.lower().endswith(f".{base}".lower()):
+                candidates.append(col)
+        if not candidates:
+            continue
+        merged = None
+        for col in candidates:
+            series = result[col]
+            if series.dtype == object:
+                series = series.replace(r"^\s*$", pd.NA, regex=True)
+            merged = series if merged is None else merged.combine_first(series)
+        result[base] = merged
+        to_drop = [col for col in candidates if col != base]
+        if to_drop:
+            result = result.drop(columns=to_drop)
+    return result
+
+
+def merge_results_csv(new_df: pd.DataFrame, thread_id=None) -> pd.DataFrame:
+    csv_path = get_results_csv_path(thread_id)
+    lock = _get_results_lock(thread_id)
+    with lock:
+        if os.path.exists(csv_path):
+            try:
+                existing_df = pd.read_csv(csv_path)
+            except pd.errors.EmptyDataError:
+                existing_df = pd.DataFrame(columns=RESULTS_COLUMNS)
+        else:
+            existing_df = pd.DataFrame(columns=RESULTS_COLUMNS)
+
+        existing_df = _normalize_results_columns(existing_df)
+        new_df = _normalize_results_columns(new_df) if new_df is not None else new_df
+
+        if new_df is None or new_df.empty:
+            if os.path.exists(csv_path):
+                save_results_csv(existing_df, csv_path=csv_path)
+            elif existing_df.empty:
+                save_results_csv(existing_df, csv_path=csv_path)
+            return existing_df
+
+        combined = pd.concat([existing_df, new_df], ignore_index=True)
+        combined = _dedupe_results(combined)
+        combined = _align_results_columns(combined)
+        save_results_csv(combined, csv_path=csv_path)
+        return combined
 
 
 
@@ -354,9 +514,13 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
 
     CALL THIS TOOL FIRST BEFORE ANY OTHER TOOL.
     """
-    output_dir = "downloaded_docs"
+    output_dir = tempfile.mkdtemp(prefix="downloaded_docs_")
     uri = NEO4J_URI
-    uploads_dir = RAG_UPLOADS_DIR
+    thread_id = get_current_thread_id()
+    user_id = get_current_user_id()
+    safe_thread_id = _sanitize_thread_id(thread_id) or "global"
+    uploads_key = _get_thread_uploads_key(thread_id=safe_thread_id, user_id=user_id)
+    uploads_dir = _get_thread_uploads_dir(thread_id=safe_thread_id, user_id=user_id)
     generate_uri = RAG_GENERATE_URL
     stats_uri = RAG_STATS_URL
     uname = NEO4J_USER
@@ -367,8 +531,6 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
     try:
 
         os.makedirs(output_dir, exist_ok=True)
-        clear_directory(output_dir)
-        clear_directory(uploads_dir)
 
         query = """
         CALL () {
@@ -411,13 +573,13 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
           ELSE total_score
         END AS boosted_score
         RETURN
-          d.doc_id,
-          d.title,
-          d.source_path,
-          d.meeting_id,
-          d.release,
-          total_score,
-          boosted_score
+          d.doc_id AS doc_id,
+          d.title AS title,
+          d.source_path AS source_path,
+          d.meeting_id AS meeting_id,
+          d.release AS release,
+          total_score AS total_score,
+          boosted_score AS boosted_score
         ORDER BY boosted_score DESC
         LIMIT 15;
         """
@@ -437,15 +599,39 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
 
         if not data:
             empty_df = pd.DataFrame(columns=RESULTS_COLUMNS)
-            save_results_csv(empty_df)
+            merge_results_csv(empty_df, thread_id=thread_id)
             return empty_df, "⚠️ No matching documents found."
 
         df = pd.DataFrame(data)
 
         def download_and_extract(row):
-            url, doc_id, title = row._3, row._1, row._2[:50].replace("/", "_")
-            dest_path = os.path.join(output_dir, f"{doc_id} - {title}.zip")
-            temp_extract_dir = os.path.join("/tmp/extracted_docs", str(doc_id))
+            row_dict = row._asdict() if hasattr(row, "_asdict") else {}
+            def pick_value(keys):
+                for key in keys:
+                    if key in row_dict:
+                        value = row_dict.get(key)
+                        if value not in (None, ""):
+                            return value
+                    if hasattr(row, key):
+                        value = getattr(row, key)
+                        if value not in (None, ""):
+                            return value
+                return ""
+
+            doc_id = pick_value(["doc_id", "d.doc_id"])
+            title = pick_value(["title", "d.title"])
+            url = pick_value(["source_path", "d.source_path", "url"])
+            if not doc_id or not url:
+                logging.error("Missing document fields for download: %s", row_dict)
+                return ("unknown", "missing doc_id/source_path", False)
+            safe_title = str(title or "document")[:50].replace("/", "_")
+            dest_path = os.path.join(output_dir, f"{doc_id} - {safe_title}.zip")
+            safe_doc_id = _sanitize_filename(doc_id)
+            doc_dir = os.path.join(uploads_dir, safe_doc_id)
+            os.makedirs(doc_dir, exist_ok=True)
+            if _dir_has_files(doc_dir):
+                return (safe_title, None, False)
+            temp_extract_dir = os.path.join(output_dir, safe_doc_id)
             os.makedirs(temp_extract_dir, exist_ok=True)
 
             try:
@@ -464,7 +650,9 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
                 for root, _, files in os.walk(temp_extract_dir):
                     for fname in files:
                         src_path = os.path.join(root, fname)
-                        dst_path = os.path.join(uploads_dir, fname)
+                        dst_path = os.path.join(doc_dir, fname)
+                        if os.path.exists(dst_path):
+                            continue
 
                         if fname.lower().endswith((".doc", ".docm")):
                             try:
@@ -475,57 +663,71 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
                                     logging.info(f"[{fname}] contains macros — removing...")
                                     document.ClearMacros()
                                 clean_path = os.path.splitext(dst_path)[0] + ".docx"
+                                if os.path.exists(clean_path):
+                                    continue
                                 document.SaveToFile(clean_path, FileFormat.Docx2016)
                                 document.Close()
                                 logging.info(f"Cleaned and moved safely: {clean_path}")
                             except Exception as e:
                                 logging.error(f"Spire.Doc conversion failed for {fname}: {e}")
                         else:
-                            safe_dst = os.path.join(uploads_dir, fname)
-                            shutil.move(src_path, safe_dst)
+                            shutil.move(src_path, dst_path)
 
                 shutil.rmtree(temp_extract_dir, ignore_errors=True)
-                return (title, None)
+                return (safe_title, None, True)
             except Exception as e:
-                logging.error(f"Error downloading {title}: {e}")
-                return (title, str(e))
+                logging.error(f"Error downloading {safe_title}: {e}")
+                return (safe_title, str(e), False)
 
         download_errors = []
+        downloaded_any = False
         max_workers = min(20, len(df))
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-            futures = {executor.submit(download_and_extract, row): row for row in df.itertuples()}
+            futures = {
+                executor.submit(download_and_extract, row): row
+                for row in df.itertuples(index=False, name="Row")
+            }
             for future in concurrent.futures.as_completed(futures):
-                title, err = future.result()
+                title, err, did_add = future.result()
                 if err:
                     download_errors.append(f"{title}: {err}")
+                if did_add:
+                    downloaded_any = True
 
         logging.info(f"Downloaded {len(df) - len(download_errors)}/{len(df)} documents successfully")
 
-        # wait for AI service readiness
-        start_time = time.time()
-        max_wait = 300
-        ready = False
-        while time.time() - start_time < max_wait:
-            try:
-                resp = requests.get(stats_uri, timeout=5)
-                if resp.status_code == 200:
-                    ready = True
-                    logging.info("AI service ready.")
-                    break
-                else:
-                    logging.info(f"AI not ready, status={resp.status_code}")
-            except Exception as e:
-                logging.info(f"AI service check failed: {e}")
-            time.sleep(5)
+        if downloaded_any:
+            # wait for AI service readiness only when new docs were added
+            start_time = time.time()
+            max_wait = int(os.getenv("RAG_STATS_MAX_WAIT", "300"))
+            poll_interval = float(os.getenv("RAG_STATS_POLL_INTERVAL", "5"))
+            ready = False
+            while time.time() - start_time < max_wait:
+                try:
+                    resp = requests.get(stats_uri, timeout=5)
+                    if resp.status_code == 200:
+                        ready = True
+                        logging.info("AI service ready.")
+                        break
+                    logging.info("AI not ready, status=%s", resp.status_code)
+                except Exception as e:
+                    logging.info("AI service check failed: %s", e)
+                time.sleep(poll_interval)
 
-        if not ready:
-            msg = f"Timeout: AI service not ready after {max_wait/60:.1f} minutes."
-            logging.error(msg)
-            return df, msg
+            if not ready:
+                msg = f"Timeout: AI service not ready after {max_wait/60:.1f} minutes."
+                logging.error(msg)
+                return df, msg
 
         # generate
-        payload = {"query": query_str, "max_tokens": 5000, "num_docs": 10, "model": get_current_model()}
+        payload = {
+            "query": query_str,
+            "max_tokens": 5000,
+            "num_docs": 10,
+            "model": get_current_model(),
+            "thread_id": uploads_key,
+        }
         try:
             response = requests.post(generate_uri, json=payload, timeout=90)
             response.raise_for_status()
@@ -534,14 +736,16 @@ def search_and_generate(query_str: str, meeting_id: Optional[str] = "") -> Tuple
             formatted_response = f"Failed to generate response: {e}"
             log_error("search_and_generate", str(e), {"query": query_str, "meeting_id": meeting_id})
 
-        save_results_csv(df)
+        merge_results_csv(df, thread_id=thread_id)
 
 
         return df, formatted_response
 
     except Exception as e:
         log_error("search_and_generate", str(e), {"query": query_str, "meeting_id": meeting_id})
-        return None, f"Error: {e}"  
+        return None, f"Error: {e}"
+    finally:
+        shutil.rmtree(output_dir, ignore_errors=True)
     
 
 
@@ -700,38 +904,6 @@ def query_documents(prompt: str, source: str) -> Dict:
         return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
 
 
-# @tool
-# def get_wikipedia_summary(query: str):
-#     """
-#     Fetches a summary from Wikipedia based on a search query.
-#     Args:
-#         query (str): The search query terms to look up on Wikipedia. Also there should be less than four terms.
-
-#     Returns:
-#         str: A summary of the Wikipedia page found for the query. If no results are found,
-#              or if there is an error fetching the page, appropriate messages are returned.
-#     """
-    
-#     try:
-#         search_results = wikipedia.search(query)
-#         if not search_results:
-#             return web_search_simple.invoke(query)
-#         try:
-#             result = wikipedia.page(search_results[0])
-#             return f"Found match with {search_results[0]}, Here is the result:\n{result.summary}"
-#         except:
-#             result = wikipedia.page(search_results[1])
-#             return f"Found match with {search_results[1]}, Here is the result:\n{result.summary}"
-#     except Exception as e:
-#         log_error(
-#             tool_name="get_wikipedia_summary",
-#             error_message=str(e),
-#             additional_info={"query": query}
-#         )
-        
-#         return "This tool is not working right now. DO NOT CALL THIS TOOL AGAIN!"
-
-
 
 @tool
 def simple_query_documents(prompt: str) -> Dict:
@@ -752,6 +924,9 @@ def simple_query_documents(prompt: str) -> Dict:
         start = time.time()
         
         user_id = get_current_user_id()
+        if not has_user_uploads(user_id):
+            logging.info("simple_query_documents skipped: no user uploads for user_id=%s", user_id)
+            return "No user uploads found. Ask the user to upload relevant documents."
         payload = {
             "query": prompt, 
             "destination": 'user',
@@ -811,6 +986,9 @@ def retrieve_documents(prompt: str) -> str:
         start = time.time()
         
         user_id = get_current_user_id()
+        if not has_user_uploads(user_id):
+            logging.info("retrieve_documents skipped: no user uploads for user_id=%s", user_id)
+            return "No user uploads found. Ask the user to upload relevant documents."
         k = 2
         if user_id:
             k = 12
