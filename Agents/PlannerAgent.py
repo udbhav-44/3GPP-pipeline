@@ -16,6 +16,7 @@ WRITE_ARTIFACTS = os.getenv("WRITE_ARTIFACTS", "false").lower() in {"1", "true",
 
 from datetime import datetime
 from LLMs import get_llm_for_role
+from Agents.LATS.OldfinTools import has_user_uploads, get_current_user_id
 
 
 
@@ -27,6 +28,8 @@ def plannerAgent(query, model=None, provider=None, allow_web_tools=True):
     
     sys = f'''Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
         must be with respect to this time frame.'''
+    has_uploads = has_user_uploads(get_current_user_id())
+    uploads_notice = "yes" if has_uploads else "no"
     sys_prompt =  '''
     
     You are a task management assistant designed to break down tasks and manage task progress.
@@ -59,6 +62,11 @@ def plannerAgent(query, model=None, provider=None, allow_web_tools=True):
     does not use any tool. Utilize specialized tools, like communication analysis tools,
     policy research tools, etc., over simple web searches, but if no specialized tool usage is possible,
     then use the scrape or search tools.
+
+    Use search_and_generate as the PRIMARY tool for refutable knowledge directly from 3GPP documents.
+    If user uploads are available, also use retrieve_documents/simple_query_documents for user-provided files.
+    If user uploads are not available, do NOT use retrieve_documents/simple_query_documents/query_documents.
+    Use web search only when specialized tools cannot answer the question.
      
     Based on user’s query , your main task is to gather valid information, create sub-tasks and synthesize agents which would execute these sub-tasks effectively. 
     
@@ -181,6 +189,9 @@ def plannerAgent(query, model=None, provider=None, allow_web_tools=True):
     # Example usage
     file_path = 'Tools/info.json'  # Replace with your JSON file path
     json_data = load_json(file_path)
+    if not has_uploads:
+        blocked = {"simple_query_documents", "retrieve_documents", "query_documents"}
+        json_data = [tool for tool in json_data if tool.get("name") not in blocked]
     if not allow_web_tools:
         blocked = {"web_search", "web_scrape", "web_search_simple"}
         json_data = [tool for tool in json_data if tool.get("name") not in blocked]
@@ -194,7 +205,7 @@ def plannerAgent(query, model=None, provider=None, allow_web_tools=True):
     {json_data}
 
     '''
-    prompt = prompt + tools_prompt
+    prompt = prompt + tools_prompt + f"\nUser uploads available: {uploads_notice}\n"
 
     llm = get_llm_for_role("complex", model=model, provider=provider, temperature=0.6, top_p=0.7)
     response = llm.invoke(f'''{prompt}''').content
@@ -216,6 +227,8 @@ def plannerAgent_rag(query, ragContent, model=None, provider=None, allow_web_too
     
     sys = f'''Note: The Current Date and Time is {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}. All your searches and responses
         must be with respect to this time frame.'''
+    has_uploads = has_user_uploads(get_current_user_id())
+    uploads_notice = "yes" if has_uploads else "no"
     sys_prompt =  '''
     
     You are a task planning assistant designed to break down tasks and manage task progress based on a prompt and context from a document.
@@ -225,9 +238,11 @@ def plannerAgent_rag(query, ragContent, model=None, provider=None, allow_web_too
     Large Scale considerations v/s Small Scale considerations, Long Term Considerations v/s Short Term Considerations etc. 
     For each of these domains like communication technologies, 3GPP standardization, network performance analysis, policy and regulation, finance, market 
     strategy etc, generate individual agents which do intensive research on these specific topics, leveraging the tools provided.
-    The agents have access to extensive documents relevant to the query encourage them to make as many queries as possible to retrieve_documents to get relevant context for answering the query. 
+    Use search_and_generate as the PRIMARY tool for refutable knowledge directly from 3GPP documents.
+    If user uploads are available, also use retrieve_documents/simple_query_documents for user-provided files.
+    If user uploads are not available, do NOT use retrieve_documents/simple_query_documents.
+    Use web search only when specialized tools cannot answer the question.
     The agents should focus HEAVILY ON extracting numbers from the context. Extract AS MANY NUMBERS as possible. Also, the source provided to you should be mentioned EXPLICITLY.
-    Your Job is to extract as much relevant information from retrieve_documents. Make sure to extract information from tables as much as you can. Basically, you have lots of information waiting to be extracted from the document, do it. It’s a treasure trove of information.
 
 
     The task divison should be very specific to the context. Following is the context:
@@ -235,6 +250,8 @@ def plannerAgent_rag(query, ragContent, model=None, provider=None, allow_web_too
     =======================================================
     {ragContent}
     =======================================================
+
+    User uploads available: ''' + uploads_notice + '''
 
     
     

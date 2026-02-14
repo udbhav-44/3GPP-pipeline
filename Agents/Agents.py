@@ -45,6 +45,7 @@ class Agent:
         self.allow_web_tools = allow_web_tools
 
         tl_lis = []
+        has_uploads = has_user_uploads(get_current_user_id())
 
         if len(tools_list) < 1 and self.allow_web_tools:
             tools_list.append('web_search')
@@ -52,12 +53,16 @@ class Agent:
         for function_name in tools_list:
             if '(' in function_name:
                 function_name = function_name.split('(')[0]
-                tl_lis.append(globals()[function_name])
-            else:
-                tl_lis.append(globals()[function_name])
+            if not has_uploads and function_name in {
+                "simple_query_documents",
+                "retrieve_documents",
+                "query_documents",
+            }:
+                continue
+            tl_lis.append(globals()[function_name])
         self.tools_list = tl_lis[:]
         
-        if self.state == 'RAG':
+        if self.state == 'RAG' and has_uploads:
             self.tools_list.append(retrieve_documents)
 
         self.PREFIX_TEMPLATE = f"""You are a {self.name}, with the following role : {self.role}."""

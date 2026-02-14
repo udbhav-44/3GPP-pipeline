@@ -24,12 +24,11 @@ prompt_template = ChatPromptTemplate.from_messages(
                 "system",
                 """
                 Generate a detailed response backed by numbers and sources to the user question below
-                1. If 'retrieve_documents' tool is present in the available set of tools, ALWAYS CALL IT FIRST
-                2. Any other tool will only be called after 'retrieve_documents'
-                3. If required information has been extracted from 'retrieve_documents' and it provides satisfactory answer, DO NOT call any other tool.
-                4. Do not remove Document and page number for any response from 'retrieve_documents'
-                4. Use specialized tools to generate the response.
-                5. Cite the sources,the link of the exact webpage  next to there relevant information in each response.
+                1. Use 'search_and_generate' as the primary source of refutable knowledge directly from 3GPP documents.
+                2. If 'retrieve_documents' is present, use it only for user-uploaded documents and cite document/page references.
+                3. If 'retrieve_documents' yields sufficient user context, you may skip additional user-doc tools.
+                4. Use web search tools only if specialized tools cannot answer the query.
+                5. Cite the sources and the exact webpage link next to the relevant information in each response.
                 """,
             ),
             MessagesPlaceholder(variable_name="messages", optional=True),

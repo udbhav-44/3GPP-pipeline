@@ -24,7 +24,7 @@
     },
     {
         "name": "simple_query_documents",
-        "docstring": "Query documents using a Retrieval-Augmented Generation (RAG) endpoint. This should be the first choice before performing a web search.",
+        "docstring": "Query user-uploaded documents using a RAG endpoint. Use only when the user has uploads; secondary to search_and_generate for 3GPP sources.",
         "parameters": {
             "prompt": "str"
         },
@@ -35,7 +35,7 @@
     },
     {
         "name": "retrieve_documents",
-        "docstring": "Extract information from the provided internal document. This should be the first tool to call for accurate and verified information.",
+        "docstring": "Extract information from user-uploaded documents. Use only when the user has uploads; otherwise skip.",
         "parameters": {
             "prompt": "str"
         },
@@ -46,7 +46,7 @@
     },
     {
         "name": "query_documents",
-        "docstring": "Query documents using a Retrieval-Augmented Generation (RAG) endpoint. This should be the first choice before performing a web search.",
+        "docstring": "Query a specific user-provided document via RAG. Use only when the user has uploads; otherwise skip.",
         "parameters": {
             "prompt": "str",
             "source": "str"
@@ -70,7 +70,7 @@
     {
 
         "name": "search_and_generate",
-        "docstring": "Query the Graph-3GPP for all communication related queries to get the Relevant Documents for the Query and Returns a tuple of (DataFrame of Resultant Documents or None, formatted response string with the AI Ans). meeting_id is optional and can be used to filter documents by meeting.",
+        "docstring": "Primary tool for refutable knowledge directly from 3GPP. Queries Graph-3GPP and returns (DataFrame of results or None, formatted response string). meeting_id is optional.",
         "parameters": {
             "query_str": "str",
             "meeting_id": "Optional[str]"
